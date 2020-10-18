@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { signUp, signInWithGoogle, signInWithGitHub } from "../helpers/auth";
+import { signUp, signInWithGoogle, signInWithGitHub, signInWithMicrosoft } from "../helpers/auth";
 
 const Login = () => {
   const [error, setError] = useState();
@@ -35,6 +35,14 @@ const Login = () => {
   const githubSignIn = async (event) => {
     try {
       await signInWithGitHub();
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+  
+  const microsoftSignIn = async (event) => {
+    try {
+      await signInWithMicrosoft();
     } catch (error) {
       setError(error.message);
     }
@@ -83,8 +91,11 @@ const Login = () => {
         <button className="btn btn-danger mr-2" type="button" onClick={googleSignIn}>
           Sign in with Google
         </button>
-        <button className="btn btn-secondary" type="button" onClick={githubSignIn}>
+        <button className="btn btn-secondary mr-2" type="button" onClick={githubSignIn}>
           Sign in with GitHub
+        </button>
+        <button className="btn btn-secondary" type="button" onClick={microsoftSignIn}>
+          Sign in with Microsoft
         </button>
         <hr />
         <p>

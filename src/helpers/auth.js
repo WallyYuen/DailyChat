@@ -20,6 +20,16 @@ export const signInWithGitHub = () => {
   return auth().signInWithPopup(provider);
 };
 
+export const signInWithMicrosoft = () => {
+  const provider = new auth.OAuthProvider("microsoft.com");
+
+  provider.setCustomParameters({
+    tenant: "afca0a52-882c-4fa8-b71d-f6db2e36058b"
+  });
+  
+  return auth().signInWithPopup(provider);
+};
+
 export const logout = () => {
   return auth().signOut();
 }
