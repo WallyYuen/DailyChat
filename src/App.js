@@ -1,25 +1,79 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import Home from './pages/home';
+import Chat from './pages/chat';
+import SignUp from './pages/signUp';
+import Login from './pages/login';
+import { auth } from './services/firebase';
+import "./styles.css";
 
-function App() {
+const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Route
+      {...rest}
+      render={(props) => authenticated
+        ? <Component {...props} />
+        : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />}
+    />
+  )
+}
+
+const PublicRoute = ({ component: Component, authenticated, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) => !authenticated
+        ? <Component {...props} />
+        : <Redirect to='/chat' />}
+    />
+  )
+}
+
+const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
+
+  const onAuthStateChange = (callback) => {
+    setIsLoading(false);
+    return auth().onAuthStateChanged(user => callback(!!user));
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChange(setAuthenticated);
+    
+    return () => unsubscribe();
+  }, [isLoading]);
+
+  return isLoading ? (
+    <div className="spinner-border text-success" role="status">
+      <span className="sr-only">Loading...</span>
     </div>
+  ) : (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <PrivateRoute
+          path="/chat"
+          authenticated={authenticated}
+          component={Chat}
+        />
+        <PublicRoute
+          path="/signup"
+          authenticated={authenticated}
+          component={SignUp}
+        />
+        <PublicRoute
+          path="/login"
+          authenticated={authenticated}
+          component={Login}
+        />
+      </Switch>
+    </Router>
   );
 }
 
