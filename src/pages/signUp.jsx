@@ -75,7 +75,7 @@ const Login = () => {
         </div>
         <div className="form-group">
           {error && (
-            <p className="text-danger">{this.state.error}</p>
+            <p className="text-danger">{error}</p>
           )}
           <button className="btn btn-primary px-5" type="submit">Sign up</button>
         </div>
