@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Route,
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-} from "react-router-dom";
+import React, { useEffect, useMemo } from "react";
+import { observer } from "mobx-react";
+import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
+
 import Home from './pages/home';
 import Chat from './pages/chat';
 import SignUp from './pages/signUp';
 import Login from './pages/login';
 import { auth } from './services/firebase';
+
 import "./styles.css";
+
+import { ApplicationStore, ApplicationContext } from "./stores/applicationStore";
 
 const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
   return (
@@ -35,46 +35,44 @@ const PublicRoute = ({ component: Component, authenticated, ...rest }) => {
 }
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [authenticated, setAuthenticated] = useState(false);
-
-  const onAuthStateChange = (callback) => {
-    setIsLoading(false);
-    return auth().onAuthStateChanged(user => callback(!!user));
-  };
+  const store = useMemo(() => ApplicationStore.create(), []);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChange(setAuthenticated);
-    
-    return () => unsubscribe();
-  }, [isLoading]);
+    auth().onAuthStateChanged(user => {
+      store.setUser(user)
+      store.setLoading(false);
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  return isLoading ? (
+  return store.isLoading ? (
     <div className="spinner-border text-success" role="status">
       <span className="sr-only">Loading...</span>
     </div>
   ) : (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <PrivateRoute
-          path="/chat"
-          authenticated={authenticated}
-          component={Chat}
-        />
-        <PublicRoute
-          path="/signup"
-          authenticated={authenticated}
-          component={SignUp}
-        />
-        <PublicRoute
-          path="/login"
-          authenticated={authenticated}
-          component={Login}
-        />
-      </Switch>
-    </Router>
+    <ApplicationContext.Provider value={store}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <PrivateRoute
+            path="/chat"
+            authenticated={store.isAuthenticated}
+            component={Chat}
+          />
+          <PublicRoute
+            path="/signup"
+            authenticated={store.isAuthenticated}
+            component={SignUp}
+          />
+          <PublicRoute
+            path="/login"
+            authenticated={store.isAuthenticated}
+            component={Login}
+          />
+        </Switch>
+      </BrowserRouter>
+    </ApplicationContext.Provider>
   );
 }
 
-export default App;
+export default observer(App);
