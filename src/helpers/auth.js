@@ -10,14 +10,14 @@ export const login = (email, password) => {
 
 export const signInWithGoogle = () => {
   const provider = new auth.GoogleAuthProvider();
-  
-  return auth().signInWithPopup(provider);
+
+  return auth().signInWithRedirect(provider);
 };
 
 export const signInWithGitHub = () => {
   const provider = new auth.GithubAuthProvider();
   
-  return auth().signInWithPopup(provider);
+  return auth().signInWithRedirect(provider);
 };
 
 export const signInWithMicrosoft = () => {
@@ -27,7 +27,7 @@ export const signInWithMicrosoft = () => {
     tenant: "afca0a52-882c-4fa8-b71d-f6db2e36058b"
   });
   
-  return auth().signInWithPopup(provider);
+  return auth().signInWithRedirect(provider);
 };
 
 export const logout = () => {
