@@ -56,7 +56,7 @@ const Login = () => {
         onSubmit={handleSubmit}
       >
         <h1>
-          Sign up to <Link className="title ml-2" to="/">IR Chat</Link>
+          Sign up to <Link className="title ml-2" to="/">Daily Chat</Link>
         </h1>
         <p className="lead">
           Fill in the form below to create an account.
