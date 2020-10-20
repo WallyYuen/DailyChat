@@ -48,7 +48,7 @@ const Login = () => {
         onSubmit={handleSubmit}
       >
         <h1>
-          Login to <Link className="title ml-2" to="/">IR Chat</Link>
+          Login to <Link className="title ml-2" to="/">Daily Chat</Link>
         </h1>
         <p className="lead">
           Fill in the form below to login to your account.
