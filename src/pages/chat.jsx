@@ -87,7 +87,7 @@ const Chat = () => {
         <button type="submit" className="btn btn-submit px-5 mt-4">Send</button>
       </form>
       <div className="py-5 mx-3">
-        Login in as: <strong className="text-info">{user.email}</strong>
+        Logged in as: <strong className="text-info">{user.email}</strong>
       </div>
     </div>
   );
