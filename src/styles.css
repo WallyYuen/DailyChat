@@ -1,17 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #fcfcfc;
+  font-family: "Poppins", sans-serif;
+  background-color: #fff;
 }
 
-.chat-area, .home {
+.chat-area,
+.home {
   margin-top: 60px;
 }
 
 .chat-area {
   padding: 20px;
-  height: 400px;
+  height: 70vh;
+  width: 50%;
+  margin: 0 auto;
   overflow-y: scroll;
 }
 
@@ -35,7 +38,8 @@ body {
 }
 
 .form-control {
-  width: 60%;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .form-control:focus {
@@ -49,6 +53,7 @@ body {
 .btn-submit {
   background-color: #2e7d32;
   color: white;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 767px) {

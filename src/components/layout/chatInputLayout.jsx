@@ -12,9 +12,9 @@ const ChatInputLayout = ({
 }) => {
   return (
     <div>
-      <form onSubmit={handleSubmit} className="mx-3">
+      <form onSubmit={handleSubmit} className="mx-3 form-centered">
         <textarea className="form-control" name="content" onChange={handleChange} value={chatMessage} />
-          {writeError && <p className="text-danger">{writeError}</p>}
+        {writeError && <p className="text-danger">{writeError}</p>}
         <Button label="Send" type="submit" classes={["btn-submit mt-4"]} />
       </form>
       <div className="py-5 mx-3">
