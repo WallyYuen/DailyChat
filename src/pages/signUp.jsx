@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { signUp, signInWithGoogle, signInWithGitHub, signInWithMicrosoft } from "../helpers/auth";
+import SignUpLayout from "../components/layout/signUpLayout";
 
-const Login = () => {
+const SignUp = () => {
   const [error, setError] = useState();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -49,61 +49,19 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <form
-        className="mt-5 py-5 px-5"
-        autoComplete="off"
-        onSubmit={handleSubmit}
-      >
-        <h1>
-          Sign up to <Link className="title ml-2" to="/">Daily Chat</Link>
-        </h1>
-        <p className="lead">
-          Fill in the form below to create an account.
-        </p>
-        <div className="form-group">
-          <input
-            className="form-control"
-            placeholder="Email"
-            name="email"
-            type="email"
-            onChange={handleChange}
-            value={email}
-          />
-        </div>
-        <div className="form-group">
-          <input
-            className="form-control"
-            placeholder="Password"
-            name="password"
-            type="password"
-            onChange={handleChange}
-            value={password}
-          />
-        </div>
-        <div className="form-group">
-          {error && (
-            <p className="text-danger">{error}</p>
-          )}
-          <button className="btn btn-primary px-5" type="submit">Sign up</button>
-        </div>
-        <p>You can also sign up with any of these services</p>
-        <button className="btn btn-danger mr-2" type="button" onClick={googleSignIn}>
-          Sign in with Google
-        </button>
-        <button className="btn btn-secondary mr-2" type="button" onClick={githubSignIn}>
-          Sign in with GitHub
-        </button>
-        <button className="btn btn-secondary" type="button" onClick={microsoftSignIn}>
-          Sign in with Microsoft
-        </button>
-        <hr />
-        <p>
-          Already have an account? <Link to="/signup">Sign up</Link>
-        </p>
-      </form>
-    </div>
-  )
+    <SignUpLayout
+      email={email}
+      password={password}
+      error={error}
+      handleSubmit={handleSubmit}
+      handleChange={handleChange}
+      customSignIn={{
+        googleSignIn,
+        githubSignIn,
+        microsoftSignIn,
+      }}
+    />
+  );
 };
 
-export default Login;
+export default SignUp;

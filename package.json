@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "clsx": "^1.1.1",
     "firebase": "^7.24.0",
     "mobx": "5.15.7",
     "mobx-react": "6.3.1",
