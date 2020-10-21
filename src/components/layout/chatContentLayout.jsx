@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import Header from "../../components/header";
+import Header from "../header";
 
 const formatTime = (timestamp) => {
   const d = new Date(timestamp);
@@ -8,7 +8,7 @@ const formatTime = (timestamp) => {
   return `${d.getDate()}/${(d.getMonth() + 1)}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`;
 };
 
-const ChatLayout = ({
+const ChatContentLayout = ({
   parentRef,
   isLoading,
   readError,
@@ -37,4 +37,4 @@ const ChatLayout = ({
   );
 };
 
-export default ChatLayout;
+export default ChatContentLayout;

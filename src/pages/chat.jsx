@@ -2,8 +2,8 @@ import React, { useEffect, useState, useMemo } from "react";
 import { auth } from "../services/firebase";
 import { db } from "../services/firebase"
 
-import ChatLayout from "../components/layout/chatLayout";
-import ChatMessageLayout from "../components/layout/chatMessageLayout";
+import ChatContentLayout from "../components/layout/chatContentLayout";
+import ChatInputLayout from "../components/layout/chatInputLayout";
 
 const Chat = () => {
   const [chatMessage, setChatMessage] = useState("");
@@ -63,7 +63,7 @@ const Chat = () => {
   };
 
   const ChatContent = useMemo(() => (
-    <ChatLayout
+    <ChatContentLayout
       parentRef={ref}
       isLoading={isLoading}
       chatHistory={chatHistory}
@@ -75,7 +75,7 @@ const Chat = () => {
   return (
     <React.Fragment>
       {ChatContent}
-      <ChatMessageLayout
+      <ChatInputLayout
         chatMessage={chatMessage}
         user={user}
         writeError={writeError}
