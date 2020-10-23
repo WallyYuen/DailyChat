@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import Header from "../header";
+import Header from "../container/header";
 
 const formatTime = (timestamp) => {
   const d = new Date(timestamp);

@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { auth } from "../services/firebase";
-import { db } from "../services/firebase"
+import { auth, db } from "../lib/firebase";
 
 import ChatContentLayout from "../components/layout/chatContentLayout";
 import ChatInputLayout from "../components/layout/chatInputLayout";
