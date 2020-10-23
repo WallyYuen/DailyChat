@@ -4,23 +4,37 @@ import UserModel from "../models/userModel";
 
 export const ApplicationStore = types
   .model("ApplicationStore", {
-    user: types.maybe(UserModel),
+    currentUser: types.maybe(types.reference(UserModel)),
+    users: types.array(UserModel),
     isLoading: true,
   })
-  .views(self => ({
-    get isAuthenticated() {
-      return !!self.user;
-    },
-  }))
   .actions(self => ({
     setLoading: isLoading => self.isLoading = isLoading,
-    setUser(user) {
-      if (!user) {
-        self.user = undefined;
-        return;
-      }
+    setUsers(users) {
+      const uniqueUsers = {};
 
-      self.user = UserModel.create({ ...user });
+      [...self.users, ...users].forEach((user) => {
+        uniqueUsers[user.email] = { ...user };
+      });
+
+      self.users = Object.values(uniqueUsers);
+    },
+    setUser(user) {
+      const currentUser = user ? { ...user } : undefined;
+
+      self.currentUser = user?.uid;
+      if (currentUser) self.setUsers([currentUser]);
+    },
+  }))
+  .views(self => ({
+    get isAuthenticated() {
+      return !!self.currentUser;
+    },
+    get userList() {
+      return self.users.filter(user => user.email !== self.currentUser.email);
+    },
+    get onlineUsers() {
+      return self.users.filter(user => user.isOnline);
     },
   }));
 
