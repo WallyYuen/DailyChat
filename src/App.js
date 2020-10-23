@@ -1,15 +1,17 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useCallback } from "react";
 import { observer } from "mobx-react";
 import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
 
-import Home from './pages/home';
-import Chat from './pages/chat';
-import SignUp from './pages/signUp';
-import Login from './pages/login';
-import { auth } from './services/firebase';
+import Home from "./pages/home";
+import Chat from "./pages/chat";
+import SignUp from "./pages/signUp";
+import Login from "./pages/login";
+import Users from "./pages/users";
+import { auth, db } from "./lib/firebase";
 
 import "./styles.css";
 
+// Store
 import { ApplicationStore, ApplicationContext } from "./stores/applicationStore";
 
 const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
@@ -20,8 +22,8 @@ const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
         ? <Component {...props} />
         : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />}
     />
-  )
-}
+  );
+};
 
 const PublicRoute = ({ component: Component, authenticated, ...rest }) => {
   return (
@@ -31,19 +33,55 @@ const PublicRoute = ({ component: Component, authenticated, ...rest }) => {
         ? <Component {...props} />
         : <Redirect to='/chat' />}
     />
-  )
-}
+  );
+};
 
 const App = () => {
   const store = useMemo(() => ApplicationStore.create(), []);
 
   useEffect(() => {
-    auth().onAuthStateChanged(user => {
-      store.setUser(user)
+    if (!store.isAuthenticated) return;
+
+    const unsubscribe = db.collection("users")
+      .onSnapshot((snapshot) => {
+        const users = {};
+        
+        snapshot.forEach(user => {
+          users[user.id] = user.data();
+        });
+
+        store.setUsers(Object.values(users));
+      });
+
+    return () => unsubscribe();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [store.isAuthenticated]);
+
+  useEffect(() => {
+    console.log("foo");
+    const unsubscribe = auth().onAuthStateChanged(user => {
+      console.log("bar");
+      store.setUser(user);
       store.setLoading(false);
+
+      if (!user) return;
+  
+      db.collection("users").doc(user.email).set({
+        ...store.currentUser,
+        lastLoginAt: new Date(),
+        isOnline: true,
+      })
+      .catch(error => {
+        throw new Error(`Failed to set user to online, ${error}`);
+      });
     });
+
+    return () => unsubscribe();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const HomePage = useCallback(() => <Home isAuthenticated={store.isAuthenticated} />, []);
 
   return store.isLoading ? (
     <div className="spinner-border text-success" role="status">
@@ -53,7 +91,7 @@ const App = () => {
     <ApplicationContext.Provider value={store}>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={HomePage} />
           <PrivateRoute
             path="/chat"
             authenticated={store.isAuthenticated}
@@ -69,10 +107,14 @@ const App = () => {
             authenticated={store.isAuthenticated}
             component={Login}
           />
+          <PublicRoute
+            path="/users"
+            component={Users}
+          />
         </Switch>
       </BrowserRouter>
     </ApplicationContext.Provider>
   );
-}
+};
 
 export default observer(App);

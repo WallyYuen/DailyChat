@@ -1,20 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ExternalLogin from "../container/externalLogin";
 
 // UI
-import Textfield from "../../components/ui/textfield";
-import Button from "../../components/ui/button";
+import Textfield from "../ui/textfield"
+import Button from "../ui/button"
 
 const SignUpLayout = ({
   email,
+  handleError,
   password,
   error,
   handleSubmit,
   handleChange,
-  customSignIn,
 }) => {
-  const { googleSignIn, githubSignIn, microsoftSignIn } = customSignIn;
-
   return (
     <div className="container">
       <form
@@ -51,24 +50,7 @@ const SignUpLayout = ({
           <Button label="Sign up" type="submit" classes={["btn-primary"]} />
         </div>
         <p>You can also sign up with any of these services</p>
-        <Button
-          label="Google"
-          type="button"
-          onClick={googleSignIn}
-          classes={["btn-danger", "mr-2"]}
-        />
-        <Button
-          label="GitHub"
-          type="button"
-          onClick={githubSignIn}
-          classes={["btn-secondary", "mr-2"]}
-        />
-        <Button
-          label="Microsoft"
-          type="button"
-          onClick={microsoftSignIn}
-          classes={["btn-secondary"]}
-        />
+        <ExternalLogin handleError={handleError} />
         <hr />
         <p>
           Already have an account? <Link to="/login">Login</Link>
