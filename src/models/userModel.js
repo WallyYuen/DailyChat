@@ -10,7 +10,7 @@ const UserModel = types
   })
   .views(self => ({
     get name() {
-      return self.displayName ?? "Wolverine";
+      return self.displayName ?? `Anonymous (${self.email})`;
     },
   }));
 
