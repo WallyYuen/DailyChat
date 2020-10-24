@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
 
 import Home from "./pages/home";
-import Chat from "./pages/chat";
+import Dashboard from "./pages/dashboard";
 import SignUp from "./pages/signUp";
 import Login from "./pages/login";
 import { auth, userDb } from "./lib/firebase";
@@ -31,7 +31,7 @@ const PublicRoute = ({ component: Component, authenticated, ...rest }) => {
       {...rest}
       render={(props) => !authenticated
         ? <Component {...props} />
-        : <Redirect to='/chat' />}
+        : <Redirect to='/dashboard' />}
     />
   );
 };
@@ -91,9 +91,9 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <PrivateRoute
-            path="/chat"
+            path="/dashboard"
             authenticated={store.isAuthenticated}
-            component={Chat}
+            component={Dashboard}
           />
           <PublicRoute
             path="/signup"

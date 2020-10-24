@@ -1,5 +1,4 @@
 import React from "react";
-import { observer } from "mobx-react";
 
 const UserListLayout = ({ users }) => {
   return (
@@ -20,4 +19,4 @@ const UserListLayout = ({ users }) => {
   );
 };
 
-export default observer(UserListLayout);
+export default UserListLayout;

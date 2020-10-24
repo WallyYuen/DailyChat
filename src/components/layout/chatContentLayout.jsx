@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import Header from "../container/header";
 
 const formatTime = (timestamp) => {
   const d = new Date(timestamp);
@@ -17,7 +16,6 @@ const ChatContentLayout = ({
 }) => {
   return (
     <div>
-      <Header />
       <div className="chat-area" ref={parentRef}>
         {isLoading && (
           <div className="spinner-border text-success" role="status">

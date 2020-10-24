@@ -24,7 +24,7 @@ const HomePage = ({ isAuthenticated }) => {
                 </Link>
               </React.Fragment>
             ) : (
-              <Link to="/chat">
+              <Link to="/dashboard">
                 <Button label="Go to chat" classes={["btn-primary"]} />
               </Link>
             )}
