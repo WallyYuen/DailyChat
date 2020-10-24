@@ -8,6 +8,7 @@ const Chat = () => {
   const [chatMessage, setChatMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [writeError, setWriteError] = useState();
+  const [readError, setReadError] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   const user = useMemo(() => auth().currentUser, []);
@@ -21,6 +22,9 @@ const Chat = () => {
 
       setIsLoading(false);
       setChatHistory(values);
+    }, (error) => {
+      setIsLoading(false);
+      setReadError(error);
     });
 
     return () => unsubscribe();
@@ -59,10 +63,11 @@ const Chat = () => {
     <ChatContentLayout
       parentRef={ref}
       isLoading={isLoading}
+      readError={readError}
       chatHistory={chatHistory}
       user={user}
     />
-  ), [chatHistory, isLoading, user]);
+  ), [chatHistory, isLoading, readError, user]);
 
   return (
     <React.Fragment>
