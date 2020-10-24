@@ -31,10 +31,12 @@ export const ApplicationStore = types
       return !!self.currentUser;
     },
     get userList() {
-      return self.users.filter(user => user.email !== self.currentUser.email);
+      return self.users
+        .filter(user => user.email !== self.currentUser.email)
+        .sort((a, b) => a.name - b.name);
     },
     get onlineUsers() {
-      return self.users.filter(user => user.isOnline);
+      return self.userList.filter(user => user.isOnline);
     },
   }));
 

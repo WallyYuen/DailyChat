@@ -15,21 +15,19 @@ const Chat = () => {
   const ref = React.useRef(null);
 
   useEffect(() => {
-    setReadError();
+    const unsubscribe = db.collection("chats").onSnapshot((snapshot) => {
+      const values = snapshot.docs
+        .map(doc => doc.data())
+        .sort((a, b) => a.timestamp - b.timestamp);
 
-    try {
-      db.ref("chats").on("value", snapshot => {
-        const values = Object
-          .values(snapshot.exportVal())
-          .sort((a, b) => a.timestamp - b.timestamp);
-
-        setIsLoading(false);
-        setChatHistory(values);
-      });
-    } catch (error) {
-      setReadError(error.message);
       setIsLoading(false);
-    }
+      setChatHistory(values);
+    }, (error) => {
+      setIsLoading(false);
+      setReadError(error);
+    });
+
+    return () => unsubscribe();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -47,27 +45,27 @@ const Chat = () => {
     setWriteError();
     const chatArea = ref.current;
 
-    try {
-      await db.ref("chats").push({
-        content: chatMessage,
-        timestamp: Date.now(),
-        uid: user.uid,
-      });
-
+    db.collection("chats").add({
+      content: chatMessage,
+      timestamp: Date.now(),
+      uid: user.uid,
+    })
+    .then(() => {
       setChatMessage("");
       chatArea.scrollBy(0, chatArea.scrollHeight);
-    } catch (error) {
+    })
+    .catch(error => {
       setWriteError(error.message);
-    }
+    });
   };
 
   const ChatContent = useMemo(() => (
     <ChatContentLayout
       parentRef={ref}
       isLoading={isLoading}
+      readError={readError}
       chatHistory={chatHistory}
       user={user}
-      readError={readError}
     />
   ), [chatHistory, isLoading, readError, user]);
 
