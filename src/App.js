@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useCallback } from "react";
+import firebase from "firebase/app";
 import { observer } from "mobx-react";
 import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
 
@@ -6,8 +7,7 @@ import Home from "./pages/home";
 import Chat from "./pages/chat";
 import SignUp from "./pages/signUp";
 import Login from "./pages/login";
-import Users from "./pages/users";
-import { auth, db } from "./lib/firebase";
+import { auth, userDb } from "./lib/firebase";
 
 import "./styles.css";
 
@@ -40,35 +40,19 @@ const App = () => {
   const store = useMemo(() => ApplicationStore.create(), []);
 
   useEffect(() => {
-    if (!store.isAuthenticated) return;
-
-    const unsubscribe = db.collection("users")
-      .onSnapshot((snapshot) => {
-        const users = {};
-        
-        snapshot.forEach(user => {
-          users[user.id] = user.data();
-        });
-
-        store.setUsers(Object.values(users));
-      });
-
-    return () => unsubscribe();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [store.isAuthenticated]);
-
-  useEffect(() => {
-    console.log("foo");
     const unsubscribe = auth().onAuthStateChanged(user => {
-      console.log("bar");
       store.setUser(user);
       store.setLoading(false);
 
       if (!user) return;
+
+      userDb.ref(`users/${user.uid}`).onDisconnect().update({
+        isOnline: false,
+      });
   
-      db.collection("users").doc(user.email).set({
+      userDb.ref(`users/${user.uid}`).set({
         ...store.currentUser,
-        lastLoginAt: new Date(),
+        lastLoginAt: firebase.database.ServerValue.TIMESTAMP,
         isOnline: true,
       })
       .catch(error => {
@@ -79,6 +63,20 @@ const App = () => {
     return () => unsubscribe();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (!store.isAuthenticated) return;
+
+    const unsubscribe = userDb.ref("users")
+      .on("value", (snapshot) => {
+        if (!snapshot) return;
+
+        store.setUsers(Object.values(snapshot.exportVal()));
+      });
+
+    return () => unsubscribe();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [store.isAuthenticated]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const HomePage = useCallback(() => <Home isAuthenticated={store.isAuthenticated} />, []);
@@ -106,10 +104,6 @@ const App = () => {
             path="/login"
             authenticated={store.isAuthenticated}
             component={Login}
-          />
-          <PublicRoute
-            path="/users"
-            component={Users}
           />
         </Switch>
       </BrowserRouter>
