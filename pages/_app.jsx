@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import { observer } from "mobx-react";
 import { auth, userDb } from "lib/firebase";
-import { userLoggedIn, userLoggedOut } from "lib/auth";
+import { updateStatus, onDisconnect } from "lib/auth";
 
 // Store
 import { ApplicationStore, ApplicationContext } from "stores/applicationStore";
@@ -18,8 +18,14 @@ const MyApp = ({ Component, pageProps }) => {
 
       if (!user) return;
 
-      userLoggedOut(user);
-      userLoggedIn(store.currentUser);
+      userDb.ref("admins").once('value').then((snapshot) => {
+        const isAdmin = Object.values(snapshot.exportVal()).includes(user.uid);
+        store.currentUser.setRole(isAdmin);
+
+        onDisconnect(user);
+        updateStatus(store.currentUser);
+      });
+
     });
 
     return () => unsubscribe();
