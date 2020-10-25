@@ -1,38 +1,20 @@
 {
-  "name": "irchat",
+  "name": "daily-chat",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
   "dependencies": {
     "clsx": "^1.1.1",
     "firebase": "^7.24.0",
     "mobx": "5.15.7",
     "mobx-react": "6.3.1",
-    "mobx-react-lite": "2.2.2",
     "mobx-state-tree": "^3.17.2",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "next": "9.5.5",
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
   }
 }
