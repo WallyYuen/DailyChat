@@ -1,5 +1,6 @@
 import React from "react";
-import { auth, userDb } from "lib/firebase";
+import { auth } from "lib/firebase";
+import { logout } from "lib/auth";
 
 // Layout
 import HeaderLayout from "components/layout/headerLayout";
@@ -8,12 +9,7 @@ const Header = () => {
   const { currentUser } = auth();
 
   const handleLogout = async () => {
-    await userDb.ref(`users/${currentUser.uid}`)
-      .update({ isOnline: false })
-      .then(() => auth().signOut())
-      .catch(error => {
-        throw new Error(`Failed to set user to offline, ${error}`);
-      });
+    await logout(currentUser);
   };
 
   return (

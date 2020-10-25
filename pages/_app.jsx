@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo } from "react";
-import { auth, userDb, now } from "lib/firebase";
+import { observer } from "mobx-react";
+import { auth, userDb } from "lib/firebase";
+import { userLoggedIn, userLoggedOut } from "lib/auth";
 
 // Store
 import { ApplicationStore, ApplicationContext } from "stores/applicationStore";
@@ -16,18 +18,8 @@ const MyApp = ({ Component, pageProps }) => {
 
       if (!user) return;
 
-      userDb.ref(`users/${user.uid}`).onDisconnect().update({
-        isOnline: false,
-      });
-  
-      userDb.ref(`users/${user.uid}`).set({
-        ...store.currentUser,
-        isOnline: true,
-        lastLoginAt: now,
-      })
-      .catch(error => {
-        throw new Error(`Failed to set user to online, ${error}`);
-      });
+      userLoggedOut(user);
+      userLoggedIn(store.currentUser);
     });
 
     return () => unsubscribe();
@@ -55,4 +47,4 @@ const MyApp = ({ Component, pageProps }) => {
   );
 };
 
-export default MyApp
+export default MyApp;
