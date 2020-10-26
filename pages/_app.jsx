@@ -22,7 +22,7 @@ const MyApp = ({ Component, pageProps }) => {
         const isAdmin = Object.values(snapshot.exportVal()).includes(user.uid);
         store.currentUser.setRole(isAdmin);
 
-        onDisconnect(user);
+        onDisconnect(store.currentUser);
         updateStatus(store.currentUser);
       });
 
