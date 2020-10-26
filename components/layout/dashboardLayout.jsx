@@ -3,7 +3,8 @@ import React from "react";
 // Component
 import Header from "components/container/header";
 import Chat from "components/container/chat";
-import Users from "components/container/users";
+import UserList from "components/container/userList";
+import ActorList from "components/container/actorList";
 
 const DashboardLayout = () => {
   return (
@@ -12,13 +13,13 @@ const DashboardLayout = () => {
       <div className="container">
         <div className="row">
           <div className="col">
-            1 of 3
+            <ActorList />
           </div>
           <div className="col-6">
             <Chat />
           </div>
           <div className="col">
-            <Users />
+            <UserList />
           </div>
         </div>
       </div>
