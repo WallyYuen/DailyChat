@@ -11,8 +11,8 @@ import Button from "components/ui/button";
 import { useApplicationStore } from "stores/applicationStore";
 
 const Home = () => {
-  const { isAuthenticated } = useApplicationStore();
   enableStaticRendering(typeof window === "undefined");
+  const { isAuthenticated } = useApplicationStore();
 
   return (
     <div className="home">
