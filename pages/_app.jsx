@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
-import { observer } from "mobx-react";
 import { auth, userDb } from "lib/firebase";
 import { updateStatus, onDisconnect } from "lib/auth";
+import { getUserRole } from "lib/roles";
 
 // Store
 import { ApplicationStore, ApplicationContext } from "stores/applicationStore";
@@ -18,14 +18,12 @@ const MyApp = ({ Component, pageProps }) => {
 
       if (!user) return;
 
-      userDb.ref("admins").once('value').then((snapshot) => {
-        const isAdmin = Object.values(snapshot.exportVal()).includes(user.uid);
-        store.currentUser.setRole(isAdmin);
-
+      getUserRole(user).then((role) => {
+        store.currentUser.setRole(role);
+        
         onDisconnect(store.currentUser);
         updateStatus(store.currentUser);
       });
-
     });
 
     return () => unsubscribe();
@@ -52,5 +50,12 @@ const MyApp = ({ Component, pageProps }) => {
     </ApplicationContext.Provider>
   );
 };
+
+// Not supported yet in current build (Next.js 9.5.5)
+// export async function getStaticProps() {
+//   const roleOptions = await userDb.ref("roleOptions").once('value');
+
+//   return { props: { roleOptions } };
+// }
 
 export default MyApp;
