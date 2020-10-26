@@ -53,7 +53,7 @@ const MyApp = ({ Component, pageProps }) => {
 
 // Not supported yet in current build (Next.js 9.5.5)
 // export async function getStaticProps() {
-//   const roleOptions = await userDb.ref("roleOptions").once('value');
+//   const roleOptions = await userDb.ref("roleOptions").once("value");
 
 //   return { props: { roleOptions } };
 // }
