@@ -7,10 +7,10 @@ import { ApplicationContext } from "stores/applicationStore";
 // Layout
 import UserListLayout from "components/layout/userListLayout";
 
-const Users = () => {
+const UserList = () => {
   const { onlineUsers } = useContext(ApplicationContext);
 
   return <UserListLayout users={onlineUsers} />;
 };
 
-export default observer(Users);
+export default observer(UserList);
