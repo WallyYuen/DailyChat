@@ -14,7 +14,6 @@ const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {
     const unsubscribe = auth().onAuthStateChanged(user => {
       store.setUser(user);
-      store.setLoading(false);
 
       if (!user) return;
 
@@ -35,6 +34,8 @@ const MyApp = ({ Component, pageProps }) => {
 
     const unsubscribe = userDb.ref("users")
       .on("value", (snapshot) => {
+        store.setLoading(false);
+        
         if (!snapshot) return;
 
         store.setUsers(Object.values(snapshot.exportVal()));
