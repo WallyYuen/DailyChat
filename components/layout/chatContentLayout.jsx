@@ -28,6 +28,8 @@ const ChatContentLayout = ({
             {message.content}
             <br />
             <span className="chat-time float-right">{formatTime(message.timestamp)}</span>
+            <br />
+            <span>{message.name}</span>
           </p>
         ))}
       </div>

@@ -1,5 +1,9 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useContext, } from "react";
+import { observer, enableStaticRendering } from "mobx-react-lite";
 import { auth, db } from "lib/firebase";
+
+// Store
+import { ApplicationContext } from "stores/applicationStore";
 
 // Layout
 import ChatContentLayout from "components/layout/chatContentLayout";
@@ -12,14 +16,22 @@ const Chat = () => {
   const [readError, setReadError] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  const user = useMemo(() => auth().currentUser, []);
+  const { users, activeUser } = useContext(ApplicationContext);
   const ref = React.useRef(null);
+
+  enableStaticRendering(typeof window === "undefined");
 
   useEffect(() => {
     const unsubscribe = db.collection("chats").onSnapshot((snapshot) => {
       const values = snapshot.docs
         .map(doc => doc.data())
-        .sort((a, b) => a.timestamp - b.timestamp);
+        .sort((a, b) => a.timestamp - b.timestamp)
+        .map((value) => {
+          const messageUser = users.find(user => user.uid === value.uid);
+          const name = messageUser?.name ?? "Deleted";
+          
+          return { ...value, name };
+        });
 
       setIsLoading(false);
       setChatHistory(values);
@@ -49,7 +61,7 @@ const Chat = () => {
     db.collection("chats").add({
       content: chatMessage,
       timestamp: Date.now(),
-      uid: user.uid,
+      uid: activeUser.uid,
     })
     .then(() => {
       setChatMessage("");
@@ -66,16 +78,16 @@ const Chat = () => {
       isLoading={isLoading}
       readError={readError}
       chatHistory={chatHistory}
-      user={user}
+      user={activeUser}
     />
-  ), [chatHistory, isLoading, readError, user]);
+  ), [chatHistory, isLoading, readError, activeUser]);
 
   return (
     <React.Fragment>
       {ChatContent}
       <ChatInputLayout
         chatMessage={chatMessage}
-        user={user}
+        user={activeUser}
         writeError={writeError}
         handleSubmit={handleSubmit}
         handleChange={handleChange}
@@ -84,4 +96,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default observer(Chat);
