@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { observer, useStaticRendering } from "mobx-react";
+import { observer, enableStaticRendering } from "mobx-react-lite";
 
 // Components
 import Header from "components/container/header";
@@ -12,7 +12,7 @@ import { useApplicationStore } from "stores/applicationStore";
 
 const Home = () => {
   const { isAuthenticated } = useApplicationStore();
-  useStaticRendering(typeof window === "undefined");
+  enableStaticRendering(typeof window === "undefined");
 
   return (
     <div className="home">
