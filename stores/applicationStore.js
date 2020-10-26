@@ -6,8 +6,9 @@ import UserModel from "models/userModel";
 
 export const ApplicationStore = types
   .model("ApplicationStore", {
-    currentUser: types.maybe(types.reference(UserModel)),
     users: types.array(UserModel),
+    currentUser: types.maybe(types.reference(UserModel)),
+    userAsActor: types.maybe(types.reference(UserModel)),
     isLoading: true,
   })
   .actions(self => ({
@@ -27,6 +28,12 @@ export const ApplicationStore = types
       self.currentUser = user?.uid;
       if (currentUser) self.setUsers([currentUser]);
     },
+    setUserAsActor(user) {
+      const userAsActor = user ? { ...user } : undefined;
+
+      self.userAsActor = user?.uid;
+      if (userAsActor) self.setUsers([userAsActor]);
+    },
   }))
   .views(self => ({
     get isAuthenticated() {
@@ -38,11 +45,16 @@ export const ApplicationStore = types
         .sort((a, b) => a.name - b.name);
     },
     get actors() {
-      return self.userList.filter(user => user.role === "actor");
+      return self.users
+        .filter(user => user.role === "actor")
+        .sort((a, b) => a.name - b.name);
     },
     get onlineUsers() {
       return self.userList.filter(user => user.isOnline)
         .filter(user => user.role !== "actor");
+    },
+    get activeUser() {
+      return self.userAsActor ?? self.currentUser;
     },
   }));
 

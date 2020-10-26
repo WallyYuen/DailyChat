@@ -1,6 +1,9 @@
 import React from "react";
 
-const ActorListLayout = ({ actors }) => {
+// UI
+import Button from "components/ui/button";
+
+const ActorListLayout = ({ actors, onClick, resetUser }) => {
   return (
     <React.Fragment>
       <div className="container">
@@ -8,8 +11,9 @@ const ActorListLayout = ({ actors }) => {
           Act as
         </h5>
         <div className="dropdown-divider" />
+        <Button label="Reset user" onClick={resetUser} />
         {actors.map((actor) => (
-          <div key={actor.uid}>
+          <div key={actor.uid} onClick={onClick(actor)}>
             {actor.name}
           </div>
         ))}

@@ -9,9 +9,23 @@ import ActorListLayout from "components/layout/actorListLayout";
 
 const ActorList = () => {
   enableStaticRendering(typeof window === "undefined");
-  const { actors } = useContext(ApplicationContext);
+  
+  const store = useContext(ApplicationContext);
+  const isInstructor = store.currentUser.role === "instructor";
 
-  return <ActorListLayout actors={actors} />;
+  const resetUser = () => {
+    store.setUserAsActor();
+  };
+
+  const handleSelectActor = user => () => {
+    if (isInstructor) store.setUserAsActor(user)
+  };
+
+  return <ActorListLayout
+    actors={store.actors}
+    resetUser={resetUser}
+    onClick={handleSelectActor}
+  />;
 };
 
 export default observer(ActorList);
