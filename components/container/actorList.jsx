@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { observer, useStaticRendering } from "mobx-react";
+import { observer, enableStaticRendering } from "mobx-react-lite";
 
 // Store
 import { ApplicationContext } from "stores/applicationStore";
@@ -8,7 +8,7 @@ import { ApplicationContext } from "stores/applicationStore";
 import ActorListLayout from "components/layout/actorListLayout";
 
 const ActorList = () => {
-  useStaticRendering(typeof window === "undefined");
+  enableStaticRendering(typeof window === "undefined");
   const { actors } = useContext(ApplicationContext);
 
   return <ActorListLayout actors={actors} />;

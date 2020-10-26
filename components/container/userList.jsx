@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { observer } from "mobx-react";
+import { observer, enableStaticRendering } from "mobx-react-lite";
 
 // Store
 import { ApplicationContext } from "stores/applicationStore";
@@ -8,6 +8,7 @@ import { ApplicationContext } from "stores/applicationStore";
 import UserListLayout from "components/layout/userListLayout";
 
 const UserList = () => {
+  enableStaticRendering(typeof window === "undefined");
   const { onlineUsers } = useContext(ApplicationContext);
 
   return <UserListLayout users={onlineUsers} />;
