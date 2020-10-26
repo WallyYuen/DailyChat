@@ -8,13 +8,11 @@ const UserModel = types
     isOnline: types.optional(types.boolean, false),
     photoURL: types.maybeNull(types.string),
     role: types.optional(
-      types.enumeration("Role", ["student", "instructor", "actor"]), "student",
+      types.enumeration("Role", ["admin", "instructor", "actor", "student"]), "student",
     ),
   })
   .actions(self => ({
-    setRole(isAdmin) {
-      self.role = isAdmin ? "instructor" : "student";
-    },
+    setRole: role => self.role = role ?? "student",
   }))
   .views(self => ({
     get name() {
