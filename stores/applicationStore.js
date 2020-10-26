@@ -37,8 +37,12 @@ export const ApplicationStore = types
         .filter(user => user.email !== self.currentUser.email)
         .sort((a, b) => a.name - b.name);
     },
+    get actors() {
+      return self.usersList.filter(user => user.role === "actor");
+    },
     get onlineUsers() {
-      return self.userList.filter(user => user.isOnline);
+      return self.userList.filter(user => user.isOnline)
+        .filter(user => user.role !== "actor");
     },
   }));
 
