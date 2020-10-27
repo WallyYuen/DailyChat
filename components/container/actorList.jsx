@@ -9,9 +9,15 @@ import ActorListLayout from "components/layout/actorListLayout";
 
 const ActorList = () => {
   enableStaticRendering(typeof window === "undefined");
-  
+
   const store = useContext(ApplicationContext);
   const isInstructor = store.currentUser.role === "instructor";
+
+  const usersAsActor = store.actors.map(actor => ({
+    uid: actor.uid,
+    name: actor.name,
+    mood: actor.mood,
+  }));
 
   const resetUser = () => {
     store.setUserAsActor();
@@ -22,7 +28,7 @@ const ActorList = () => {
   };
 
   return <ActorListLayout
-    actors={store.actors}
+    actors={usersAsActor}
     resetUser={resetUser}
     onClick={handleSelectActor}
   />;
