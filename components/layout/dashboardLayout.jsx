@@ -2,9 +2,10 @@ import React from "react";
 
 // Component
 import Header from "components/container/header";
+import ActorList from "components/container/actorList";
+import ActorAction from "components/container/actorAction";
 import Chat from "components/container/chat";
 import UserList from "components/container/userList";
-import ActorList from "components/container/actorList";
 
 const DashboardLayout = () => {
   return (
@@ -14,6 +15,7 @@ const DashboardLayout = () => {
         <div className="row">
           <div className="col">
             <ActorList />
+            <ActorAction />
           </div>
           <div className="col-6">
             <Chat />
