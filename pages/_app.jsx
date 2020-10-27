@@ -34,13 +34,13 @@ const MyApp = ({ Component, pageProps }) => {
     if (!store.isAuthenticated) return;
 
     const unsubscribe = userDb.ref("users")
-      .on("value", (snapshot) => {
-        if (!snapshot) return;
+      .on("value", (snapshots) => {
+        const users = snapshots?.exportVal();
 
-        store.setUsers(Object.values(snapshot.exportVal()));
+        if (users) store.setUsers(Object.values(users));
       });
 
-    return () => unsubscribe();
+      return () => unsubscribe();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store.isAuthenticated]);
 
