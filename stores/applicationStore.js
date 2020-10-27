@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { types } from "mobx-state-tree";
+import { roles } from "lib/role";
 
 // Models
 import UserModel from "models/userModel";
@@ -29,10 +30,7 @@ export const ApplicationStore = types
       if (currentUser) self.setUsers([currentUser]);
     },
     setUserAsActor(user) {
-      const userAsActor = user ? { ...user } : undefined;
-
       self.userAsActor = user?.uid;
-      if (userAsActor) self.setUsers([userAsActor]);
     },
   }))
   .views(self => ({
@@ -46,12 +44,12 @@ export const ApplicationStore = types
     },
     get actors() {
       return self.users
-        .filter(user => user.role === "actor")
+        .filter(user => user.role === roles.actor)
         .sort((a, b) => a.name - b.name);
     },
     get onlineUsers() {
       return self.userList.filter(user => user.isOnline)
-        .filter(user => user.role !== "actor");
+        .filter(user => user.role !== roles.actor);
     },
     get activeUser() {
       return self.userAsActor ?? self.currentUser;

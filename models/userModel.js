@@ -1,4 +1,6 @@
 import { types } from "mobx-state-tree";
+import { roles } from "lib/role";
+import { moods } from "lib/mood";
 
 const UserModel = types
   .model("UserModel", {
@@ -8,11 +10,15 @@ const UserModel = types
     isOnline: types.optional(types.boolean, false),
     photoURL: types.maybeNull(types.string),
     role: types.optional(
-      types.enumeration("Role", ["admin", "instructor", "actor", "student"]), "student",
+      types.enumeration("Role", Object.values(roles)), roles.student,
+    ),
+    mood: types.optional(
+      types.enumeration("Mood", Object.values(moods)), moods.default,
     ),
   })
   .actions(self => ({
-    setRole: role => self.role = role ?? "student",
+    setRole: role => self.role = role ?? roles.student,
+    setMood: mood => self.mood = mood ?? moods.default,
   }))
   .views(self => ({
     get name() {
