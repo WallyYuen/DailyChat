@@ -4,6 +4,7 @@ import { roles } from "lib/role";
 
 // Models
 import UserModel from "models/userModel";
+import MessageModel from "models/messageModel";
 
 export const ApplicationStore = types
   .model("ApplicationStore", {
@@ -11,6 +12,7 @@ export const ApplicationStore = types
     currentUser: types.maybe(types.reference(UserModel)),
     userAsActor: types.maybe(types.reference(UserModel)),
     isLoading: true,
+    messages: types.array(MessageModel),
   })
   .actions(self => ({
     setLoading: isLoading => self.isLoading = isLoading,
@@ -31,6 +33,13 @@ export const ApplicationStore = types
     },
     setUserAsActor(user) {
       self.userAsActor = user?.uid;
+    },
+    setMessages(messages) {
+      self.messages = messages.map((message) => {
+        const user = self.users.find(user => user.uid === message.uid);
+        
+        return { user: user?.uid, ...message };
+      });
     },
   }))
   .views(self => ({

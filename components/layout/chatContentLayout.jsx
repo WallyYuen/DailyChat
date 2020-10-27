@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { observer, enableStaticRendering } from "mobx-react-lite";
 
 const formatTime = (timestamp) => {
   const d = new Date(timestamp);
@@ -14,6 +15,8 @@ const ChatContentLayout = ({
   user,
   chatHistory,
 }) => {
+  enableStaticRendering(typeof window === "undefined");
+
   return (
     <div>
       <div className="chat-area" ref={parentRef}>
@@ -24,12 +27,12 @@ const ChatContentLayout = ({
         )}
         {readError && <p className="text-danger">{readError}</p>}
         {!isLoading && !readError && chatHistory.map(message => (
-          <p key={message.timestamp} className={clsx("chat-bubble", { "current-user": user.uid === message.uid })}>
+          <p key={message.timestamp} className={clsx("chat-bubble", { "current-user": user.uid === message.user?.uid })}>
             {message.content}
             <br />
             <span className="chat-time float-right">{formatTime(message.timestamp)}</span>
             <br />
-            <span>{message.name}</span>
+            <span>{message.createdBy}</span>
           </p>
         ))}
       </div>
@@ -37,4 +40,4 @@ const ChatContentLayout = ({
   );
 };
 
-export default ChatContentLayout;
+export default observer(ChatContentLayout);
