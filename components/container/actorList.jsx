@@ -13,12 +13,6 @@ const ActorList = () => {
   const store = useContext(ApplicationContext);
   const isInstructor = store.currentUser.role === "instructor";
 
-  const usersAsActor = store.actors.map(actor => ({
-    uid: actor.uid,
-    name: actor.name,
-    mood: actor.mood,
-  }));
-
   const resetUser = () => {
     store.setUserAsActor();
   };
@@ -28,7 +22,7 @@ const ActorList = () => {
   };
 
   return <ActorListLayout
-    actors={usersAsActor}
+    actors={store.actors}
     resetUser={resetUser}
     onClick={handleSelectActor}
   />;
