@@ -17,9 +17,7 @@ const Chat = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const { users, activeUser } = useContext(ApplicationContext);
-
   const ref = React.useRef(null);
-  const userUids = users.map(user => user.uid);
 
   enableStaticRendering(typeof window === "undefined");
 
@@ -44,7 +42,7 @@ const Chat = () => {
 
     return () => unsubscribe();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userUids]);
+  }, []);
 
   useEffect(() => {
     if (!ref.current) return;

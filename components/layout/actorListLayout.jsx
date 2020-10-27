@@ -1,9 +1,12 @@
 import React from "react";
+import { observer, enableStaticRendering } from "mobx-react-lite";
 
 // UI
 import Button from "components/ui/button";
 
 const ActorListLayout = ({ actors, onClick, resetUser }) => {
+  enableStaticRendering(typeof window === "undefined");
+  
   return (
     <div className="container">
       <h5>
@@ -20,4 +23,4 @@ const ActorListLayout = ({ actors, onClick, resetUser }) => {
   );
 };
 
-export default ActorListLayout;
+export default observer(ActorListLayout);
