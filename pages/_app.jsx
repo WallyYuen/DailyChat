@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import { auth, userDb } from "lib/firebase";
 import { updateStatus, onDisconnect } from "lib/auth";
-import { getUserRole } from "lib/roles";
+import { getUserRole } from "lib/role";
 
 // Store
 import { ApplicationStore, ApplicationContext } from "stores/applicationStore";
