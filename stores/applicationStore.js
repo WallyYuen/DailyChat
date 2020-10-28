@@ -68,9 +68,9 @@ export const ApplicationStore = types
       return self.userAsActor ?? self.currentUser;
     },
     get mentions() {
-      return self.actors.map((actor) => ({
-        id: actor.uid,
-        display: actor.name,
+      return self.userList.map((user) => ({
+        id: user.uid,
+        display: user.name,
       }));
     },
   }));
