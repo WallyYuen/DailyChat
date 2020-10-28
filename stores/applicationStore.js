@@ -39,11 +39,7 @@ export const ApplicationStore = types
       self.focusedUser = user?.uid;
     },
     setMessages(messages) {
-      self.messages = messages.map((message) => {
-        const user = self.users.find(user => user.uid === message.uid);
-        
-        return { user: user?.uid, ...message };
-      });
+      self.messages = messages.map((message) => ({ userId: message.uid, ...message }));
     },
   }))
   .views(self => ({
