@@ -4,7 +4,9 @@ import Link from "next/link";
 // Components
 import ExternalLogin from "components/container/externalLogin";
 
-// Styles
+// UI
+import Button from "components/ui/button"
+import Textfield from "components/ui/textfield"
 
 
 const LoginLayout = ({
@@ -22,10 +24,34 @@ const LoginLayout = ({
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-        <h1>Login</h1>
-        <p>
-          Login using your OGD account.
-        </p>
+        <div>
+          <h1>Login</h1>
+          <p>
+            Login using your OGD account.
+          </p>
+        </div>
+        <div>
+          <Textfield
+            placeholder="Email"
+            name="email"
+            type="email"
+            onChange={handleChange}
+            value={email}
+          />
+        </div>
+        <div>
+          <Textfield
+            placeholder="Password"
+            name="password"
+            type="password"
+            onChange={handleChange}
+            value={password}
+          />
+        </div>
+        <div>
+          {error && <p>{error}</p>}
+          <Button label="Login" type="submit" />
+        </div>
         <ExternalLogin handleError={handleError} />
       </form>
     </div>
