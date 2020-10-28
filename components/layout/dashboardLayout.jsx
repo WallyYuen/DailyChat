@@ -13,16 +13,19 @@ import layout from "assets/styles/layout/dashboardLayout.module.scss";
 const DashboardLayout = () => {
   return (
     <div>
-      <div className={layout.container}>
+      <div>
         <Header />
-        <ActorList />
-        <ActorAction />
       </div>
-      <div>
+      <div className={layout.container}>
+        <div>
+          <ActorList />
+          <ActorAction />
+        </div>
         <Chat />
-      </div>
-      <div>
-        <UserList />
+        <div>
+          <UserList />
+          {/* actions */}
+        </div>
       </div>
     </div>
   );

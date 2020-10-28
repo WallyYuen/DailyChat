@@ -6,13 +6,13 @@ import Button from "components/ui/button";
 
 const ActorListLayout = ({ actors, onClick, resetUser }) => {
   enableStaticRendering(typeof window === "undefined");
-  
+
   return (
-    <div className="container">
-      <h5>
+    <div>
+      <h3>
         Act as
-      </h5>
-      <div className="dropdown-divider" />
+      </h3>
+      <div />
       <Button label="Reset user" onClick={resetUser} />
       {actors.map((actor) => (
         <div key={actor.uid} onClick={onClick(actor)}>

@@ -1,6 +1,7 @@
 // colors
 $color-neutral: hsl(205, 20, 60);
 $color-important: hsl(205, 80, 60);
+$color-disabled: hsl(0, 0, 90);
 
 // transitions
 $transition-normal: all ease-out 0.2s;
@@ -29,4 +30,13 @@ $transition-normal: all ease-out 0.2s;
 	&:hover {
 		filter: brightness(1.1);
 	}
+}
+
+.disabled {
+	background: $color-disabled;
+	color: grey;
+	border-radius: 4px;
+	padding: 4px 16px;
+
+	transition: $transition-normal;
 }

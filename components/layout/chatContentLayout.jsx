@@ -30,7 +30,7 @@ const ChatContentLayout = ({
         )}
         {readError && <p>{readError}</p>}
         {!isLoading && !readError && chatHistory.map(message => (
-          <p key={message.timestamp} className={clsx(layout.chatBubbleStandard, { [layout.currentUser]: user.uid === message.user?.uid })}>
+          <p key={message.timestamp} className={clsx({ [layout.chatBubbleUser]: user.uid === message.user?.uid, [layout.chatBubbleOther]: user.uid !== message.user?.uid })}>
             {message.content}
             <br />
             <span className={layout.chatTime}>{formatTime(message.timestamp)}</span>
