@@ -1,19 +1,32 @@
 import React from "react";
+import { MentionsInput, Mention } from "react-mentions";
 
 // UI
 import Button from "components/ui/button";
 
 const ChatInputLayout = ({
-  chatMessage,
-  user,
+  mentionAdded,
+  inputValue,
   writeError,
+  user,
   handleSubmit,
   handleChange,
+  mentions,
 }) => {
   return (
     <div>
       <form onSubmit={handleSubmit} className="mx-3 form-centered">
-        <textarea className="form-control" name="content" onChange={handleChange} value={chatMessage} />
+        <MentionsInput
+          value={inputValue}
+          onChange={handleChange}
+          allowSpaceInQuery
+        >
+          <Mention
+            markup="@[__display__](__id__)"
+            trigger="@"
+            data={mentions}
+          />
+        </MentionsInput>
         {writeError && <p className="text-danger">{writeError}</p>}
         <Button label="Send" type="submit" classes={["btn-submit mt-4"]} />
       </form>

@@ -13,6 +13,7 @@ export const ApplicationStore = types
     userAsActor: types.maybe(types.reference(UserModel)),
     isLoading: true,
     messages: types.array(MessageModel),
+    focusedUser: types.maybe(types.reference(UserModel)),
   })
   .actions(self => ({
     setLoading: isLoading => self.isLoading = isLoading,
@@ -33,6 +34,9 @@ export const ApplicationStore = types
     },
     setUserAsActor(user) {
       self.userAsActor = user?.uid;
+    },
+    setFocusedUser(user) {
+      self.focusedUser = user?.uid;
     },
     setMessages(messages) {
       self.messages = messages.map((message) => {
@@ -62,6 +66,12 @@ export const ApplicationStore = types
     },
     get activeUser() {
       return self.userAsActor ?? self.currentUser;
+    },
+    get mentions() {
+      return self.actors.map((actor) => ({
+        id: actor.uid,
+        display: actor.name,
+      }));
     },
   }));
 
