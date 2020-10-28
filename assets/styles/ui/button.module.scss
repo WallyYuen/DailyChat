@@ -1,0 +1,32 @@
+// colors
+$color-neutral: hsl(205, 20, 60);
+$color-important: hsl(205, 80, 60);
+
+// transitions
+$transition-normal: all ease-out 0.2s;
+
+.neutral {
+	background: $color-neutral;
+	color: white;
+	border-radius: 4px;
+	padding: 4px 16px;
+
+	transition: $transition-normal;
+
+	&:hover {
+		filter: brightness(1.1);
+	}
+}
+
+.important {
+	background: $color-important;
+	color: white;
+	border-radius: 4px;
+	padding: 4px 16px;
+
+	transition: $transition-normal;
+
+	&:hover {
+		filter: brightness(1.1);
+	}
+}

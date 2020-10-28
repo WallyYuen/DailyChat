@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
+
+/* RESETS */
+button {
+  border: none;
+  font-size: 1rem;
+  font-family: Poppins;
+}
+
+/* GLOBAL */
+body {
+  font-family: Poppins, sans-serif;
+  margin: 0;
+  width: 100%;
+}

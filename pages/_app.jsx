@@ -6,7 +6,7 @@ import { getUserRole } from "lib/role";
 // Store
 import { ApplicationStore, ApplicationContext } from "stores/applicationStore";
 
-import "styles/styles.css";
+import "assets/styles/styles.css";
 
 const MyApp = ({ Component, pageProps }) => {
   const store = useMemo(() => ApplicationStore.create(), []);
@@ -20,14 +20,14 @@ const MyApp = ({ Component, pageProps }) => {
 
       getUserRole(user).then((role) => {
         store.currentUser.setRole(role);
-        
+
         onDisconnect(store.currentUser);
         updateStatus(store.currentUser);
       });
     });
 
     return () => unsubscribe();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -40,8 +40,8 @@ const MyApp = ({ Component, pageProps }) => {
         if (users) store.setUsers(Object.values(users));
       });
 
-      return () => unsubscribe();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store.isAuthenticated]);
 
   return (

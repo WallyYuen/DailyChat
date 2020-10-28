@@ -30,7 +30,7 @@ const ChatInputLayout = ({
         <Button label="Send" type="submit" classes={["btn-submit mt-4"]} />
       </form>
       <div className="py-5 mx-3">
-        Logged in as: <strong className="text-info">{user.email}</strong>
+        Logged in as: <strong className="">{user.email}</strong>
       </div>
     </div>
   );

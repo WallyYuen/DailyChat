@@ -1,0 +1,46 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.chatArea {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	width: 50vw;
+	height: 60vh;
+	margin-left: 20px;
+	overflow-y: scroll;
+
+	.chatBubbleStandard {
+		background-color: #bbdefb;
+		margin: 4px;
+		padding: 4px;
+		border-radius: 4px;
+		min-width: 30%;
+		max-width: 30%;
+		word-wrap: break-word;
+
+		&.currentUser {
+			background-color: #89caff;
+			align-self: flex-end;
+		}
+
+		.chatTime {
+			font-size: 12px;
+			color: #757575;
+			text-align: right;
+		}
+	}
+}
+
+.formControl {
+	width: 50%;
+	margin: 0 auto;
+
+	&:focus {
+		box-shadow: none;
+	}
+}
