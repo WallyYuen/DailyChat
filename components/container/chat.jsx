@@ -10,15 +10,17 @@ import ChatContentLayout from "components/layout/chatContentLayout";
 import ChatInputLayout from "components/layout/chatInputLayout";
 
 const Chat = () => {
-  const [chatMessage, setChatMessage] = useState("");
+  const [inputValue, setInputValue] = useState();
   const [writeError, setWriteError] = useState();
+  const [mentions, setMentions] = useState([]);
+  const [plainText, setPlainText] = useState();
   const [readError, setReadError] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  const store = useContext(ApplicationContext)
-  const { messages, activeUser } = store;
+  const store = useContext(ApplicationContext);
+  const { messages, activeUser, focusedUser } = store;
+  
   const ref = React.useRef(null);
-
   enableStaticRendering(typeof window === "undefined");
 
   useEffect(() => {
@@ -44,24 +46,37 @@ const Chat = () => {
     ref.current.scrollBy(0, ref.current.scrollHeight);
   }, [messages.length]);
 
-  const handleChange = (event) => setChatMessage(event.target.value);
+  const handleChange = (event, newValue, newPlainTextValue, mentions) => {
+    setInputValue(newValue);
+    setMentions(mentions);
+    setPlainText(newPlainTextValue);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     
     setWriteError();
 
-    db.collection("chats").add({
-      content: chatMessage,
+    const message = {
+      content: plainText,
       timestamp: Date.now(),
       uid: activeUser.uid,
-    })
-    .then(() => {
-      setChatMessage("");
-    })
-    .catch(error => {
-      setWriteError(error.message);
-    });
+    };
+
+    if (focusedUser) message.focusedUserId = focusedUser.uid;
+
+    if (mentions.length > 0) {
+      message.mentions = mentions.map(mention => mention.id);
+    }
+
+    db.collection("chats")
+      .add(message)
+      .then(() => {
+        setInputValue("");
+      })
+      .catch(error => {
+        setWriteError(error.message);
+      });
   };
 
   const ChatContent = useMemo(() => (
@@ -78,11 +93,12 @@ const Chat = () => {
     <React.Fragment>
       {ChatContent}
       <ChatInputLayout
-        chatMessage={chatMessage}
+        inputValue={inputValue}
         user={activeUser}
         writeError={writeError}
         handleSubmit={handleSubmit}
         handleChange={handleChange}
+        mentions={store.mentions}
       />
     </React.Fragment>
   );

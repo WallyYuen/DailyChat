@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { observer, enableStaticRendering } from "mobx-react-lite";
+import { roles } from "lib/role";
 
 // Store
 import { ApplicationContext } from "stores/applicationStore";
@@ -11,14 +12,22 @@ const ActorList = () => {
   enableStaticRendering(typeof window === "undefined");
 
   const store = useContext(ApplicationContext);
-  const isInstructor = store.currentUser.role === "instructor";
+  const isInstructor = store.currentUser.role === roles.instructor;
 
   const resetUser = () => {
     store.setUserAsActor();
   };
 
   const handleSelectActor = user => () => {
-    if (isInstructor) store.setUserAsActor(user)
+    if (isInstructor) {
+      const isSelected = store.userAsActor?.uid === user.uid;
+      store.setUserAsActor(isSelected ? undefined : user);
+
+      return;
+    }
+
+    const isSelected = store.focusedUser?.uid === user.uid;
+    store.setFocusedUser(isSelected ? undefined : user);
   };
 
   return <ActorListLayout
