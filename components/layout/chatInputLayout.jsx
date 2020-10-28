@@ -5,7 +5,6 @@ import { MentionsInput, Mention } from "react-mentions";
 import Button from "components/ui/button";
 
 const ChatInputLayout = ({
-  mentionAdded,
   inputValue,
   writeError,
   user,

@@ -72,7 +72,9 @@ const Chat = () => {
     db.collection("chats")
       .add(message)
       .then(() => {
-        setInputValue("");
+        setInputValue();
+        setMentions();
+        setPlainText();
       })
       .catch(error => {
         setWriteError(error.message);
