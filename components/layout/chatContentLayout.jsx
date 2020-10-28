@@ -1,9 +1,9 @@
 import React from "react";
-import clsx from "clsx";
 import { observer, enableStaticRendering } from "mobx-react-lite";
 
-// layout
+// Styles
 import layout from "assets/styles/layout/chatContentLayout.module.scss";
+import type from "assets/styles/type.module.scss";
 
 const formatTime = (timestamp) => {
   const d = new Date(timestamp);
@@ -30,12 +30,18 @@ const ChatContentLayout = ({
         )}
         {readError && <p>{readError}</p>}
         {!isLoading && !readError && chatHistory.map(message => (
-          <p key={message.timestamp} className={clsx({ [layout.chatBubbleUser]: user.uid === message.user?.uid, [layout.chatBubbleOther]: user.uid !== message.user?.uid })}>
-            {message.content}
-            <br />
-            <span className={layout.chatTime}>{formatTime(message.timestamp)}</span>
-            <br />
-            <span>{message.createdBy}</span>
+          <p key={message.timestamp} className={`
+          ${layout.chatBubbleContainer}
+          ${user.uid === message.user?.uid ? layout.chatBubbleUser : layout.chatBubbleOther}
+          `}>
+            {
+              user.uid !== message.user?.uid &&
+              <span className={layout.userName}>{message.createdBy}</span>
+            }
+            <div className={layout.messageContainer}>
+              <span className={`${layout.message} ${type.chatMessage}`}>{message.content}</span>
+              <span className={layout.timeStamp}>{formatTime(message.timestamp)}</span>
+            </div>
           </p>
         ))}
       </div>

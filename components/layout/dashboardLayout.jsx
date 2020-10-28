@@ -12,10 +12,8 @@ import layout from "assets/styles/layout/dashboardLayout.module.scss";
 
 const DashboardLayout = () => {
   return (
-    <div>
-      <div>
-        <Header />
-      </div>
+    <React.Fragment>
+      <Header />
       <div className={layout.container}>
         <div>
           <ActorList />
@@ -27,7 +25,7 @@ const DashboardLayout = () => {
           {/* actions */}
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 
