@@ -9,6 +9,9 @@ import { ApplicationContext } from "stores/applicationStore";
 import ChatContentLayout from "components/layout/chatContentLayout";
 import ChatInputLayout from "components/layout/chatInputLayout";
 
+// styles
+import layout from "assets/styles/layout/chatLayout.module.scss";
+
 const Chat = () => {
   const [inputValue, setInputValue] = useState();
   const [writeError, setWriteError] = useState();
@@ -19,7 +22,7 @@ const Chat = () => {
 
   const store = useContext(ApplicationContext);
   const { messages, activeUser, focusedUser } = store;
-  
+
   const ref = React.useRef(null);
   enableStaticRendering(typeof window === "undefined");
 
@@ -37,7 +40,7 @@ const Chat = () => {
     });
 
     return () => unsubscribe();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -54,7 +57,8 @@ const Chat = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+    if (!plainText) return;
+
     setWriteError();
 
     const message = {
@@ -92,7 +96,7 @@ const Chat = () => {
   ), [messages, isLoading, readError, activeUser]);
 
   return (
-    <React.Fragment>
+    <div className={layout.container}>
       {ChatContent}
       <ChatInputLayout
         inputValue={inputValue}
@@ -102,7 +106,7 @@ const Chat = () => {
         handleChange={handleChange}
         mentions={store.mentions}
       />
-    </React.Fragment>
+    </div>
   );
 };
 

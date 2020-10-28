@@ -2,10 +2,13 @@ import React from "react";
 import clsx from "clsx";
 import { observer, enableStaticRendering } from "mobx-react-lite";
 
+// layout
+import layout from "assets/styles/layout/chatContentLayout.module.scss";
+
 const formatTime = (timestamp) => {
   const d = new Date(timestamp);
 
-  return `${d.getDate()}/${(d.getMonth() + 1)}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`;
+  return `${d.getHours()}:${d.getMinutes()}`;
 };
 
 const ChatContentLayout = ({
@@ -18,22 +21,24 @@ const ChatContentLayout = ({
   enableStaticRendering(typeof window === "undefined");
 
   return (
-    <div className="chat-area" ref={parentRef}>
-      {isLoading && (
-        <div className="spinner-border text-success" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-      )}
-      {readError && <p className="text-danger">{readError}</p>}
-      {!isLoading && !readError && chatHistory.map(message => (
-        <p key={message.timestamp} className={clsx("chat-bubble", { "current-user": user.uid === message.user?.uid })}>
-          {message.content}
-          <br />
-          <span className="chat-time float-right">{formatTime(message.timestamp)}</span>
-          <br />
-          <span>{message.createdBy}</span>
-        </p>
-      ))}
+    <div className={layout.container}>
+      <div className={layout.chatArea} ref={parentRef}>
+        {isLoading && (
+          <div role="status">
+            <span>Loading...</span>
+          </div>
+        )}
+        {readError && <p>{readError}</p>}
+        {!isLoading && !readError && chatHistory.map(message => (
+          <p key={message.timestamp} className={clsx({ [layout.chatBubbleUser]: user.uid === message.user?.uid, [layout.chatBubbleOther]: user.uid !== message.user?.uid })}>
+            {message.content}
+            <br />
+            <span className={layout.chatTime}>{formatTime(message.timestamp)}</span>
+            <br />
+            <span>{message.createdBy}</span>
+          </p>
+        ))}
+      </div>
     </div>
   );
 };

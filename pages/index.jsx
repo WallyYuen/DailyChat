@@ -18,11 +18,11 @@ const Home = () => {
     <div className="home">
       <Header />
       <section>
-        <div className="jumbotron jumbotron-fluid py-5">
-          <div className="container text-center py-5">
-            <h1 className="display-4">Welcome to Daily Chat</h1>
-            <p className="lead">A great place to share your thoughts with friends</p>
-            <div className="mt-4">
+        <div className="">
+          <div className="">
+            <h1 className="">Welcome to Daily Chat</h1>
+            <p className="">A great place to share your thoughts with friends</p>
+            <div className="">
               {!isAuthenticated ? (
                 <React.Fragment>
                   <Link href="/register">
@@ -33,10 +33,10 @@ const Home = () => {
                   </Link>
                 </React.Fragment>
               ) : (
-                <Link href="/dashboard">
-                  <Button label="Go to chat" classes={["btn-primary"]} />
-                </Link>
-              )}
+                  <Link href="/dashboard">
+                    <Button label="Go to chat" classes={["btn-primary"]} />
+                  </Link>
+                )}
             </div>
           </div>
         </div>

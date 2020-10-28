@@ -7,22 +7,24 @@ import ActorAction from "components/container/actorAction";
 import Chat from "components/container/chat";
 import UserList from "components/container/userList";
 
+// Layout
+import layout from "assets/styles/layout/dashboardLayout.module.scss";
+
 const DashboardLayout = () => {
   return (
-    <div className="container">
-      <Header />
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <ActorList />
-            <ActorAction />
-          </div>
-          <div className="col-6">
-            <Chat />
-          </div>
-          <div className="col">
-            <UserList />
-          </div>
+    <div>
+      <div>
+        <Header />
+      </div>
+      <div className={layout.container}>
+        <div>
+          <ActorList />
+          <ActorAction />
+        </div>
+        <Chat />
+        <div>
+          <UserList />
+          {/* actions */}
         </div>
       </div>
     </div>

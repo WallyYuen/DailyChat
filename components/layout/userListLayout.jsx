@@ -4,9 +4,9 @@ const UserListLayout = ({ users }) => {
   return (
     <React.Fragment>
       <div className="container">
-        <h5>
+        <h3>
           Contacts
-        </h5>
+        </h3>
         <div className="dropdown-divider" />
         {users.map((user) => (
           <div key={user.uid}>

@@ -1,8 +1,13 @@
 import React from "react";
+import clsx from "clsx";
 import { MentionsInput, Mention } from "react-mentions";
 
 // UI
 import Button from "components/ui/button";
+
+// Styling
+import layout from "assets/styles/layout/chatInputLayout.module.scss";
+import button from "assets/styles/ui/button.module.scss";
 
 const ChatInputLayout = ({
   inputValue,
@@ -12,10 +17,13 @@ const ChatInputLayout = ({
   handleChange,
   mentions,
 }) => {
+  const isEmpty = inputValue === undefined || inputValue === "";
+
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="mx-3 form-centered">
+    <div className={layout.container}>
+      <form className={layout.form} onSubmit={handleSubmit}>
         <MentionsInput
+          className={layout.inputField}
           value={inputValue}
           onChange={handleChange}
           allowSpaceInQuery
@@ -26,11 +34,11 @@ const ChatInputLayout = ({
             data={mentions}
           />
         </MentionsInput>
-        {writeError && <p className="text-danger">{writeError}</p>}
-        <Button label="Send" type="submit" classes={["btn-submit mt-4"]} />
+        {writeError && <p>{writeError}</p>}
+        <Button className={clsx(layout.sendButton, { [button.disabled]: isEmpty, [button.neutral]: !isEmpty })} disabled={isEmpty} label="Send" type="submit" />
       </form>
-      <div className="py-5 mx-3">
-        Logged in as: <strong className="text-info">{user.email}</strong>
+      <div>
+        Logged in as: <strong>{user.email}</strong>
       </div>
     </div>
   );
