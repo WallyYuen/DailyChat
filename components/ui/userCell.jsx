@@ -56,7 +56,9 @@ const UserCell = ({ user, ...props }) => {
       <div className={cell.content}>
         {user.name}, {user.mood}
       </div>
-      <div className={cell.mood} style={{ background: `${moodColor}` }}></div>
+      {user.role === "actor" && (
+        <div className={cell.mood} style={{ background: moodColor }}></div>
+      )}
     </div>
   );
 };
