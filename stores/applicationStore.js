@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { types } from "mobx-state-tree";
 import { roles } from "lib/role";
+import { moods, getMoodKey } from "lib/mood";
 
 // Models
 import UserModel from "models/userModel";
@@ -25,7 +26,11 @@ export const ApplicationStore = types
       });
 
       users.forEach((user) => {
+        const moodKey = getMoodKey(user.mood);
+        const mood = moods[moodKey] ?? moods.default;
+
         uniqueUsers[user.email].isOnline = user.isOnline;
+        uniqueUsers[user.email].mood = mood;
       });
 
       self.users = Object.values(uniqueUsers);
