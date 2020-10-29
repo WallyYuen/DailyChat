@@ -47,7 +47,7 @@ const Chat = () => {
     if (!ref.current) return;
 
     ref.current.scrollBy(0, ref.current.scrollHeight);
-  }, [messages.length]);
+  }, [messages.length, store.userAsActor]);
 
   const handleChange = (event, newValue, newPlainTextValue, mentions) => {
     setInputValue(newValue);

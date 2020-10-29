@@ -1,0 +1,43 @@
+// colors
+$color-neutral: rgb(255, 255, 255);
+$color-hover: rgb(207, 207, 207);
+$color-border: rgb(61, 61, 61);
+$color-separator: rgb(158, 158, 158);
+$color-text: rgb(66, 66, 66);
+
+// transitions
+$transition-normal: all ease-in-out 0.2s;
+
+.frame {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  position: relative;
+  cursor: pointer;
+
+  transition: $transition-normal;
+  
+  &:after {
+    content: "";
+    background-color: $color-separator;
+    position: absolute;
+    bottom: 0;
+    left: 55px;
+    right: 0;
+    height: 1px;
+  }
+}
+
+.content {
+	padding: 4px 16px;
+}
+
+.neutral {
+	background: $color-neutral;
+	color: $color-text;
+
+	&:hover {
+    filter: brightness(1.1);
+    background: $color-hover;
+	}
+}

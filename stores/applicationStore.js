@@ -20,8 +20,12 @@ export const ApplicationStore = types
     setUsers(users) {
       const uniqueUsers = {};
 
-      [...self.users, ...users].forEach((user) => {
+      [...users, ...self.users].forEach((user) => {
         uniqueUsers[user.email] = { ...user };
+      });
+
+      users.forEach((user) => {
+        uniqueUsers[user.email].isOnline = user.isOnline;
       });
 
       self.users = Object.values(uniqueUsers);
