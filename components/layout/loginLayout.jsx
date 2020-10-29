@@ -8,7 +8,6 @@ import ExternalLogin from "components/container/externalLogin";
 import Button from "components/ui/button"
 import Textfield from "components/ui/textfield"
 
-
 const LoginLayout = ({
   email,
   handleError,

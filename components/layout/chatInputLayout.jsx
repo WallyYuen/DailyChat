@@ -17,7 +17,7 @@ const ChatInputLayout = ({
   handleChange,
   mentions,
 }) => {
-  const isEmpty = inputValue === undefined || inputValue === "";
+  const isEmpty = inputValue ? false : true;
 
   return (
     <div className={layout.container}>
@@ -35,7 +35,15 @@ const ChatInputLayout = ({
           />
         </MentionsInput>
         {writeError && <p>{writeError}</p>}
-        <Button className={clsx(layout.sendButton, { [button.disabled]: isEmpty, [button.neutral]: !isEmpty })} disabled={isEmpty} label="Send" type="submit" />
+        <Button
+          className={clsx(layout.sendButton, {
+            [button.disabled]: isEmpty,
+            [button.neutral]: !isEmpty,
+          })}
+          disabled={isEmpty}
+          label="Send"
+          type="submit"
+        />
       </form>
       <div>
         Logged in as: <strong>{user.email}</strong>
