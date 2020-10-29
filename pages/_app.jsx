@@ -13,16 +13,16 @@ const MyApp = ({ Component, pageProps }) => {
 
   useEffect(() => {
     const unsubscribe = auth().onAuthStateChanged(user => {
-      store.setUser(user);
-      store.setLoading(false);
-
-      if (!user) return;
-
       getUserRole(user).then((role) => {
-        store.currentUser.setRole(role);
+        if (user) user.role = role;
 
-        onDisconnect(store.currentUser);
-        updateStatus(store.currentUser);
+        store.setUser(user);
+        store.setLoading(false);
+
+        if (user) {
+          onDisconnect(store.currentUser);
+          updateStatus(store.currentUser);
+        }
       });
     });
 
