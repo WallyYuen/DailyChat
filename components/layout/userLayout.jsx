@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { getMoodColor } from "lib/mood";
+import { roles } from "lib/role";
 
 // Component
 import Avatar from "components/ui/avatar";
@@ -21,7 +22,7 @@ const UserLayout = ({ isAnonymous, name, mood, role, image, ...props }) => {
       <div className={userLayout.content}>
         <span>{name}</span>
       </div>
-      {role === "actor" && (
+      {role === roles.actor && (
         <div className={userLayout.mood} style={{ background: moodColor }}></div>
       )}
     </div>
