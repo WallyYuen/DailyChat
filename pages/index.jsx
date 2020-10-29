@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { observer, enableStaticRendering } from "mobx-react-lite";
+import { roles } from "lib/role";
 
 // Components
 import Header from "components/container/header";
@@ -12,7 +13,9 @@ import { useApplicationStore } from "stores/applicationStore";
 
 const Home = () => {
   enableStaticRendering(typeof window === "undefined");
-  const { isAuthenticated } = useApplicationStore();
+
+  const { currentUser, isAuthenticated } = useApplicationStore();
+  const isStudent = currentUser?.role === roles.student;
 
   return (
     <div className="home">
@@ -33,8 +36,8 @@ const Home = () => {
                   </Link>
                 </React.Fragment>
               ) : (
-                  <Link href="/dashboard">
-                    <Button label="Go to chat" classes={["btn-primary"]} />
+                  <Link href={isStudent ? "/lobby" : "/dashboard"}>
+                    <Button label={`Go to ${isStudent ? "lobby" : "chat"}`} classes={["btn-primary"]} />
                   </Link>
                 )}
             </div>

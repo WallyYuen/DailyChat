@@ -8,6 +8,7 @@ const UserModel = types
     displayName: types.maybeNull(types.string),
     email: types.maybeNull(types.string),
     isOnline: types.optional(types.boolean, false),
+    approved: types.optional(types.boolean, false),
     photoURL: types.maybeNull(types.string),
     role: types.optional(
       types.enumeration("Role", Object.values(roles)), roles.student,
