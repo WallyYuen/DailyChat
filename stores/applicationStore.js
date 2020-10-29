@@ -29,8 +29,10 @@ export const ApplicationStore = types
         const moodKey = getMoodKey(user.mood);
         const mood = moods[moodKey] ?? moods.default;
 
-        uniqueUsers[user.email].isOnline = user.isOnline;
         uniqueUsers[user.email].mood = mood;
+        
+        uniqueUsers[user.email].isOnline = user.isOnline;
+        uniqueUsers[user.email].approved = user.approved;
       });
 
       self.users = Object.values(uniqueUsers);
