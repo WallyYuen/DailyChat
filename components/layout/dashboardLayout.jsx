@@ -15,12 +15,12 @@ const DashboardLayout = () => {
     <React.Fragment>
       <Header />
       <div className={layout.container}>
-        <div>
+        <div className={layout.leftColumn}>
           <ActorList />
           <ActorAction />
         </div>
         <Chat />
-        <div>
+        <div className={layout.rightColumn}>
           <UserList />
           {/* actions */}
         </div>

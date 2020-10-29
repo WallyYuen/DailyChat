@@ -8,33 +8,24 @@ import { getMoodColor } from "lib/mood";
 import cell from "assets/styles/ui/userCell.module.scss";
 
 const randomColor = () => {
-  const darkTextColor = "rgb(66, 66, 66)";
-  const defaultTextColor = "white";
+  const defaultTextColor = "hsl(0, 0%, 25%)";
 
   const colors = [
     {
-      avatarBackgroundColor: "SteelBlue",
+      avatarBackgroundColor: "Lightskyblue",
       avatarTextColor: defaultTextColor,
     },
     {
-      avatarBackgroundColor: "Tomato",
+      avatarBackgroundColor: "Peachpuff",
       avatarTextColor: defaultTextColor,
     },
     {
-      avatarBackgroundColor: "SandyBrown",
-      avatarTextColor: darkTextColor,
-    },
-    {
-      avatarBackgroundColor: "MediumSeaGreen",
+      avatarBackgroundColor: "Lightgoldenrodyellow",
       avatarTextColor: defaultTextColor,
     },
     {
-      avatarBackgroundColor: "LightSlateGray",
+      avatarBackgroundColor: "Lightcoral",
       avatarTextColor: defaultTextColor,
-    },
-    {
-      avatarBackgroundColor: "LightBlue",
-      avatarTextColor: darkTextColor,
     },
   ];
 
@@ -46,7 +37,7 @@ const randomColor = () => {
 const UserCell = ({ user, ...props }) => {
   enableStaticRendering(typeof window === "undefined");
   const { avatarBackgroundColor, avatarTextColor } = useMemo(() => randomColor(), []);
-  
+
   const moodColor = getMoodColor(user.mood);
   const isAnonymous = user.displayName ? false : true;
 
@@ -61,14 +52,11 @@ const UserCell = ({ user, ...props }) => {
         src={user.photoURL}
         size={40}
         maxInitials={isAnonymous ? 1 : 2}
-        style={{
-          fontSize: "10px",
-          border: `1px solid ${moodColor}`,
-        }}
       />
       <div className={cell.content}>
-        {user.name}
+        {user.name}, {user.mood}
       </div>
+      <div className={cell.mood} style={{ background: `${moodColor}` }}></div>
     </div>
   );
 };

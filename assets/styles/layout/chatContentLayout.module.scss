@@ -10,10 +10,10 @@
 	justify-content: center;
 	align-items: flex-start;
 	width: 40vw;
-	height: 76vh;
+	height: 80vh;
 	background: whitesmoke;
-	padding: 0 20px;
-	border-radius: 20px;
+	padding: 0 8px;
+	border-radius: 8px;
 	overflow-y: scroll;
 	transition: ease-out 0.3s all;
 
@@ -28,7 +28,7 @@
 		margin: 4px 0;
 		padding: 8px;
 		border-radius: 4px;
-		min-width: 30%;
+		min-width: 20%;
 		max-width: 80%;
 
 		.userName {
