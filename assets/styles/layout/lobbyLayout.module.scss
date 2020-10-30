@@ -1,7 +1,4 @@
 // colors
-$color-neutral: rgb(255, 255, 255);
-$color-hover: rgb(235, 235, 235);
-$color-border: rgb(61, 61, 61);
 $color-separator: rgb(221, 221, 221);
 $color-text: rgb(66, 66, 66);
 
@@ -73,7 +70,7 @@ $screen-xxl: 1800px;
   flex: 0 0 70%;
   align-items: center;
   justify-content: center;
-  max-width: 70%;
+  max-width: 100%;
   text-align: center;
 }
 
@@ -96,6 +93,12 @@ $screen-xxl: 1800px;
   padding-top: 10px;
   box-sizing: border-box;
   min-width: 50%;
+}
+
+@media screen and (min-width: $screen-xs) {
+  .container {
+    max-width: 70%;
+  }
 }
 
 @media screen and (min-width: $screen-md) {
