@@ -69,10 +69,14 @@ export const ApplicationStore = types
     },
     get onlineUsers() {
       return self.userList.filter(user => user.isOnline)
-        .filter(user => user.role !== roles.actor);
+        .filter(user => user.isContact);
     },
     get activeUser() {
       return self.userAsActor ?? self.currentUser;
+    },
+    get lobbyUsers() {
+      return self.userList.filter(user => user.isOnline)
+        .filter(user => user.role === roles.student && !user.approved);
     },
     get mentions() {
       return self.userList.map((user) => ({

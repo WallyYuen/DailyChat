@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import clsx from "clsx";
 import { getMoodColor } from "lib/mood";
 import { roles } from "lib/role";
@@ -9,11 +9,12 @@ import Avatar from "components/ui/avatar";
 // Styling
 import userLayout from "assets/styles/layout/userLayout.module.scss";
 
-const UserLayout = ({ isAnonymous, name, mood, role, image, ...props }) => {
+const UserLayout = ({ isAnonymous, name, mood, role, image, ...props }, ref) => {
   const moodColor = getMoodColor(mood);
+  const container = clsx(userLayout.frame, userLayout.neutral);
 
   return (
-    <div className={clsx(userLayout.frame, userLayout.neutral)} {...props}>
+    <div className={container} {...props} ref={ref}>
       <Avatar
         name={name}
         src={image}
@@ -29,4 +30,4 @@ const UserLayout = ({ isAnonymous, name, mood, role, image, ...props }) => {
   );
 };
 
-export default UserLayout;
+export default forwardRef(UserLayout);

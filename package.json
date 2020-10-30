@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@tippyjs/react": "^4.2.0",
     "clsx": "^1.1.1",
     "firebase": "^7.24.0",
     "mobx": "6.0.1",
