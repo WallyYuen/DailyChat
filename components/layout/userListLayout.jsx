@@ -1,17 +1,16 @@
 import React from "react";
 import { observer, enableStaticRendering } from "mobx-react-lite";
 import Tippy from "@tippyjs/react";
+import { followCursor, hideAll } from "tippy.js";
 
 // UI
 import UserLayout from "components/layout/userLayout";
-import Button from "components/ui/button";
 
 // Styling
 import "tippy.js/dist/tippy.css";
-import lobbyLayout from "assets/styles/layout/lobbyListLayout.module.scss";
-import button from "assets/styles/ui/button.module.scss";
+import layout from "assets/styles/ui/tippy.module.scss";
 
-const UserListLayout = ({ users, buttonLabel, onClick, header }) => {
+const UserListLayout = ({ users, header, modal: Modal, isInstructor }) => {
   enableStaticRendering(typeof window === "undefined");
 
   return (
@@ -25,27 +24,19 @@ const UserListLayout = ({ users, buttonLabel, onClick, header }) => {
           {users.map((user) => {
             const isAnonymous = !user.displayName;
 
-            const Content = () => (
-              <div>
-                <Button
-                  className={button.neutral}
-                  label={buttonLabel}
-                  onClick={onClick ? onClick(user) : () => {}}
-                />
-              </div>
-            );
-
             return (
               <div key={user.uid}>
                 <Tippy
-                  content={<Content />}
-                  className={lobbyLayout.tippy}
+                  content={<Modal user={user} onCancel={() => { hideAll() }} />}
+                  className={layout.tippy}
                   trigger="click"
                   touch
                   interactive
                   arrow={false}
-                  placement="top-start"
-                  disabled={!onClick}
+                  placement="left-start"
+                  disabled={!isInstructor}
+                  plugins={[followCursor]}
+                  followCursor="initial"
                 >
                   <UserLayout
                     isAnonymous={isAnonymous}
