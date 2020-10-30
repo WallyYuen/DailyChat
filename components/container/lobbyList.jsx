@@ -8,6 +8,9 @@ import { ApplicationContext } from "stores/applicationStore";
 // Layout
 import UserListLayout from "components/layout/userListLayout";
 
+// Component
+import LobbyModal from "components/layout/lobbyModal";
+
 const LobbyList = () => {
   enableStaticRendering(typeof window === "undefined");
 
@@ -18,12 +21,25 @@ const LobbyList = () => {
     setApproval({ ...user, approved: true });
   };
 
+  const Modal = ({ user, ...props }) => (
+    <LobbyModal
+      header="Add user"
+      onClick={onClick(user)}
+      user={{
+        approved: user.approved,
+        name: user.name,
+        email: user.email,
+      }}
+      {...props}
+    />
+  );
+
   return (
     <UserListLayout
       users={lobbyUsers}
-      buttonLabel="Add user"
+      modal={Modal}
       header="Lobby"
-      onClick={isInstructor ? onClick : undefined}
+      isInstructor={isInstructor}
     />
   );
 };

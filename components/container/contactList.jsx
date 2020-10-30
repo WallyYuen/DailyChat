@@ -8,6 +8,9 @@ import { ApplicationContext } from "stores/applicationStore";
 // Layout
 import UserListLayout from "components/layout/userListLayout";
 
+// Component
+import LobbyModal from "components/layout/lobbyModal";
+
 const ContactList = () => {
   enableStaticRendering(typeof window === "undefined");
 
@@ -18,12 +21,25 @@ const ContactList = () => {
     setApproval({ ...user, approved: false });
   };
 
+  const Modal = ({ user, ...props }) => (
+    <LobbyModal
+      header="Remove user"
+      onClick={onClick(user)}
+      user={{
+        approved: user.approved,
+        name: user.name,
+        email: user.email,
+      }}
+      {...props}
+    />
+  );
+
   return (
     <UserListLayout
       users={onlineUsers}
-      buttonLabel="Remove user"
+      modal={Modal}
       header="Contacts"
-      onClick={isInstructor ? onClick : undefined}
+      isInstructor={isInstructor}
     />
   );
 };

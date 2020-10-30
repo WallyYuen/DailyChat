@@ -2,6 +2,8 @@
 $color-neutral: hsl(205, 20, 60);
 $color-important: hsl(205, 80, 60);
 $color-disabled: hsl(0, 0, 90);
+$color-text: rgb(66, 66, 66);
+$color-border: rgb(139, 139, 139);
 
 // transitions
 $transition-normal: all ease-out 0.2s;
@@ -48,4 +50,25 @@ $transition-normal: all ease-out 0.2s;
 
 .fullWidth {
 	width: 100%;
+}
+
+.form {
+	font-weight: 300;
+	font-size: 0.5rem;
+	text-transform: uppercase;
+	color: $color-text;
+	border: 1px solid $color-border;
+	padding: 8px 8px;
+	border-radius: 3px;
+	min-width: 46%;
+	background-color: rgba(255, 255, 255, 0.0);
+	cursor: pointer;
+	// outline: none;
+}
+
+.primary {
+	color: white;
+	background-color: $color-important;
+	border-style: none;
+	padding: 9px 8px;
 }
