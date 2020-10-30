@@ -12,7 +12,7 @@ const ActorList = () => {
   enableStaticRendering(typeof window === "undefined");
 
   const store = useContext(ApplicationContext);
-  const isInstructor = store.currentUser.role === roles.instructor;
+  const isInstructor = store.currentUser.hasInstructorRights;
 
   const resetUser = () => {
     store.setUserAsActor();

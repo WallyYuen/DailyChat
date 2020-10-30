@@ -14,7 +14,6 @@ const ActorAction = () => {
 
   const setActorMood = async (event) => {
     const mood = event.target.value;
-    userAsActor?.setMood(mood);
 
     await userDb.ref(`users/${userAsActor.uid}`)
       .update({ mood })
