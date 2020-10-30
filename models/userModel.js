@@ -17,13 +17,15 @@ const UserModel = types
       types.enumeration("Mood", Object.values(moods)), moods.default,
     ),
   })
-  .actions(self => ({
-    setRole: role => self.role = role ?? roles.student,
-    setMood: mood => self.mood = mood ?? moods.default,
-  }))
   .views(self => ({
+    get isContact() {
+      return self.approved || ![roles.actor, roles.student].includes(self.role);
+    },
     get name() {
       return self.displayName ?? `Anonymous (${self.email})`;
+    },
+    get hasInstructorRights() {
+      return [roles.admin, roles.instructor].includes(self.role);
     },
   }));
 
