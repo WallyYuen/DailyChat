@@ -11,6 +11,7 @@ $transition-normal: all ease-out 0.2s;
 	color: white;
 	border-radius: 4px;
 	padding: 4px 16px;
+	cursor: pointer;
 
 	transition: $transition-normal;
 
@@ -43,4 +44,8 @@ $transition-normal: all ease-out 0.2s;
 
 .small {
 	font-size: 10px;
+}
+
+.fullWidth {
+	width: 100%;
 }

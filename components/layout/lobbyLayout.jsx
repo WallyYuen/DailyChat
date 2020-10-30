@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 import { observer, enableStaticRendering } from "mobx-react-lite";
 import Link from "next/link";
 
@@ -12,31 +13,35 @@ import Button from "components/ui/button";
 import button from "assets/styles/ui/button.module.scss";
 
 // Styling
-import userLayout from "assets/styles/layout/userLayout.module.scss";
+import lobbyLayout from "assets/styles/layout/lobbyLayout.module.scss";
 
 const LobbyLayout = ({ user }) => {
   enableStaticRendering(typeof window === "undefined");
 
   return (
-    <div>
-      <div>
-        <span>The Lobby</span>
-      </div>
-      <div>
-        <span>Please wait, your invitataion is pending</span>
-        <Avatar
-          isAnonymous={!user.displayName}
-          name={user.name}
-          image={user.photoURL}
-          size={40}
-          textSizeRatio={4}
-        />
-        <div className={userLayout.content}>
-          {user.name}
+    <div className={lobbyLayout.frame}>
+      <div className={lobbyLayout.container}>
+        <div className={lobbyLayout.header}>
+          <span>The Lobby</span>
         </div>
-        <Link href="/">
-          <Button className={button.neutral} label="Back" />
-        </Link>
+        <div className={lobbyLayout.content}>
+          <span>Please wait, your invitation is pending</span>
+          <div className={lobbyLayout.avatar}>
+            <Avatar
+              maxInitials={!user.displayName ? 1 : 2}
+              name={user.name}
+              image={user.photoURL}
+              size={90}
+              textSizeRatio={3}
+            />
+          </div>
+          <span className={lobbyLayout.userName}>{user.name}</span>
+        </div>
+        <div className={lobbyLayout.bottom}>  
+          <Link href="/">
+            <Button className={clsx(button.neutral, button.fullWidth)} label="Back" />
+          </Link>
+        </div>
       </div>
     </div>
   );
