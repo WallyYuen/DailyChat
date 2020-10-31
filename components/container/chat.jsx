@@ -9,7 +9,7 @@ import { ApplicationContext } from "stores/applicationStore";
 import ChatContentLayout from "components/layout/chatContentLayout";
 import ChatInputLayout from "components/layout/chatInputLayout";
 
-// styles
+// Styling
 import layout from "assets/styles/layout/chatLayout.module.scss";
 
 const Chat = () => {
