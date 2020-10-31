@@ -1,3 +1,6 @@
+$color-superscript: hsl(205, 85%, 51%);
+$color-important: hsl(9, 78%, 53%);
+
 .container {
 	display: flex;
 	flex-direction: row;
@@ -27,4 +30,26 @@
 			margin: 0 0 80px 0;
 		}
 	}
+}
+
+.superscript {
+	font-weight: 500;
+  font-size: 0.7rem;
+	color: $color-superscript;
+	position: absolute;
+	top: 0px;
+	right: -8px;
+}
+
+.important {
+	color: $color-important;
+}
+
+.hidden {
+	display: none;
+}
+
+.header {
+	position: relative;
+	display: flex;
 }
