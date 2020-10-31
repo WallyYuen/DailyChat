@@ -21,33 +21,29 @@ const UserListLayout = ({ users, header, modal: Modal, isInstructor }) => {
           {users.length}
         </div>
         <div>
-          {users.map((user) => {
-            const isAnonymous = !user.displayName;
-
-            return (
-              <div key={user.uid}>
-                <Tippy
-                  content={<Modal user={user} onCancel={() => { hideAll() }} />}
-                  className={layout.tippy}
-                  trigger="click"
-                  touch
-                  interactive
-                  arrow={false}
-                  placement="left-start"
-                  disabled={!isInstructor}
-                  plugins={[followCursor]}
-                  followCursor="initial"
-                >
-                  <UserLayout
-                    isAnonymous={isAnonymous}
-                    name={user.name}
-                    image={user.photoURL}
-                    role={user.role}
-                  />
-                </Tippy>
-              </div>
-            );
-          })}
+          {users.map((user) => (
+            <div key={user.uid}>
+              <Tippy
+                content={<Modal user={user} onCancel={() => { hideAll() }} />}
+                className={layout.tippy}
+                trigger="click"
+                touch
+                interactive
+                arrow={false}
+                placement="left-start"
+                disabled={!isInstructor}
+                plugins={[followCursor]}
+                followCursor="initial"
+              >
+                <UserLayout
+                  isAnonymous={!user.displayName}
+                  name={user.name}
+                  image={user.photoURL}
+                  role={user.role}
+                />
+              </Tippy>
+            </div>
+          ))}
         </div>
       </div>
     </React.Fragment>
