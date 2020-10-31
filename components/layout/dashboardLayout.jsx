@@ -1,4 +1,6 @@
 import React from "react";
+import clsx from "clsx";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 // Component
 import Header from "components/container/header";
@@ -8,10 +10,12 @@ import Chat from "components/container/chat";
 import ContactList from "components/container/contactList";
 import LobbyList from "components/container/lobbyList";
 
-// Layout
+// Styling
 import layout from "assets/styles/layout/dashboardLayout.module.scss";
 
-const DashboardLayout = () => {
+const DashboardLayout = ({ lobbyUserCount, onlineUserCount }) => {
+  const showCount = number => number > 0 ? layout.superscript : layout.hidden;
+
   return (
     <React.Fragment>
       <Header />
@@ -22,13 +26,28 @@ const DashboardLayout = () => {
         </div>
         <Chat />
         <div className={layout.rightColumn}>
-          <div>
+          <Tabs>
+            <TabList>
+              <Tab>
+                <div className={layout.header}>
+                  <span>Contacts</span>
+                  <div className={showCount(onlineUserCount)}>{onlineUserCount}</div>
+                </div>
+              </Tab>
+              <Tab>
+                <div className={layout.header}>
+                  <span>Lobby</span>
+                  <div className={clsx(showCount(lobbyUserCount), layout.important)}>{lobbyUserCount}</div>
+                </div>
+              </Tab>
+            </TabList>
+            <TabPanel>
             <ContactList />
-            {/* actions */}
-          </div>
-          <div>
-            <LobbyList />
-          </div>
+            </TabPanel>
+            <TabPanel>
+              <LobbyList />
+            </TabPanel>
+          </Tabs>
         </div>
       </div>
     </React.Fragment>
