@@ -1,45 +1,21 @@
 import React, { useContext } from "react";
 import { observer, enableStaticRendering } from "mobx-react-lite";
-import { setApproval } from "lib/auth";
+
+// Component
+import StudentList from "components/container/studentList";
 
 // Store
 import { ApplicationContext } from "stores/applicationStore";
 
-// Layout
-import UserListLayout from "components/layout/userListLayout";
-
-// Component
-import LobbyModal from "components/layout/lobbyModal";
-
 const LobbyList = () => {
   enableStaticRendering(typeof window === "undefined");
-
-  const { lobbyUsers, currentUser } = useContext(ApplicationContext);
-  const isInstructor = currentUser.hasInstructorRights;
-
-  const onClick = (user) => () => {
-    setApproval({ ...user, approved: true });
-  };
-
-  const Modal = ({ user, ...props }) => (
-    <LobbyModal
-      header="Add user"
-      onClick={onClick(user)}
-      user={{
-        approved: user.approved,
-        name: user.name,
-        email: user.email,
-      }}
-      {...props}
-    />
-  );
+  const { lobbyUsers } = useContext(ApplicationContext);
 
   return (
-    <UserListLayout
+    <StudentList
       users={lobbyUsers}
-      modal={Modal}
-      header="Lobby"
-      isInstructor={isInstructor}
+      modalHeader="Add user"
+      approved
     />
   );
 };
