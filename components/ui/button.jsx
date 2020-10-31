@@ -5,7 +5,7 @@ const Button = forwardRef(({ onClick, label, ...props }, ref) => {
   const defaultClasses = [...classes];
 
   return (
-    <button className={defaultClasses.join(" ")} onClick={onClick} {...props} ref={ref}>
+    <button type="button" className={defaultClasses.join(" ")} onClick={onClick} {...props} ref={ref}>
       {label}
     </button>
   );

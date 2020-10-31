@@ -19,14 +19,23 @@ const ChatInputLayout = ({
 }) => {
   const isEmpty = inputValue ? false : true;
 
+  const handlePressEnter = (event) => {
+    if (event.key !== "Enter") return;
+    
+    event.preventDefault();
+    handleSubmit();
+  };
+
   return (
     <div className={layout.container}>
       <form className={layout.form} onSubmit={handleSubmit}>
         <MentionsInput
-          className={layout.inputField}
+          className="comments-textarea"
           value={inputValue}
           onChange={handleChange}
           allowSpaceInQuery
+          placeholder="Type a new message"
+          onKeyPress={handlePressEnter}
         >
           <Mention
             markup="@[__display__](__id__)"

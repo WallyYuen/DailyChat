@@ -56,7 +56,7 @@ const Chat = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event?.preventDefault();
     if (!plainText) return;
 
     setWriteError();
