@@ -20,7 +20,6 @@ const ChatContentLayout = ({
   chatHistory,
 }) => {
   enableStaticRendering(typeof window === "undefined");
-  console.log(parentRef);
 
   return (
     <div className={layout.container}>
