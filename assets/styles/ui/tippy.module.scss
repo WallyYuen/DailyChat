@@ -1,8 +1,9 @@
 .tippy {
-  background: rgba(228, 228, 228, 0.6);
+  background: rgba(255, 255, 255, 0.0);
   border: 1px solid white;
   color: #383838;
   font-weight: 400;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   box-shadow: 0px 3px 6px rgba(35,35,35,0.35);
 }

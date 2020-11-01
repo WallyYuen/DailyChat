@@ -16,7 +16,7 @@ const ActorListLayout = ({ actors, onClick, resetUser }) => {
   return (
     <div className={style.container}>
       <div className={style.header}>
-        <h3>Act as</h3>
+        <span>Act as</span>
         <Button className={clsx(button.neutral, button.small)} label="Reset" onClick={resetUser} />
       </div>
       <div>

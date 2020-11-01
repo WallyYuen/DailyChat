@@ -1,4 +1,16 @@
 .container {
+	flex-direction: column;
+	margin-top: 32px;
+
+	.header {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 8px;
+		align-items: center;
+		padding: 8px 20px 0;
+		flex-shrink: 0;
+	}
+
 	.buttonContainer {
 		display: flex;
 		flex-direction: row;

@@ -19,6 +19,7 @@ body {
   font-family: Poppins, sans-serif;
   margin: 0;
   width: 100%;
+  color: $color-text;
 }
 
 h1,
@@ -38,55 +39,6 @@ a {
 /* TippyJS */
 .tippy-content {
   padding: 0 !important;
-}
-
-/* React-Mentions */
-.comments-textarea__control {
-  font-weight: 200;
-	font-size: 0.8rem;
-  color: rgb(66, 66, 66);
-}
-
-.comments-textarea {
-  flex: 3 1 auto;
-}
-
-.comments-textarea__input {
-  border-radius: 3px;
-  transition: 0.3s ease-in-out;
-  padding: 9px;
-  color: rgb(66, 66, 66);
-  border: 1px solid #dedede;
-  outline: none;
-}
-
-.comments-textarea__input:focus{
-  border: 1px solid hsl(205, 90%, 80%);
-}
-
-.comments-textarea__input:active{
-  border: 1px solid hsl(205, 90%, 80%);
-}
-
-.comments-textarea__suggestions__list {
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(139, 139, 139);
-  font-size: 0.8rem;
-  max-height: 86px;
-  overflow: hidden;
-  border-radius: 3px;
-}
-
-.comments-textarea__suggestions__item {
-  padding: 5px 15px;
-}
-
-.comments-textarea__suggestions__item:not(:last-child) {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-}
-
-.comments-textarea__suggestions__item--focused {
-  background-color: hsl(205, 80%, 90%);
 }
 
 /* React Tabs */
@@ -110,13 +62,13 @@ a {
   bottom: -1px;
   position: relative;
   list-style: none;
-  padding: 12px 12px;
+  padding: 8px 12px;
   cursor: pointer;
 
   flex: 1 1 50%;
   display: flex;
-  font-weight: 200;
-  font-size: 1.25rem;
+  font-weight: 300;
+  font-size: 1rem;
   color: $color-text;
   justify-content: center;
 }
