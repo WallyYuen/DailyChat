@@ -16,9 +16,17 @@ $screen-xxl: 1800px;
 	overflow: auto;
 	flex-direction: column;
 	margin: 0 8px;
-	padding: 8px;
+	padding: 0 8px;
 
-	&::-webkit-scrollbar {
+	/* Padding not working in Firefox in combination with overflow-y
+	https://stackoverflow.com/questions/48687129/padding-bottom-not-working-in-firefox-ie11 */
+	&:after {
+		display: block;
+		content: "";
+		padding-bottom: 8px;
+	}
+
+	&:-webkit-scrollbar {
 		display: none;
 	}
 
