@@ -1,0 +1,85 @@
+$font-size: 0.9rem;
+$font-weight: 200;
+$font-color: rgb(66, 66, 66);
+$mention-color: steelblue;
+$mention-suggestion-color: hsl(205, 80%, 90%);
+$color-border: rgb(139, 139, 139);
+$color-text: rgb(66, 66, 66);
+
+.mentions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: auto;
+  min-width: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 100%;
+}
+
+.mentions--multiLine .mentions__control {
+  color: $font-color;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  padding: 4px 8px;
+  max-height: 350px;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 100%;
+}
+
+.mentions--multiLine .mentions__input {
+  border: 1px solid silver;
+  border-radius: 4px;
+  outline: none;
+  color: $font-color;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  padding: 4px 8px;
+  box-sizing: border-box;
+  height: 100%;
+  transition: border 0.3s ease-in-out;
+  overflow: scroll;
+}
+
+.mentions__input:focus{
+  border: 1px solid hsl(205, 90%, 80%);
+}
+
+.mentions__input:active{
+  border: 1px solid hsl(205, 90%, 80%);
+}
+
+.mentions__suggestions__list {
+  background-color: white;
+  border: 1px solid $color-border;
+  font-size: 0.8rem;
+  font-weight: $font-weight;
+  color: $font-color;
+  max-height: 117px;
+  border-radius: 4px;
+
+  overflow: auto;
+  position: absolute;
+  bottom: 16px;
+  box-sizing: border-box;
+}
+
+.mentions__suggestions__item {
+  padding: 5px 15px;
+}
+
+.mentions__suggestions__item:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.mentions__suggestions__item--focused {
+  background-color: $mention-suggestion-color;
+}
+
+.mentions__mention {
+  position: relative;
+  z-index: 1;
+  // color: $mention-color;
+  pointer-events: none;
+}
