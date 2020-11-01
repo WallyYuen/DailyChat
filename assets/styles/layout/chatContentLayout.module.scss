@@ -10,6 +10,7 @@ $screen-xxl: 1800px;
 	flex: auto;
 	min-height: 0;
 }
+
 .chatArea {
 	display: flex;
 	background: whitesmoke;
@@ -17,6 +18,7 @@ $screen-xxl: 1800px;
 	flex-direction: column;
 	margin: 0 8px;
 	padding: 0 8px;
+	flex: 1 1 0;
 
 	/* Padding not working in Firefox in combination with overflow-y
 	https://stackoverflow.com/questions/48687129/padding-bottom-not-working-in-firefox-ie11 */
@@ -39,6 +41,7 @@ $screen-xxl: 1800px;
 		border-radius: 4px;
 		min-width: 20%;
 		max-width: 80%;
+		flex-shrink: 0;
 
 		.userName {
 			font-family: Roboto, sans-serif;
