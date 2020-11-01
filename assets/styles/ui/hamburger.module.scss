@@ -1,0 +1,54 @@
+// colors
+$color-icon: rgb(66, 66, 66);
+
+.hamburger {
+  padding: 0;
+  width: 20px;
+  height: 13px;
+  position: relative;
+  transform: rotate(0deg);
+  cursor: pointer;
+
+  > span {
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background: $color-icon;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+  }
+
+  span:nth-child(1) {
+    top: 0px;
+    transform-origin: left center;
+  }
+  
+  span:nth-child(2) {
+    top: 6px;
+    transform-origin: left center;
+  }
+  
+  span:nth-child(3) {
+    top: 12px;
+    transform-origin: left center;
+  }
+  
+  .open:nth-child(1) {
+    transform: rotate(45deg);
+    left: 4px;
+    width: 85%;
+  }
+  
+  .open:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .open:nth-child(3) {
+    transform: rotate(-45deg);
+    left: 4px;
+    width: 85%;
+  }  
+}
