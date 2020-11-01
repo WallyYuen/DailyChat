@@ -6,7 +6,7 @@ import UserModel from "models/userModel";
 const MessageModel = types
   .model("MessageModel", {
     id: types.identifier,
-    userId: types.string,
+    uid: types.string,
     content: types.string,
     timestamp: types.number,
   })
@@ -15,7 +15,7 @@ const MessageModel = types
       return self.user?.name ?? "Deleted";
     },
     get user() {
-      return getParent(self, 2).users.find(user => user.uid === self.userId);
+      return getParent(self, 2).users.find(user => user.uid === self.uid);
     },
   }));
 
