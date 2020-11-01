@@ -1,10 +1,16 @@
 import React from "react";
 
+// styles
+import layout from "assets/styles/layout/footer.module.scss";
+
 const Footer = () => {
+  const year = new Date().getFullYear();
+  const copyright = "\u00A9";
+  
   return (
-    <footer className="pt-5">
-      <div className="container text-center">
-        <p>&copy; Daily Chat 2020.</p>
+    <footer className={layout.container}>
+      <div>
+        <span>{`${copyright} Daily Chat ${year}.`}</span>
       </div>
     </footer>
   )
