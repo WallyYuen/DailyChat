@@ -17,7 +17,7 @@ $screen-xxl: 1800px;
 		display: none;
 		flex: 3 0 0;
 		flex-direction: column;
-		margin-top: 20px;
+		padding-top: 20px;
 	}
 
 	.centerColumn {
@@ -30,7 +30,7 @@ $screen-xxl: 1800px;
 	.rightColumn {
 		display: none;
 		flex-direction: column;
-		margin-top: 20px;
+		padding-top: 20px;
 	}
 }
 
