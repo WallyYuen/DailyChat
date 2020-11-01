@@ -1,9 +1,9 @@
 import React from "react";
 import clsx from "clsx";
-import { MentionsInput, Mention } from "react-mentions";
 
 // UI
 import Button from "components/ui/button";
+import MentionInput from "components/ui/mentionInput";
 
 // Styling
 import layout from "assets/styles/layout/chatInputLayout.module.scss";
@@ -16,33 +16,19 @@ const ChatInputLayout = ({
   handleSubmit,
   handleChange,
   mentions,
+  onEnterPress,
 }) => {
   const isEmpty = inputValue ? false : true;
-
-  const handlePressEnter = (event) => {
-    if (event.key !== "Enter") return;
-    
-    event.preventDefault();
-    handleSubmit();
-  };
 
   return (
     <div className={layout.container}>
       <form className={layout.form} onSubmit={handleSubmit}>
-        <MentionsInput
-          className="comments-textarea"
-          value={inputValue}
+        <MentionInput
+          mentions={mentions}
           onChange={handleChange}
-          allowSpaceInQuery
-          placeholder="Type a new message"
-          onKeyPress={handlePressEnter}
-        >
-          <Mention
-            markup="@[__display__](__id__)"
-            trigger="@"
-            data={mentions}
-          />
-        </MentionsInput>
+          value={inputValue}
+          onEnterPress={onEnterPress}
+        />
         {writeError && <p>{writeError}</p>}
         <Button
           className={clsx(layout.sendButton, {
@@ -54,9 +40,6 @@ const ChatInputLayout = ({
           type="submit"
         />
       </form>
-      <div>
-        Logged in as: <strong>{user.email}</strong>
-      </div>
     </div>
   );
 };

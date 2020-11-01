@@ -5,19 +5,30 @@ import Link from "next/link";
 import layout from "assets/styles/layout/headerLayout.module.scss";
 import button from "assets/styles/ui/button.module.scss";
 
-const HeaderLayout = ({ currentUser, handleLogout }) => {
+// UI
+import Hamburger from "components/ui/hamburger";
+
+const HeaderLayout = ({ currentUser, handleLogout, toggleMenu, isMenuOpen }) => {
   return (
     <header className={layout.container}>
       <nav className={layout.nav}>
         <Link href="/">Daily Chat</Link>
-        {currentUser
-          ? <div>
-            <button className={button.neutral} onClick={handleLogout}>Logout</button>
+        <div className={layout.menu}>
+          <Hamburger isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+        </div>
+        {currentUser ? (
+          <div className={layout.rightProps}>
+            <span className={layout.username}>{currentUser.name}</span>
+            <div>
+              <button className={button.neutral} onClick={handleLogout}>Logout</button>
+            </div>
           </div>
-          : <div>
+        ) : (
+          <div className={layout.rightProps}>
             <Link href="/login">Login</Link>
             <Link href="/register">Register</Link>
-          </div>}
+          </div>
+        )}
       </nav>
     </header>
   );

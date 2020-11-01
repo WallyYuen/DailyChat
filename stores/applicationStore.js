@@ -54,12 +54,27 @@ export const ApplicationStore = types
     },
   }))
   .views(self => ({
+    get sortedMessages() {
+      const sortedMessages = [];
+
+      self.messages.forEach((message) => {
+        const sortedMessage = sortedMessages[sortedMessages.length - 1];
+
+        if (sortedMessage?.uid === message.uid) {
+          sortedMessage.messages.push(message);
+        } else {
+          sortedMessages.push({ uid: message.uid, messages: [message] });
+        }
+      });
+
+      return sortedMessages;
+    },
     get isAuthenticated() {
       return !!self.currentUser;
     },
     get userList() {
       return self.users
-        .filter(user => user.email !== self.currentUser.email)
+        .filter(user => user.email !== self.currentUser?.email)
         .sort((a, b) => a.name - b.name);
     },
     get actors() {

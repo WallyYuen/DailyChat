@@ -2,10 +2,9 @@ import React from "react";
 import Link from "next/link";
 import { observer, enableStaticRendering } from "mobx-react-lite";
 import { roles } from "lib/role";
+import { PublicRoute } from "lib/routing";
 
 // Components
-import Header from "components/container/header";
-import Footer from "components/container/footer";
 import Button from "components/ui/button";
 
 // Store
@@ -18,34 +17,34 @@ const Home = () => {
   const isStudent = currentUser?.role === roles.student;
 
   return (
-    <div className="home">
-      <Header />
-      <section>
-        <div className="">
+    <PublicRoute>
+      <div>
+        <section>
           <div className="">
-            <h1 className="">Welcome to Daily Chat</h1>
-            <p className="">A great place to share your thoughts with friends</p>
             <div className="">
-              {!isAuthenticated ? (
-                <React.Fragment>
-                  <Link href="/register">
-                    <Button label="Create New Account" classes={["btn-primary"]} />
-                  </Link>
-                  <Link href="/login">
-                    <Button label="Login to Your Account" />
-                  </Link>
-                </React.Fragment>
-              ) : (
-                  <Link href={isStudent ? "/lobby" : "/dashboard"}>
-                    <Button label={`Go to ${isStudent ? "lobby" : "chat"}`} classes={["btn-primary"]} />
-                  </Link>
-                )}
+              <h1 className="">Welcome to Daily Chat</h1>
+              <p className="">A great place to share your thoughts with friends</p>
+              <div className="">
+                {!isAuthenticated ? (
+                  <React.Fragment>
+                    <Link href="/register">
+                      <Button label="Create New Account" classes={["btn-primary"]} />
+                    </Link>
+                    <Link href="/login">
+                      <Button label="Login to Your Account" />
+                    </Link>
+                  </React.Fragment>
+                ) : (
+                    <Link href={isStudent ? "/lobby" : "/dashboard"}>
+                      <Button label={`Go to ${isStudent ? "lobby" : "chat"}`} classes={["btn-primary"]} />
+                    </Link>
+                  )}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <Footer />
-    </div>
+        </section>
+      </div>
+    </PublicRoute>
   );
 };
 

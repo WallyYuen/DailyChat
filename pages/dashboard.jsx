@@ -16,17 +16,15 @@ const Dashboard = () => {
   const waitingUserCount = lobbyUsers.length;
   const onlineUserCount = onlineUsers.length;
 
-  const handleEsc = (event) => {
-    if (event.keyCode !== 27) return;
-
-    hideAll();
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") hideAll();
   };
 
   useEffect(() => {
-    window.addEventListener("keydown", handleEsc);
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      window.removeEventListener("keydown", handleEsc);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
 

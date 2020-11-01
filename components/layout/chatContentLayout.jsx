@@ -9,7 +9,7 @@ import type from "assets/styles/type.module.scss";
 const formatTime = (timestamp) => {
   const d = new Date(timestamp);
 
-  return `${d.getHours()}:${d.getMinutes()}`;
+  return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 };
 
 const ChatContentLayout = ({
@@ -20,6 +20,7 @@ const ChatContentLayout = ({
   chatHistory,
 }) => {
   enableStaticRendering(typeof window === "undefined");
+  console.log(parentRef);
 
   return (
     <div className={layout.container}>
@@ -30,16 +31,16 @@ const ChatContentLayout = ({
           </div>
         )}
         {readError && <p>{readError}</p>}
-        {!isLoading && !readError && chatHistory.map(message => {
-          const isUser = user.uid === message.user?.uid;
+        {!isLoading && !readError && chatHistory.map(({ uid, messages }) => {
+          const isUser = user.uid === uid;
           const userBubble = isUser ? layout.chatBubbleUser : layout.chatBubbleOther;
 
-          return (
+          return messages.map((message, index) => (
             <div
               key={message.timestamp}
-              className={clsx(layout.chatBubbleContainer, userBubble)}
+              className={clsx(layout.chatBubbleContainer, userBubble, { [layout.grouped]: index !== 0 })}
             >
-              {!isUser && (
+              {!isUser && index === 0 && (
                 <span className={layout.userName}>{message.createdBy}</span>
               )}
               <div className={layout.messageContainer}>
@@ -47,7 +48,8 @@ const ChatContentLayout = ({
                 <span className={layout.timeStamp}>{formatTime(message.timestamp)}</span>
               </div>
             </div>
-          );
+          ));
+
         })}
       </div>
     </div>

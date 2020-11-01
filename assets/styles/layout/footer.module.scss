@@ -1,0 +1,10 @@
+.container {
+  height: 44px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+
+  background-color: rgb(32, 178, 170, 0.4);
+}
