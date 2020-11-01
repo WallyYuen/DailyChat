@@ -21,7 +21,7 @@ const Chat = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const store = useContext(ApplicationContext);
-  const { messages, activeUser, focusedUser } = store;
+  const { messages, sortedMessages, activeUser, focusedUser } = store;
 
   const ref = React.useRef(null);
   enableStaticRendering(typeof window === "undefined");
@@ -47,7 +47,7 @@ const Chat = () => {
     if (!ref.current) return;
 
     ref.current.scrollBy(0, ref.current.scrollHeight);
-  }, [messages.length, store.userAsActor]);
+  }, [messages.length, store.userAsActor, ref?.current?.scrollHeight]);
 
   const handleChange = (event, newValue, newPlainTextValue, mentions) => {
     setInputValue(newValue);
@@ -85,15 +85,22 @@ const Chat = () => {
       });
   };
 
+  const onEnterPress = (event) => {
+    if (event.key !== "Enter") return;
+    
+    event.preventDefault();
+    handleSubmit();
+  };
+
   const ChatContent = useMemo(() => (
     <ChatContentLayout
       parentRef={ref}
       isLoading={isLoading}
       readError={readError}
-      chatHistory={messages}
+      chatHistory={sortedMessages}
       user={activeUser}
     />
-  ), [messages, isLoading, readError, activeUser]);
+  ), [sortedMessages, isLoading, readError, activeUser]);
 
   return (
     <div className={layout.container}>
@@ -105,6 +112,7 @@ const Chat = () => {
         handleSubmit={handleSubmit}
         handleChange={handleChange}
         mentions={store.mentions}
+        onEnterPress={onEnterPress}
       />
     </div>
   );
