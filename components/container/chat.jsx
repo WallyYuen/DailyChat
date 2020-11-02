@@ -46,8 +46,8 @@ const Chat = () => {
   useEffect(() => {
     if (!ref.current) return;
 
-    ref.current.scrollBy(0, ref.current.scrollHeight);
-  }, [messages.length, store.userAsActor, ref?.current?.scrollHeight]);
+    ref.current.scrollBy({ top: ref.current.scrollHeight, behavior: "smooth" });
+  }, [messages.length, store.userAsActor]);
 
   const handleChange = (event, newValue, newPlainTextValue, mentions) => {
     setInputValue(newValue);
