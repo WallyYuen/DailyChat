@@ -13,13 +13,20 @@ $transition-normal: all ease-out 0.2s;
 	background: $color-neutral;
 	color: white;
 	border-radius: 4px;
-	padding: 4px 16px;
+	padding: 7.5px 16px;
+	font-size: 10px;
+	font-weight: medium;
 	cursor: pointer;
+	outline: none;
 
 	transition: $transition-normal;
 
 	&:hover {
 		filter: brightness(1.1);
+	}
+
+	&:focus {
+		filter: brightness(1.0);
 	}
 }
 
@@ -40,7 +47,10 @@ $transition-normal: all ease-out 0.2s;
 	background: $color-disabled;
 	color: grey;
 	border-radius: 4px;
-	padding: 4px 16px;
+	padding: 7.5px 16px;
+	font-size: 10px;
+	font-weight: medium;
+	box-sizing: border-box;
 
 	transition: $transition-normal;
 }
