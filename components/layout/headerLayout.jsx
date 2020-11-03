@@ -2,8 +2,8 @@ import React from "react";
 import Link from "next/link";
 
 // styles
-import layout from "assets/styles/layout/headerLayout.module.scss";
-import button from "assets/styles/ui/button.module.scss";
+import layout from "components/layout/headerLayout.module.scss";
+import button from "components/ui/button.module.scss";
 
 // UI
 import Hamburger from "components/ui/hamburger";

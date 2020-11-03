@@ -3,8 +3,8 @@ import clsx from "clsx";
 import { observer, enableStaticRendering } from "mobx-react-lite";
 
 // Styles
-import layout from "assets/styles/layout/chatContentLayout.module.scss";
-import type from "assets/styles/type.module.scss";
+import layout from "components/layout/chatContentLayout.module.scss";
+import type from "public/styles/types.module.scss";
 
 const formatTime = (timestamp) => {
   const d = new Date(timestamp);
@@ -43,7 +43,7 @@ const ChatContentLayout = ({
                 <span className={layout.userName}>{message.createdBy}</span>
               )}
               <div className={layout.messageContainer}>
-                <span className={`${layout.message} ${type.chatMessage}`}>{message.content}</span>
+                <span className={`${layout.message} ${type.openSans}`}>{message.content}</span>
                 <span className={layout.timeStamp}>{formatTime(message.timestamp)}</span>
               </div>
             </div>

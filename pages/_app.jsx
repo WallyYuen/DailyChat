@@ -7,7 +7,7 @@ import { getUserRole } from "lib/role";
 import { ApplicationStore, ApplicationContext } from "stores/applicationStore";
 
 // Style
-import "assets/styles/styles.scss";
+import "public/styles/styles.scss";
 
 const MyApp = ({ Component, pageProps }) => {
   const store = useMemo(() => ApplicationStore.create(), []);

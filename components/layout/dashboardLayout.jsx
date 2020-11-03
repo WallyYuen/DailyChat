@@ -10,7 +10,7 @@ import ContactList from "components/container/contactList";
 import LobbyList from "components/container/lobbyList";
 
 // Styling
-import layout from "assets/styles/layout/dashboardLayout.module.scss";
+import layout from "components/layout/dashboardLayout.module.scss";
 
 const DashboardLayout = ({ lobbyUserCount, onlineUserCount }) => {
   const showCount = number => number > 0 ? layout.superscript : layout.hidden;

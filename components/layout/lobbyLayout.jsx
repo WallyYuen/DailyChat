@@ -10,23 +10,23 @@ import Avatar from "components/ui/avatar";
 import Button from "components/ui/button";
 
 // Layout
-import button from "assets/styles/ui/button.module.scss";
+import button from "components/ui/button.module.scss";
 
 // Styling
-import lobbyLayout from "assets/styles/layout/lobbyLayout.module.scss";
+import layout from "components/layout/lobbyLayout.module.scss";
 
 const LobbyLayout = ({ user }) => {
   enableStaticRendering(typeof window === "undefined");
 
   return (
-    <div className={lobbyLayout.frame}>
-      <div className={lobbyLayout.container}>
-        <div className={lobbyLayout.header}>
+    <div className={layout.frame}>
+      <div className={layout.container}>
+        <div className={layout.header}>
           <span>The Lobby</span>
         </div>
-        <div className={lobbyLayout.content}>
+        <div className={layout.content}>
           <span>Please wait, your invitation is pending</span>
-          <div className={lobbyLayout.avatar}>
+          <div className={layout.avatar}>
             <Avatar
               maxInitials={!user.displayName ? 1 : 2}
               name={user.name}
@@ -35,9 +35,9 @@ const LobbyLayout = ({ user }) => {
               textSizeRatio={3}
             />
           </div>
-          <span className={lobbyLayout.userName}>{user.name}</span>
+          <span className={layout.userName}>{user.name}</span>
         </div>
-        <div className={lobbyLayout.bottom}>  
+        <div className={layout.bottom}>  
           <Link href="/">
             <Button className={clsx(button.neutral, button.fullWidth)} label="Back" />
           </Link>

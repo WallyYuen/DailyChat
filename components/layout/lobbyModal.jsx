@@ -5,8 +5,8 @@ import clsx from "clsx";
 import Button from "components/ui/button";
 
 // Layout
-import layout from "assets/styles/layout/lobbyModal.module.scss";
-import button from "assets/styles/ui/button.module.scss";
+import layout from "components/layout/lobbyModal.module.scss";
+import button from "components/ui/button.module.scss";
 
 const LobbyModal = ({ header, user, onClick, onCancel }) => {
   const { name, email, approved } = user;

@@ -5,7 +5,7 @@ import Header from "components/container/header";
 import Footer from "components/container/footer";
 
 // styles
-import layout from "assets/styles/layout/pageLayout.module.scss";
+import layout from "components/layout/pageLayout.module.scss";
 
 const PageLayout = ({ children }) => {
   return (

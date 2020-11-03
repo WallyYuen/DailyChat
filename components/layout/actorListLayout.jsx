@@ -7,15 +7,15 @@ import Button from "components/ui/button";
 import UserLayout from "components/layout/userLayout";
 
 // Styles
-import style from "assets/styles/layout/actorListLayout.module.scss";
-import button from "assets/styles/ui/button.module.scss";
+import layout from "components/layout/actorListLayout.module.scss";
+import button from "components/ui/button.module.scss";
 
 const ActorListLayout = ({ actors, onClick, resetUser }) => {
   enableStaticRendering(typeof window === "undefined");
 
   return (
-    <div className={style.container}>
-      <div className={style.header}>
+    <div className={layout.container}>
+      <div className={layout.header}>
         <span>Act as</span>
         <Button className={clsx(button.neutral, button.small)} label="Reset" onClick={resetUser} />
       </div>
