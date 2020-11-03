@@ -11,7 +11,7 @@ import UserListLayout from "components/layout/userListLayout";
 // Component
 import LobbyModal from "components/layout/lobbyModal";
 
-const StudentList = ({ users, modalHeader, approved }) => {
+const UserList = ({ users, modalHeader, approved }) => {
   enableStaticRendering(typeof window === "undefined");
 
   const { currentUser } = useContext(ApplicationContext);
@@ -43,4 +43,4 @@ const StudentList = ({ users, modalHeader, approved }) => {
   );
 };
 
-export default observer(StudentList);
+export default observer(UserList);
