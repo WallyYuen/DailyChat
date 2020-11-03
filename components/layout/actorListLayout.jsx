@@ -17,7 +17,7 @@ const ActorListLayout = ({ actors, onClick, resetUser }) => {
     <div className={layout.container}>
       <div className={layout.header}>
         <span>Act as</span>
-        <Button className={clsx(button.neutral, button.small)} label="Reset" onClick={resetUser} />
+        <Button className={button.neutral} label="Reset" onClick={resetUser} />
       </div>
       <div>
         {actors.map((actor) => {

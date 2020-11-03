@@ -30,13 +30,14 @@ const ChatInputLayout = ({
         />
         {writeError && <p>{writeError}</p>}
         <Button
+          label="Send"
+          type="submit"
+          size="small"
+          disabled={isEmpty}
           className={clsx(layout.sendButton, {
             [button.disabled]: isEmpty,
             [button.neutral]: !isEmpty,
           })}
-          disabled={isEmpty}
-          label="Send"
-          type="submit"
         />
       </form>
     </div>

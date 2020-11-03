@@ -36,6 +36,8 @@ $screen-xxl: 1800px;
 
 .rightProps {
 	display: none;
+	justify-content: flex-end;
+	flex: 1 1 0;
 	
 	> * {
 		display: none;

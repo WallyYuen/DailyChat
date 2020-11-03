@@ -8,6 +8,9 @@ import ExternalLogin from "components/container/externalLogin";
 import Button from "components/ui/button"
 import Textfield from "components/ui/textfield"
 
+// Styling
+import button from "components/ui/button.module.scss";
+
 const LoginLayout = ({
   email,
   handleError,
@@ -49,7 +52,7 @@ const LoginLayout = ({
         </div>
         <div>
           {error && <p>{error}</p>}
-          <Button label="Login" type="submit" />
+          <Button label="Login" className={button.neutral} type="submit" />
         </div>
         <ExternalLogin handleError={handleError} />
       </form>

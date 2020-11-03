@@ -1,12 +1,13 @@
 import React from "react";
 import Link from "next/link";
 
+// UI
+import Button from "components/ui/button";
+import Hamburger from "components/ui/hamburger";
+
 // styles
 import layout from "components/layout/headerLayout.module.scss";
 import button from "components/ui/button.module.scss";
-
-// UI
-import Hamburger from "components/ui/hamburger";
 
 const HeaderLayout = ({ currentUser, handleLogout, toggleMenu, isMenuOpen }) => {
   return (
@@ -18,10 +19,8 @@ const HeaderLayout = ({ currentUser, handleLogout, toggleMenu, isMenuOpen }) => 
         </div>
         {currentUser ? (
           <div className={layout.rightProps}>
-            <span className={layout.username}>{currentUser.name}</span>
-            <div>
-              <button className={button.neutral} onClick={handleLogout}>Logout</button>
-            </div>
+            <span>{currentUser.name}</span>
+            <Button label="Logout" className={button.neutral} onClick={handleLogout} />
           </div>
         ) : (
           <div className={layout.rightProps}>

@@ -103,6 +103,10 @@ $screen-xxl: 1800px;
   min-width: 50%;
 }
 
+.button {
+  width: 50%;
+}
+
 @media screen and (min-width: $screen-xs) {
   .container {
     max-width: 70%;
