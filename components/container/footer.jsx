@@ -1,19 +1,15 @@
 import React from "react";
 
-// styles
-import layout from "assets/styles/layout/footer.module.scss";
+// layout
+import FooterLayout from "components/layout/footerLayout";
 
 const Footer = () => {
   const year = new Date().getFullYear();
   const copyright = "\u00A9";
+
+  const footer = `${copyright} Daily Chat ${year}.`;
   
-  return (
-    <footer className={layout.container}>
-      <div>
-        <span>{`${copyright} Daily Chat ${year}.`}</span>
-      </div>
-    </footer>
-  )
+  return <FooterLayout footer={footer} />;
 };
 
 export default Footer;
