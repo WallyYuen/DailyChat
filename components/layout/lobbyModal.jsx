@@ -25,8 +25,8 @@ const LobbyModal = ({ header, user, onClick, onCancel }) => {
           </div>
         </div>
         <div className={layout.actions}>
-          <Button className={button.form} label="cancel" onClick={onCancel} />
-          <Button className={clsx(button.form, button.primary)} label={"confirm"} onClick={onClick} />
+          <Button className={clsx(layout.button, button.transparent)} label="cancel" onClick={onCancel} />
+          <Button className={clsx(layout.button, button.primary)} label={"confirm"} onClick={onClick} />
         </div>
       </div>
     </div>

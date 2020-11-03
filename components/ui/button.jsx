@@ -1,11 +1,16 @@
 import React, { forwardRef } from "react";
 
-const Button = forwardRef(({ onClick, label, ...props }, ref) => {
-  const classes = props.classes || [];
-  const defaultClasses = [...classes];
+// Styling
+import layout from "components/ui/button.module.scss";
+
+const Button = forwardRef(({ onClick, label, size = "medium", ...props }, ref) => {
+  const classes = [
+    layout[size],
+    props.className,
+  ];
 
   return (
-    <button type="button" className={defaultClasses.join(" ")} onClick={onClick} {...props} ref={ref}>
+    <button type="button" {...props} className={classes.join(" ")} onClick={onClick} ref={ref}>
       {label}
     </button>
   );
