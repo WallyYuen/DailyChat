@@ -21,7 +21,7 @@ const Chat = () => {
   const store = useContext(ApplicationContext);
   const { messages, sortedMessages, activeUser, focusedUser } = store;
 
-  const ref = React.useRef(null);
+  const ref = React.createRef(null);
   enableStaticRendering(typeof window === "undefined");
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const Chat = () => {
     if (!ref.current) return;
 
     ref.current.scrollBy({ top: ref.current.scrollHeight, behavior: "smooth" });
-  }, [messages.length, store.userAsActor]);
+  }, [messages.length, store.userAsActor, ref]);
 
   const handleChange = (event, newValue, newPlainTextValue, mentions) => {
     setInputValue(newValue);
@@ -98,7 +98,7 @@ const Chat = () => {
       chatHistory={sortedMessages}
       user={activeUser}
     />
-  ), [sortedMessages, isLoading, readError, activeUser]);
+  ), [sortedMessages, isLoading, readError, activeUser, ref]);
 
   const chatInput = useMemo(() => (
     <ChatInputLayout
