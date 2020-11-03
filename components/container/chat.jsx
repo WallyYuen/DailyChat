@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useContext, } from "react";
+import React, { useEffect, useState, useMemo, useContext, useCallback } from "react";
 import { observer, enableStaticRendering } from "mobx-react-lite";
 import { db } from "lib/firebase";
 
@@ -6,11 +6,9 @@ import { db } from "lib/firebase";
 import { ApplicationContext } from "stores/applicationStore";
 
 // Layout
+import ChatLayout from "components/layout/chatLayout";
 import ChatContentLayout from "components/layout/chatContentLayout";
 import ChatInputLayout from "components/layout/chatInputLayout";
-
-// Styling
-import layout from "assets/styles/layout/chatLayout.module.scss";
 
 const Chat = () => {
   const [inputValue, setInputValue] = useState();
@@ -92,7 +90,7 @@ const Chat = () => {
     handleSubmit();
   };
 
-  const ChatContent = useMemo(() => (
+  const chatContent = useMemo(() => (
     <ChatContentLayout
       parentRef={ref}
       isLoading={isLoading}
@@ -102,20 +100,18 @@ const Chat = () => {
     />
   ), [sortedMessages, isLoading, readError, activeUser]);
 
-  return (
-    <div className={layout.container}>
-      {ChatContent}
-      <ChatInputLayout
-        inputValue={inputValue}
-        user={activeUser}
-        writeError={writeError}
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
-        mentions={store.mentions}
-        onEnterPress={onEnterPress}
-      />
-    </div>
-  );
+  const chatInput = useMemo(() => (
+    <ChatInputLayout
+      onEnterPress={onEnterPress}
+      inputValue={inputValue}
+      writeError={writeError}
+      handleSubmit={handleSubmit}
+      handleChange={handleChange}
+      mentions={store.mentions}
+    />
+  ), [inputValue, writeError, store.mentions]);
+
+  return <ChatLayout content={chatContent} input={chatInput} />;
 };
 
 export default observer(Chat);

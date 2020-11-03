@@ -3,16 +3,15 @@ import clsx from "clsx";
 
 // UI
 import Button from "components/ui/button";
-import MentionInput from "components/ui/mentionInput";
+import ChatInput from "components/ui/chatInput";
 
 // Styling
-import layout from "assets/styles/layout/chatInputLayout.module.scss";
-import button from "assets/styles/ui/button.module.scss";
+import layout from "components/layout/chatInputLayout.module.scss";
+import button from "components/ui/button.module.scss";
 
 const ChatInputLayout = ({
   inputValue,
   writeError,
-  user,
   handleSubmit,
   handleChange,
   mentions,
@@ -23,7 +22,7 @@ const ChatInputLayout = ({
   return (
     <div className={layout.container}>
       <form className={layout.form} onSubmit={handleSubmit}>
-        <MentionInput
+        <ChatInput
           mentions={mentions}
           onChange={handleChange}
           value={inputValue}

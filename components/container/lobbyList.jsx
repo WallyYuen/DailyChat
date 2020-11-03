@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { observer, enableStaticRendering } from "mobx-react-lite";
 
 // Component
-import StudentList from "components/container/studentList";
+import UserList from "components/container/userList";
 
 // Store
 import { ApplicationContext } from "stores/applicationStore";
@@ -12,7 +12,7 @@ const LobbyList = () => {
   const { lobbyUsers } = useContext(ApplicationContext);
 
   return (
-    <StudentList
+    <UserList
       users={lobbyUsers}
       modalHeader="Add user"
       approved

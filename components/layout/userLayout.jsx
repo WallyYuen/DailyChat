@@ -7,11 +7,11 @@ import { roles } from "lib/role";
 import Avatar from "components/ui/avatar";
 
 // Styling
-import userLayout from "assets/styles/layout/userLayout.module.scss";
+import layout from "components/layout/userLayout.module.scss";
 
 const UserLayout = ({ isAnonymous, name, mood, role, image, ...props }, ref) => {
   const moodColor = getMoodColor(mood);
-  const container = clsx(userLayout.frame, userLayout.neutral);
+  const container = clsx(layout.frame, layout.neutral);
 
   return (
     <div className={container} {...props} ref={ref}>
@@ -20,11 +20,11 @@ const UserLayout = ({ isAnonymous, name, mood, role, image, ...props }, ref) => 
         src={image}
         maxInitials={isAnonymous ? 1 : 2}
       />
-      <div className={userLayout.content}>
+      <div className={layout.content}>
         <span>{name}</span>
       </div>
       {role === roles.actor && (
-        <div className={userLayout.mood} style={{ background: moodColor }}></div>
+        <div className={layout.mood} style={{ background: moodColor }}></div>
       )}
     </div>
   );

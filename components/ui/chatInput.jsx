@@ -2,13 +2,13 @@ import React from "react";
 import { MentionsInput, Mention } from "react-mentions";
 
 // Styling
-import classNames from "assets/styles/ui/mention.module.scss";
+import layout from "components/ui/chatInput.module.scss";
 
-const ChatInputLayout = ({ value, onChange, mentions, onEnterPress }) => {
+const ChatInput = ({ value, onChange, mentions, onEnterPress }) => {
   return (
     <MentionsInput
       className="mentions"
-      classNames={classNames}
+      classNames={layout}
       value={value}
       onChange={onChange}
       allowSpaceInQuery
@@ -19,10 +19,10 @@ const ChatInputLayout = ({ value, onChange, mentions, onEnterPress }) => {
         markup="@[__display__](__id__)"
         trigger="@"
         data={mentions}
-        className={classNames.mentions__mention}
+        className={layout.mentions__mention}
       />
     </MentionsInput>
   );
 };
 
-export default ChatInputLayout;
+export default ChatInput;

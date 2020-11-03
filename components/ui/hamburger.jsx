@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 
 // Styling
-import menu from "assets/styles/ui/hamburger.module.scss";
+import menu from "components/ui/hamburger.module.scss";
 
 const Hamburger = ({ isMenuOpen, toggleMenu }) => {
   return (
