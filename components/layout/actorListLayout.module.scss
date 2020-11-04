@@ -1,4 +1,4 @@
-$color-text: rgb(66, 66, 66);
+@value color-text-primary from "/public/styles/colors.scss";
 
 .container {
 	flex-direction: column;
@@ -13,5 +13,5 @@ $color-text: rgb(66, 66, 66);
 	flex-shrink: 0;
 	font-weight: 300;
   font-size: 1rem;
-  color: $color-text;
+  color: color-text-primary;
 }

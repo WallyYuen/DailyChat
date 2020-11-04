@@ -1,0 +1,25 @@
+// background-color
+@value background-color-default: rgb(255, 255, 255);
+@value background-color-grey-light: rgb(235, 235, 235);
+@value background-color-blue-light: rgb(209, 233, 250);
+@value background-color-blue-focus: rgb(158, 212, 250);
+@value background-color-footer: rgb(32, 178, 170, 0.4);
+@value background-color-header: rgb(255, 99, 71, 0.4);
+@value background-color-separator: rgb(139, 139, 139);
+@value background-color-transparent: rgba(255, 255, 255, 0.0);
+@value background-color-chat: rgb(245, 245, 245);
+
+// border
+@value border-color-default: rgb(139, 139, 139);
+@value border-color-light: rgb(192, 192, 192);
+
+// color
+@value color-text-primary: rgb(66, 66, 66);
+@value color-text-alert: rgb(230, 57, 70);
+@value color-text-disabled: rgb(128, 128, 128);
+@value color-text-faded: rgb(150, 150, 150);
+
+// button
+@value background-color-button-neutral: rgb(133, 156, 173);
+@value background-color-button-primary: rgb(69, 123, 157);
+@value background-color-button-disabled: rgb(230, 230, 230);

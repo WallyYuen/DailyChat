@@ -1,15 +1,7 @@
-// colors
-$color-frame: rgb(221, 221, 221);
-$color-container: rgb(255, 255, 255);
-$color-separator: rgb(221, 221, 221);
-$color-text: rgb(66, 66, 66);
-
-$screen-xs: 480px;
-$screen-sm: 768px;
-$screen-md: 992px;
-$screen-lg: 1200px;
-$screen-xl: 1400px;
-$screen-xxl: 1800px;
+@value background-color-default from "/public/styles/colors.scss";
+@value background-color-grey-light from "/public/styles/colors.scss";
+@value color-text-primary from "/public/styles/colors.scss";
+@value xs, md, xl, xxl from "/public/styles/breakpoints.scss";
 
 .frame {
   display: flex;
@@ -19,7 +11,7 @@ $screen-xxl: 1800px;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background-color: $color-frame;
+  background-color: background-color-grey-light;
   padding: 8px 0;
   box-sizing: border-box;
 }
@@ -32,9 +24,9 @@ $screen-xxl: 1800px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 8px;
+  composes: medium from "/public/styles/borderRadius.module.scss";
   height: 100%;
-  background-color: $color-container;
+  background-color: background-color-default;
 }
 
 .headerContainer {
@@ -45,7 +37,7 @@ $screen-xxl: 1800px;
 .header {
   font-weight: 200;
   font-size: 1.5rem;
-  color: $color-text;
+  color: color-text-primary;
   padding-bottom: 10px;
   position: relative;
   display: flex;
@@ -63,14 +55,14 @@ $screen-xxl: 1800px;
     bottom: 0;
     left: 0;
     height: 1px;
-    background-color: $color-separator;
+    background-color: background-color-grey-light;
   }
 }
 
 .content {
   font-weight: 200;
   font-size: 1rem;
-  color: $color-text;
+  color: color-text-primary;
   display: flex;
   flex-direction: column;
   flex: 0 0 70%;
@@ -107,25 +99,25 @@ $screen-xxl: 1800px;
   width: 50%;
 }
 
-@media screen and (min-width: $screen-xs) {
+@media screen and (min-width: xs) {
   .container {
     max-width: 70%;
   }
 }
 
-@media screen and (min-width: $screen-md) {
+@media screen and (min-width: md) {
   .container {
     max-width: 50%;
   }
 }
 
-@media screen and (min-width: $screen-xl) {
+@media screen and (min-width: xl) {
   .container {
     max-width: 30%;
   }
 }
 
-@media screen and (min-width: $screen-xxl) {
+@media screen and (min-width: xxl) {
   .container {
     max-width: 25%;
   }

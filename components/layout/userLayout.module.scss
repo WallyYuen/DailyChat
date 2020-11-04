@@ -1,18 +1,14 @@
-// colors
-$color-neutral: rgb(255, 255, 255);
-$color-hover: rgb(235, 235, 235);
-$color-border: rgb(61, 61, 61);
-$color-separator: rgb(126, 126, 126);
-$color-text: rgb(66, 66, 66);
+@value background-color-default from "/public/styles/colors.scss";
+@value background-color-grey-light from "/public/styles/colors.scss";
+@value color-text-primary from "/public/styles/colors.scss";
 
-// transitions
 $transition-normal: all ease-out 0.2s;
 
 .frame {
   display: flex;
   align-items: center;
   padding: 4px 4px;
-  border-radius: 4px;
+  composes: small from "/public/styles/borderRadius.module.scss";
   position: relative;
   cursor: pointer;
 
@@ -23,14 +19,15 @@ $transition-normal: all ease-out 0.2s;
   font-weight: 300;
   padding: 4px 10px;
   font-size: 0.9rem;
+  composes: roboto from "/public/styles/types.module.scss";
 }
 
 .neutral {
-  background: $color-neutral;
-  color: $color-text;
+  background: background-color-default;
+  color: color-text-primary;
 
   &:hover {
-    background: $color-hover;
+    background: background-color-grey-light;
   }
 }
 

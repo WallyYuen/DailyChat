@@ -1,10 +1,10 @@
-$font-size: 0.9rem;
-$font-weight: 200;
-$font-color: rgb(66, 66, 66);
-$mention-color: steelblue;
-$mention-suggestion-color: hsl(205, 80%, 90%);
-$color-border: rgb(139, 139, 139);
-$color-text: rgb(66, 66, 66);
+@value background-color-default from "/public/styles/colors.scss";
+@value background-color-blue-light from "/public/styles/colors.scss";
+@value background-color-grey-light from "/public/styles/colors.scss";
+@value background-color-blue-focus from "/public/styles/colors.scss";
+@value font-roboto from "/public/styles/types.module.scss";
+@value color-text-primary from "/public/styles/colors.scss";
+@value border-color-light from "/public/styles/colors.scss";
 
 .mentions {
   display: flex;
@@ -18,9 +18,10 @@ $color-text: rgb(66, 66, 66);
 }
 
 .mentions--multiLine .mentions__control {
-  color: $font-color;
-  font-weight: $font-weight;
-  font-size: $font-size;
+  font-weight: 200;
+  color: color-text-primary;
+  font-family: font-roboto;
+  font-size: 0.9rem;
   padding: 4px 8px;
   max-height: 350px;
   box-sizing: border-box;
@@ -29,12 +30,12 @@ $color-text: rgb(66, 66, 66);
 }
 
 .mentions--multiLine .mentions__input {
-  border: 1px solid silver;
+  font-weight: 200;
+  color: color-text-primary;
+  font-family: font-roboto;
+  border: 1px solid border-color-light;
   border-radius: 4px;
   outline: none;
-  color: $font-color;
-  font-weight: $font-weight;
-  font-size: $font-size;
   padding: 4px 8px;
   box-sizing: border-box;
   height: 100%;
@@ -43,19 +44,19 @@ $color-text: rgb(66, 66, 66);
 }
 
 .mentions__input:focus {
-  border: 1px solid hsl(205, 90%, 80%);
+  border: 1px solid background-color-blue-focus;
 }
 
 .mentions__input:active {
-  border: 1px solid hsl(205, 90%, 80%);
+  border: 1px solid background-color-blue-focus;
 }
 
 .mentions__suggestions__list {
-  background-color: white;
-  border: 1px solid $color-border;
+  background-color: background-color-default;
+  border: 1px solid border-color-light;
+	font-weight: 200;
+	color: color-text-primary;
   font-size: 0.8rem;
-  font-weight: $font-weight;
-  color: $font-color;
   max-height: 117px;
   border-radius: 4px;
 
@@ -70,16 +71,16 @@ $color-text: rgb(66, 66, 66);
 }
 
 .mentions__suggestions__item:not(:last-child) {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid background-color-grey-light;
 }
 
 .mentions__suggestions__item--focused {
-  background-color: $mention-suggestion-color;
+  background-color: background-color-blue-light;
 }
 
 .mentions__mention {
   position: relative;
   z-index: 1;
-  // color: $mention-color;
+  // color: steelblue;
   pointer-events: none;
 }

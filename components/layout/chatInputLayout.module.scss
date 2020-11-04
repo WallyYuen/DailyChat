@@ -1,6 +1,8 @@
+@value background-color-default from "/public/styles/colors.scss";
+
 .container {
 	display: block;
-	background-color: white;
+	background-color: background-color-default;
 	min-height: 44px;
 	width: 100%;
 	flex-shrink: 0;
