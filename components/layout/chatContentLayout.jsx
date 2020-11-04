@@ -43,7 +43,7 @@ const ChatContentLayout = ({
                 <span className={layout.userName}>{message.createdBy}</span>
               )}
               <div className={layout.messageContainer}>
-                <span className={`${layout.message} ${type.openSans}`}>{message.content}</span>
+                <span className={layout.message}>{message.content}</span>
                 <span className={layout.timeStamp}>{formatTime(message.timestamp)}</span>
               </div>
             </div>

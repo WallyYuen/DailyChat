@@ -1,9 +1,10 @@
-$screen-xs: 480px;
-$screen-sm: 768px;
-$screen-md: 992px;
-$screen-lg: 1200px;
-$screen-xl: 1400px;
-$screen-xxl: 1800px;
+@value background-color-chat from "/public/styles/colors.scss";
+@value background-color-blue-light from "/public/styles/colors.scss";
+@value background-color-blue-focus from "/public/styles/colors.scss";
+@value color-text-faded from "/public/styles/colors.scss";
+@value color-text-primary from "/public/styles/colors.scss";
+@value color-text-disabled from "/public/styles/colors.scss";
+@value sm from "/public/styles/breakpoints.scss";
 
 .container {
 	display: flex;
@@ -13,7 +14,7 @@ $screen-xxl: 1800px;
 
 .chatArea {
 	display: flex;
-	background: whitesmoke;
+	background: background-color-chat;
 	overflow: auto;
 	flex-direction: column;
 	margin: 0 8px;
@@ -31,70 +32,71 @@ $screen-xxl: 1800px;
 	&:-webkit-scrollbar {
 		display: none;
 	}
+}
 
-	.chatBubbleContainer {
+.chatBubbleContainer {
+	display: flex;
+	flex-direction: column;
+	word-break: break-word;
+	margin-top: 12px;
+	padding: 8px;
+	composes: small from "/public/styles/borderRadius.module.scss";
+	min-width: 20%;
+	max-width: 80%;
+	flex-shrink: 0;
+
+	.messageContainer {
 		display: flex;
-		flex-direction: column;
-		word-break: break-word;
-		margin-top: 12px;
-		padding: 8px;
-		border-radius: 4px;
-		min-width: 20%;
-		max-width: 80%;
-		flex-shrink: 0;
-
-		.userName {
-			font-family: Roboto, sans-serif;
-			font-weight: 400;
-			font-size: 0.9rem;
-			margin-bottom: 4px;
-		}
-
-		.messageContainer {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: flex-end;
-
-			.message {
-				font-size: 0.9rem;
-				font-weight: 200;
-				line-height: 1.2;
-			}
-
-			.timeStamp {
-				font-family: Roboto, sans-serif;
-				font-size: 0.7rem;
-				line-height: 1;
-				color: hsla(0, 0, 0, 0.3);
-				text-align: right;
-				padding-left: 40px;
-				flex-shrink: 0;
-			}
-		}
-	}
-
-	.chatBubbleOther {
-		background-color: hsl(205, 80%, 90%);
-		align-self: flex-start;
-
-		.userName {
-			color: hsl(0, 0%, 50%);
-		}
-	}
-
-	.chatBubbleUser {
-		background-color: hsl(205, 90%, 80%);
-		align-self: flex-end;
-	}
-
-	.grouped {
-		margin-top: 2px;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-end;
 	}
 }
 
-@media screen and (min-width: $screen-md) {
+.chatBubbleOther {
+	background-color: background-color-blue-light;
+	align-self: flex-start;
+}
+
+.chatBubbleUser {
+	background-color: background-color-blue-focus;
+	align-self: flex-end;
+}
+
+.grouped {
+	margin-top: 2px;
+}
+
+.message {
+	composes: roboto from "public/styles/types.module.scss";
+	font-size: 0.9rem;
+	font-weight: 300;
+	line-height: 1.2;
+	color: color-text-primary;
+}
+
+.timeStamp {
+	composes: roboto from "public/styles/types.module.scss";
+	font-size: 0.7rem;
+	font-weight: 300;
+	line-height: 1;
+	color: color-text-faded;
+	text-align: right;
+	padding-left: 40px;
+	flex-shrink: 0;
+}
+
+.userName {
+	composes: roboto from "public/styles/types.module.scss";
+	margin-bottom: 4px;
+	font-weight: 400;
+	font-size: 0.9rem;
+	color: color-text-primary;
+}
+
+@media screen and (min-width: sm) {
 	.chatArea {
-		border-radius: 4px;
+		composes: medium from "/public/styles/borderRadius.module.scss";
+		margin-top: 8px;
 	}
 }

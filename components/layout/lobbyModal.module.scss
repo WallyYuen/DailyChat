@@ -1,15 +1,5 @@
-// colors
-$color-frame: rgb(221, 221, 221);
-$color-container: rgb(255, 255, 255);
-$color-separator: rgb(139, 139, 139);
-$color-text: rgb(66, 66, 66);
-
-$screen-xs: 480px;
-$screen-sm: 768px;
-$screen-md: 992px;
-$screen-lg: 1200px;
-$screen-xl: 1400px;
-$screen-xxl: 1800px;
+@value background-color-separator from "/public/styles/colors.scss";
+@value color-text-primary from "/public/styles/colors.scss";
 
 .container {
   display: flex;
@@ -24,7 +14,7 @@ $screen-xxl: 1800px;
 .header {
   font-weight: 200;
   font-size: 1.25rem;
-  color: $color-text;
+  color: color-text-primary;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -42,7 +32,7 @@ $screen-xxl: 1800px;
     bottom: 0;
     left: 0;
     height: 1px;
-    background-color: $color-separator;
+    background-color: background-color-separator;
   }
 }
 
@@ -59,7 +49,7 @@ $screen-xxl: 1800px;
 .content {
   font-weight: 400;
   font-size: 0.8rem;
-  color: $color-text;
+  color: color-text-primary;
   flex: 0 0 60%;
   width: 100%;
   padding-top: 22px;
@@ -70,7 +60,7 @@ $screen-xxl: 1800px;
 }
 
 .details {
-  color: $color-text;
+  color: color-text-primary;
   font-size: 0.7rem;
   font-weight: 200;
   

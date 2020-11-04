@@ -1,12 +1,5 @@
-$color-superscript: hsl(205, 85%, 51%);
-$color-important: hsl(9, 78%, 53%);
-
-$screen-xs: 480px;
-$screen-sm: 768px;
-$screen-md: 992px;
-$screen-lg: 1200px;
-$screen-xl: 1400px;
-$screen-xxl: 1800px;
+@value color-text-primary, color-text-alert from "/public/styles/colors.scss";
+@value sm, md from "/public/styles/breakpoints.scss";
 
 .container {
 	display: flex;
@@ -37,14 +30,14 @@ $screen-xxl: 1800px;
 .superscript {
 	font-weight: 500;
   font-size: 0.7rem;
-	color: $color-superscript;
+	color: color-text-primary;
 	position: absolute;
 	top: 0px;
 	right: -8px;
 }
 
 .important {
-	color: $color-important;
+	color: color-text-alert;
 }
 
 .hidden {
@@ -56,7 +49,7 @@ $screen-xxl: 1800px;
 	display: flex;
 }
 
-@media screen and (min-width: $screen-sm) {
+@media screen and (min-width: sm) {
 	.container {
 		.leftColumn {
 			display: flex;
@@ -69,7 +62,7 @@ $screen-xxl: 1800px;
 	}
 }
 
-@media screen and (min-width: $screen-md) {
+@media screen and (min-width: md) {
 	.container {
 		.rightColumn {
 			display: flex;

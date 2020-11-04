@@ -8,7 +8,7 @@ import UserLayout from "components/layout/userLayout";
 
 // Styling
 import "tippy.js/dist/tippy.css";
-import layout from "public/styles/tippy.module.scss";
+import layout from "components/layout/userListLayout.module.scss";
 
 const UserListLayout = ({ users, modal: Modal, isInstructor }) => {
   enableStaticRendering(typeof window === "undefined");
