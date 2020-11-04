@@ -26,10 +26,13 @@ export const ApplicationStore = types
       });
 
       users.forEach((user) => {
+        const displayName = uniqueUsers[user.email].displayName
         const moodKey = getMoodKey(user.mood);
         const mood = moods[moodKey] ?? moods.default;
 
+        // Keep the saved properties
         uniqueUsers[user.email].mood = mood;
+        uniqueUsers[user.email].displayName = displayName ?? user.displayName;
         
         uniqueUsers[user.email].isOnline = user.isOnline;
         uniqueUsers[user.email].approved = user.approved;
