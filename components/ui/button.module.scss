@@ -1,7 +1,6 @@
-@value background-color-button-neutral from "/public/styles/colors.scss";
 @value background-color-button-primary from "/public/styles/colors.scss";
 @value background-color-transparent from "/public/styles/colors.scss";
-@value background-color-grey-light from "/public/styles/colors.scss";
+@value background-color-grey-focus from "/public/styles/colors.scss";
 @value background-color-button-disabled from "/public/styles/colors.scss";
 @value color-text-disabled from "/public/styles/colors.scss";
 @value color-text-primary from "/public/styles/colors.scss";
@@ -46,7 +45,7 @@ $transition-normal: all ease-out 0.2s;
 }
 
 .neutral {
-	background: background-color-button-neutral;
+	background: background-color-button-primary;
 	color: white;
 	cursor: pointer;
 
@@ -70,10 +69,10 @@ $transition-normal: all ease-out 0.2s;
 	cursor: pointer;
 
 	&:hover:not(.primary) {
-		background-color: background-color-grey-light;
+		background-color: background-color-grey-focus;
 	}
 	
-	&:focus:not(.primary) {
+	&:active:not(.primary) {
 		background-color: background-color-transparent;
 	}
 }
