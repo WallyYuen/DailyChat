@@ -1,8 +1,8 @@
-@value background-color-default from "/public/styles/colors.scss";
+@value background-default from "/public/styles/colors.scss";
 
 .container {
 	display: block;
-	background-color: background-color-default;
+	background-color: background-default;
 	min-height: 44px;
 	width: 100%;
 	flex-shrink: 0;
@@ -19,6 +19,7 @@
 			margin: 0;
 			margin-left: 8px;
 			flex: 0 0 72px;
+			border-style: none;
 		}
 	}
 }

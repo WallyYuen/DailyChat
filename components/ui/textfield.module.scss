@@ -1,0 +1,29 @@
+@value color-text-primary from "/public/styles/colors.scss";
+@value border-color-light from "/public/styles/colors.scss";
+@value border-radius-medium from "/public/styles/borderRadius.module.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  composes: poppins from "/public/styles/types.module.scss";
+  font-size: 0.85rem;
+  color: color-text-primary;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
+.textField {
+  composes: poppins from "/public/styles/types.module.scss";
+  color: color-text-primary;
+  font-size: 0.85rem;
+  font-weight: 200;
+
+  border-radius: border-radius-medium;
+  border: 1px solid border-color-light;
+  padding: 7px 12px;
+  box-shadow: 0px 1px 3px rgba(35, 35, 35, 0.1);
+  outline: none;
+}

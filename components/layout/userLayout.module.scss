@@ -1,6 +1,7 @@
-@value background-color-default from "/public/styles/colors.scss";
-@value background-color-grey-light from "/public/styles/colors.scss";
+@value background-default from "/public/styles/colors.scss";
+@value background-grey-light from "/public/styles/colors.scss";
 @value color-text-primary from "/public/styles/colors.scss";
+@value border-radius-small from "/public/styles/borderRadius.module.scss";
 
 $transition-normal: all ease-out 0.2s;
 
@@ -8,7 +9,7 @@ $transition-normal: all ease-out 0.2s;
   display: flex;
   align-items: center;
   padding: 4px 4px;
-  composes: small from "/public/styles/borderRadius.module.scss";
+  border-radius: border-radius-small;
   position: relative;
   cursor: pointer;
 
@@ -23,11 +24,11 @@ $transition-normal: all ease-out 0.2s;
 }
 
 .neutral {
-  background: background-color-default;
+  background: background-default;
   color: color-text-primary;
 
   &:hover {
-    background: background-color-grey-light;
+    background: background-grey-light;
   }
 }
 

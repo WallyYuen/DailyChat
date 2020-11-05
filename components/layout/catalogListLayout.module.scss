@@ -1,0 +1,17 @@
+.container {
+  
+}
+
+.header {
+  composes: poppins from "/public/styles/types.module.scss";
+  font-weight: 300;
+  font-size: 0.9;
+  color: color-text-primary;
+}
+
+.casus {
+  composes: roboto from "/public/styles/types.module.scss";
+  font-weight: 200;
+  font-size: 0.9;
+  color: color-text-primary;
+}

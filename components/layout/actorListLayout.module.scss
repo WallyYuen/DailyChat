@@ -5,13 +5,9 @@
 }
 
 .header {
+	composes: h3 from "/public/styles/headers.scss";
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 8px;
 	align-items: center;
-	padding: 8px 20px 0;
 	flex-shrink: 0;
-	font-weight: 300;
-  font-size: 1rem;
-  color: color-text-primary;
 }

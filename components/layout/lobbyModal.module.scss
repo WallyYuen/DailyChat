@@ -1,4 +1,4 @@
-@value background-color-separator from "/public/styles/colors.scss";
+@value background-separator from "/public/styles/colors.scss";
 @value color-text-primary from "/public/styles/colors.scss";
 
 .container {
@@ -32,7 +32,7 @@
     bottom: 0;
     left: 0;
     height: 1px;
-    background-color: background-color-separator;
+    background-color: background-separator;
   }
 }
 

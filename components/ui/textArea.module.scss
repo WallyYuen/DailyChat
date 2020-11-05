@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  composes: label from "/components/ui/textField.module.scss";
+}
+
+.textArea {
+  composes: textField from "/components/ui/textField.module.scss";
+  flex: 1 0 0;
+  resize: none;
+}

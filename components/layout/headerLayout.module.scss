@@ -1,4 +1,4 @@
-@value background-color-header from "/public/styles/colors.scss";
+@value background-header from "/public/styles/colors.scss";
 @value xs from "/public/styles/breakpoints.scss";
 
 .container {
@@ -10,7 +10,7 @@
 	overflow: hidden;
 	flex-shrink: 0;
 
-	background-color: background-color-header;
+	background-color: background-header;
 }
 
 .nav {
