@@ -6,7 +6,7 @@ import ExternalLogin from "components/container/externalLogin";
 
 // UI
 import Button from "components/ui/button"
-import TextField from "components/ui/text"
+import TextField from "components/ui/textField"
 
 // Styling
 import button from "components/ui/button.module.scss";
