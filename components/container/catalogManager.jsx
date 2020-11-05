@@ -3,8 +3,8 @@ import React from "react";
 // Layout
 import CatalogManagerLayout from "components/layout/catalogManagerLayout";
 
-const CatalogManager = () => {
-  return <CatalogManagerLayout />;
+const CatalogManager = ({ onCancel }) => {
+  return <CatalogManagerLayout onCancel={onCancel} />;
 };
 
 export default CatalogManager;

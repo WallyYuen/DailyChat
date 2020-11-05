@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // Layout
 import InstructorActionLayout from "components/layout/instructorActionLayout";
@@ -7,11 +7,17 @@ import InstructorActionLayout from "components/layout/instructorActionLayout";
 import CatalogManager from "components/container/catalogManager";
 
 const InstructorAction = () => {
-  const openCatalog = (event) => {
+  const [isCatalogOpen, setIsCatalogOpen] = useState(false);
 
+  const openCatalog = (event) => {
+    setIsCatalogOpen(true);
   };
 
-  const catalogContent = <CatalogManager />
+  const closeCatalog = (event) => {
+    setIsCatalogOpen(false);
+  };
+
+  const catalogContent = isCatalogOpen ? <CatalogManager onCancel={closeCatalog} /> : null;
 
   return (
     <InstructorActionLayout

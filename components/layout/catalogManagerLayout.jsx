@@ -13,7 +13,7 @@ import TextArea from "components/ui/textArea";
 import layout from "components/layout/catalogManagerLayout.module.scss";
 import button from "components/ui/button.module.scss";
 
-const CatalogManager = () => {
+const CatalogManager = ({ onCancel }) => {
   return (
     <div className={layout.dimmer}>
       <div className={layout.container}>
@@ -41,7 +41,7 @@ const CatalogManager = () => {
 
           <div className={layout.buttonContainer}>
             <Button label="delete" className={clsx(button.alert, layout.button)} />
-            <Button label="cancel" className={clsx(button.neutral, layout.buttonMargin, layout.button)} />
+            <Button label="cancel" className={clsx(button.neutral, layout.buttonMargin, layout.button)} onClick={onCancel} />
             <Button label="save" className={clsx(button.primary, layout.button)} />
           </div>
         </div>
