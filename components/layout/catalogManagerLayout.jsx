@@ -6,7 +6,7 @@ import CatalogList from "components/container/catalogList";
 
 // UI
 import Button from "components/ui/button";
-import TextField from "components/ui/textField";
+import TextField from "components/ui/text";
 import TextArea from "components/ui/textArea";
 
 // Styling
