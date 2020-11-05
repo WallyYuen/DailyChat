@@ -36,7 +36,7 @@ const ChatInputLayout = ({
           disabled={isEmpty}
           className={clsx(layout.sendButton, {
             [button.disabled]: isEmpty,
-            [button.neutral]: !isEmpty,
+            [button.primary]: !isEmpty,
           })}
         />
       </form>
