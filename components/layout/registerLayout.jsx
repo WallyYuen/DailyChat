@@ -6,7 +6,7 @@ import ExternalLogin from "components/container/externalLogin";
 
 // UI
 import Button from "components/ui/button"
-import Textfield from "components/ui/textfield"
+import Textfield from "components/ui/textField"
 
 const RegisterLayout = ({
   email,

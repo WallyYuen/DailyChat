@@ -1,7 +1,2 @@
-.small {
-  border-radius: 4px;
-}
-
-.medium {
-  border-radius: 8px;
-}
+@value border-radius-medium: 8px;
+@value border-radius-small: 4px;

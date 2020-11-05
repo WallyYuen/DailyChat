@@ -6,7 +6,7 @@ import ExternalLogin from "components/container/externalLogin";
 
 // UI
 import Button from "components/ui/button"
-import Textfield from "components/ui/textfield"
+import TextField from "components/ui/textField"
 
 // Styling
 import button from "components/ui/button.module.scss";
@@ -33,7 +33,7 @@ const LoginLayout = ({
           </p>
         </div>
         <div>
-          <Textfield
+          <TextField
             placeholder="Email"
             name="email"
             type="email"
@@ -42,7 +42,7 @@ const LoginLayout = ({
           />
         </div>
         <div>
-          <Textfield
+          <TextField
             placeholder="Password"
             name="password"
             type="password"
