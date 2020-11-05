@@ -5,7 +5,6 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 // Component
 import ActorList from "components/container/actorList";
 import ActorAction from "components/container/actorAction";
-import InstructorAction from "components/container/InstructorAction";
 import Chat from "components/container/chat";
 import ContactList from "components/container/contactList";
 import LobbyList from "components/container/lobbyList";
