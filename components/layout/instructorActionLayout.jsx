@@ -1,8 +1,5 @@
 import React from "react";
 
-// Component
-import CatalogManager from "components/container/catalogManager";
-
 // UI
 import Button from "components/ui/button";
 
@@ -20,7 +17,7 @@ const InstructorActionLayout = ({ onClick, catalogContent }) => {
         <Button className={button.neutral} label="Catalogus" onClick={onClick} />
       </div>
       <div>
-        <CatalogManager />
+        {catalogContent}
       </div>
     </div>
   );
