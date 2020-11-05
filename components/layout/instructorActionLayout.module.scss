@@ -1,0 +1,23 @@
+.container {
+	flex-direction: column;
+	margin-top: 32px;
+}
+
+.header {
+	composes: h3 from "/public/styles/headers.scss";
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+.buttonContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+
+	Button {
+		margin: 0 4px 0 0;
+	}
+}
