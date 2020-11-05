@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useCallback } from "react";
 import { observer, enableStaticRendering } from "mobx-react-lite";
+import { hideAll } from "tippy.js";
 import { setApproval } from "lib/auth";
 
 // Store
@@ -21,7 +22,7 @@ const UserList = ({ users, modalHeader, approved }) => {
     setApproval({ ...user, approved });
   };
 
-  const Modal = ({ user, ...props }) => (
+  const Modal = useCallback(({ user, ...props }) => (
     <LobbyModal
       header={modalHeader}
       onClick={onClick(user)}
@@ -31,8 +32,9 @@ const UserList = ({ users, modalHeader, approved }) => {
         email: user.email,
       }}
       {...props}
+      onCancel={() => { hideAll() }}
     />
-  );
+  ), [modalHeader]);
 
   return (
     <UserListLayout
