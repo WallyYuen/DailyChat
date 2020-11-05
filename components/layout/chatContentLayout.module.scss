@@ -1,10 +1,12 @@
-@value background-color-chat from "/public/styles/colors.scss";
-@value background-color-blue-light from "/public/styles/colors.scss";
-@value background-color-blue-focus from "/public/styles/colors.scss";
+@value background-chat from "/public/styles/colors.scss";
+@value background-blue-light from "/public/styles/colors.scss";
+@value background-blue-focus from "/public/styles/colors.scss";
 @value color-text-faded from "/public/styles/colors.scss";
 @value color-text-primary from "/public/styles/colors.scss";
 @value color-text-disabled from "/public/styles/colors.scss";
 @value sm from "/public/styles/breakpoints.scss";
+@value border-radius-small from "/public/styles/borderRadius.module.scss";
+@value border-radius-medium from "/public/styles/borderRadius.module.scss";
 
 .container {
 	display: flex;
@@ -14,7 +16,7 @@
 
 .chatArea {
 	display: flex;
-	background: background-color-chat;
+	background: background-chat;
 	overflow: auto;
 	flex-direction: column;
 	margin: 0 8px;
@@ -40,7 +42,7 @@
 	word-break: break-word;
 	margin-top: 12px;
 	padding: 8px;
-	composes: small from "/public/styles/borderRadius.module.scss";
+	border-radius: border-radius-small;
 	min-width: 20%;
 	max-width: 80%;
 	flex-shrink: 0;
@@ -54,12 +56,12 @@
 }
 
 .chatBubbleOther {
-	background-color: background-color-blue-light;
+	background-color: background-blue-light;
 	align-self: flex-start;
 }
 
 .chatBubbleUser {
-	background-color: background-color-blue-focus;
+	background-color: background-blue-focus;
 	align-self: flex-end;
 }
 
@@ -96,7 +98,7 @@
 
 @media screen and (min-width: sm) {
 	.chatArea {
-		composes: medium from "/public/styles/borderRadius.module.scss";
+		border-radius: border-radius-medium;
 		margin-top: 8px;
 	}
 }

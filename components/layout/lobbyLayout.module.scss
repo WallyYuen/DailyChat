@@ -1,7 +1,8 @@
-@value background-color-default from "/public/styles/colors.scss";
-@value background-color-grey-light from "/public/styles/colors.scss";
+@value background-default from "/public/styles/colors.scss";
+@value background-grey-light from "/public/styles/colors.scss";
 @value color-text-primary from "/public/styles/colors.scss";
 @value xs, md, xl, xxl from "/public/styles/breakpoints.scss";
+@value border-radius-medium from "/public/styles/borderRadius.module.scss";
 
 .frame {
   display: flex;
@@ -11,7 +12,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background-color: background-color-grey-light;
+  background-color: background-grey-light;
   padding: 8px 0;
   box-sizing: border-box;
 }
@@ -24,9 +25,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  composes: medium from "/public/styles/borderRadius.module.scss";
+  border-radius: border-radius-medium;
   height: 100%;
-  background-color: background-color-default;
+  background-color: background-default;
 }
 
 .headerContainer {
@@ -55,7 +56,7 @@
     bottom: 0;
     left: 0;
     height: 1px;
-    background-color: background-color-grey-light;
+    background-color: background-grey-light;
   }
 }
 

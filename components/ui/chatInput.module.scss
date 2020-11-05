@@ -1,7 +1,7 @@
-@value background-color-default from "/public/styles/colors.scss";
-@value background-color-blue-light from "/public/styles/colors.scss";
-@value background-color-grey-light from "/public/styles/colors.scss";
-@value background-color-blue-focus from "/public/styles/colors.scss";
+@value background-default from "/public/styles/colors.scss";
+@value background-blue-light from "/public/styles/colors.scss";
+@value background-grey-light from "/public/styles/colors.scss";
+@value background-blue-focus from "/public/styles/colors.scss";
 @value font-roboto from "/public/styles/types.module.scss";
 @value color-text-primary from "/public/styles/colors.scss";
 @value border-color-light from "/public/styles/colors.scss";
@@ -44,15 +44,15 @@
 }
 
 .mentions__input:focus {
-  border: 1px solid background-color-blue-focus;
+  border: 1px solid background-blue-focus;
 }
 
 .mentions__input:active {
-  border: 1px solid background-color-blue-focus;
+  border: 1px solid background-blue-focus;
 }
 
 .mentions__suggestions__list {
-  background-color: background-color-default;
+  background-color: background-default;
   border: 1px solid border-color-light;
 	font-weight: 200;
 	color: color-text-primary;
@@ -71,11 +71,11 @@
 }
 
 .mentions__suggestions__item:not(:last-child) {
-  border-bottom: 1px solid background-color-grey-light;
+  border-bottom: 1px solid background-grey-light;
 }
 
 .mentions__suggestions__item--focused {
-  background-color: background-color-blue-light;
+  background-color: background-blue-light;
 }
 
 .mentions__mention {

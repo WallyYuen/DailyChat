@@ -1,4 +1,4 @@
-@value background-color-footer from "/public/styles/colors.scss";
+@value background-footer from "/public/styles/colors.scss";
 
 .container {
   height: 44px;
@@ -8,5 +8,5 @@
   align-items: center;
   flex-shrink: 0;
 
-  background-color: background-color-footer;
+  background-color: background-footer;
 }
