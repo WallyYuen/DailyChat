@@ -21,7 +21,6 @@ const DashboardLayout = ({ lobbyUserCount, onlineUserCount }) => {
       <div className={layout.leftColumn}>
         <ActorList />
         <ActorAction />
-        {/* <InstructorAction /> */}
       </div>
       <div className={layout.centerColumn}>
         <Chat />
