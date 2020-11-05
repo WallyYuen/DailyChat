@@ -5,6 +5,7 @@
 	display: flex;
 	flex-direction: row;
 	height: 100%;
+	position: relative;
 
 	.leftColumn {
 		display: none;
@@ -45,6 +46,7 @@
 }
 
 .header {
+	composes: h3 from "/public/styles/headers.scss";
 	position: relative;
 	display: flex;
 }

@@ -1,0 +1,17 @@
+@value color-text-primary from "/public/styles/colors.scss";
+
+.h2 {
+  composes: poppins from "/public/styles/types.module.scss";
+	font-weight: 300;
+  font-size: 1.8rem;
+  color: color-text-primary;
+}
+
+.h3 {
+  composes: poppins from "/public/styles/types.module.scss";
+	margin-bottom: 8px;
+	padding: 8px 20px 0;
+	font-weight: 300;
+  font-size: 1rem;
+  color: color-text-primary;
+}

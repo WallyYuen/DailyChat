@@ -6,6 +6,8 @@
 @value font-openSans: Open Sans, sans-serif;
 @value font-roboto: Roboto, sans-serif;
 
+@value color-text-primary from "/public/styles/colors.scss";
+
 .poppins {
 	font-family: font-poppins;
 }
@@ -16,4 +18,125 @@
 
 .roboto {
 	font-family: font-roboto;
+}
+
+.h2 {
+  composes: poppins;
+	font-weight: 300;
+  font-size: 1.8rem;
+  color: color-text-primary;
+}
+
+.h3tussen {
+	composes: poppins;
+	font-weight: 200;
+  font-size: 1.5rem;
+  color: color-text-primary;
+  padding-bottom: 10px;
+}
+
+.h3andere {
+	composes: poppins;
+	font-weight: 200;
+  font-size: 1.25rem;
+  color: color-text-primary;
+}
+
+.h3 {
+  composes: poppins;
+	margin-bottom: 8px;
+	padding: 8px 20px 0;
+	font-weight: 300;
+  font-size: 1rem;
+  color: color-text-primary;
+}
+
+.h4 {
+	composes: poppins;
+  font-weight: 300;
+  font-size: 0.9;
+  color: color-text-primary;
+}
+
+.chatTimestamp {
+	composes: roboto;
+	font-size: 0.7rem;
+	font-weight: 300;
+	line-height: 1;
+	color: color-text-faded;
+}
+
+.chatMessage {
+	composes: roboto;
+	font-size: 0.9rem;
+	font-weight: 300;
+	line-height: 1.2;
+	color: color-text-primary;
+}
+
+.chatUsername {
+	composes: roboto;
+	font-weight: 400;
+	font-size: 0.9rem;
+	color: color-text-primary;
+}
+
+.textFieldLabel {
+	composes: poppins;
+  font-size: 0.85rem;
+  color: color-text-primary;
+  font-weight: 300;
+}
+
+.textFieldBody {
+	composes: poppins;
+  color: color-text-primary;
+  font-size: 0.85rem;
+  font-weight: 200;
+}
+
+.button {
+	composes: poppins;
+	font-weight: 400;
+	color: color-text-primary;
+}
+
+.casus {
+  composes: roboto;
+  font-weight: 200;
+  font-size: 0.9;
+  color: color-text-primary;
+}
+
+.superscript {
+	composes: poppins;
+	font-weight: 500;
+  font-size: 0.7rem;
+	color: color-text-primary;
+}
+
+.body {
+	composes: poppins;
+	font-weight: 200;
+  font-size: 1rem;
+  color: color-text-primary;
+}
+
+.modalHeader {
+	font-weight: 400;
+  font-size: 0.8rem;
+  color: color-text-primary;
+}
+
+.modalContent {
+	color: color-text-primary;
+  font-size: 0.7rem;
+  font-weight: 200;
+}
+
+.userCell {
+	font-weight: 300;
+  padding: 4px 10px;
+  font-size: 0.9rem;
+  composes: roboto;
 }
