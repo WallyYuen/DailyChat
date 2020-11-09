@@ -10,14 +10,14 @@ import UserLayout from "components/layout/userLayout";
 import layout from "components/layout/actorListLayout.module.scss";
 import button from "components/ui/button.module.scss";
 
-const ActorListLayout = ({ actors, onClick, resetUser }) => {
+const ActorListLayout = ({ actors, onClick, resetUser, isInstructor }) => {
   enableStaticRendering(typeof window === "undefined");
 
   return (
     <div className={layout.container}>
       <div className={layout.header}>
         <span>Act as</span>
-        <Button className={button.neutral} label="Reset" onClick={resetUser} />
+        {isInstructor && <Button className={button.neutral} label="Reset" onClick={resetUser} />}
       </div>
       <div>
         {actors.map((actor) => {
