@@ -1,0 +1,50 @@
+@value border-color-default from "/public/styles/colors.scss";
+@value border-color-light from "/public/styles/colors.scss";
+@value color-text-primary from "/public/styles/colors.scss";
+@value border-radius-medium from "/public/styles/borderRadius.module.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 100px;
+}
+
+.label {
+  composes: label from "/components/ui/textField.module.scss";
+}
+
+.frame {
+  display: flex;
+  align-items: center;
+
+  border-radius: border-radius-medium;
+  border: 1px solid border-color-light;
+  box-shadow: 0px 1px 3px rgba(35, 35, 35, 0.1);
+  box-sizing: border-box;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+}
+
+.dropdown {
+  composes: poppins from "/public/styles/types.module.scss";
+  color: color-text-primary;
+  font-size: 0.85rem;
+  font-weight: 200;
+  padding: 7.5px 12px;
+  padding-right: 42px;
+  appearance: none;
+  border-style: none;
+  outline: none;
+  flex: 1 1 0;
+  cursor: pointer;
+}
+
+.icon {
+  width: 30px;
+  stroke: border-color-default;
+  position: absolute;
+  right: 0;
+  pointer-events: none;
+}

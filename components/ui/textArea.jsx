@@ -1,20 +1,22 @@
 import React from "react";
+import clsx from "clsx";
 
+// Styling
 import layout from "components/ui/textArea.module.scss";
 
-const TextArea = ({ onChange, value, placeholder, name, label, type = "text", ...props }) => {
-  const classes = [layout.container, props.className];
+const TextArea = ({ labelProps, inputProps, ...props }) => {
+  const label = labelProps?.label;
+  const type = inputProps?.type ?? "text";
 
   return (
-    <div className={classes.join(" ")}>
-      <span className={layout.label}>{label}</span>
+    <div className={clsx(layout.container, props?.className)}>
+      {label && (
+        <span {...labelProps} className={clsx(layout.label, labelProps?.className)}>{label}</span>
+      )}
       <textarea
-        className={layout.textArea}
-        placeholder={placeholder}
-        name={name}
+        {...inputProps}
         type={type}
-        onChange={onChange}
-        value={value}
+        className={clsx(layout.textArea, inputProps?.className)}
       />
     </div>
   );
