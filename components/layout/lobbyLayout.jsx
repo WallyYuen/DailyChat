@@ -39,7 +39,7 @@ const LobbyLayout = ({ user }) => {
         </div>
         <div className={layout.bottom}>  
           <Link href="/">
-            <Button className={clsx(button.secondary, layout.button)} label="Back" />
+            <Button className={clsx(button.secondary, layout.button)} label="Back" size="small" />
           </Link>
         </div>
       </div>

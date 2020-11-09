@@ -23,6 +23,9 @@
 	padding: 0 8px;
 	flex: 1 1 0;
 
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+
 	/* Padding not working in Firefox in combination with overflow-y
 	https://stackoverflow.com/questions/48687129/padding-bottom-not-working-in-firefox-ie11 */
 	&:after {
@@ -31,7 +34,7 @@
 		padding-bottom: 8px;
 	}
 
-	&:-webkit-scrollbar {
+	&::-webkit-scrollbar {
 		display: none;
 	}
 }
