@@ -1,30 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { observer, enableStaticRendering } from "mobx-react-lite";
+
+// Store
+import { ApplicationContext } from "stores/applicationStore";
 
 // Layout
 import InstructorActionLayout from "components/layout/instructorActionLayout";
 
-// Component
-import CatalogManager from "components/container/catalogManager";
-
 const InstructorAction = () => {
-  const [isCatalogOpen, setIsCatalogOpen] = useState(false);
+  const { catalog } = useContext(ApplicationContext);
+  enableStaticRendering(typeof window === "undefined");
 
-  const openCatalog = (event) => {
-    setIsCatalogOpen(true);
+  const openCatalog = () => {
+    catalog.setIsOpen(true);
   };
-
-  const closeCatalog = (event) => {
-    setIsCatalogOpen(false);
-  };
-
-  const catalogContent = isCatalogOpen ? <CatalogManager onCancel={closeCatalog} /> : null;
 
   return (
     <InstructorActionLayout
-      onClick={openCatalog}
-      catalogContent={catalogContent}
+      catalogProps={{
+        catalogIsOpen: catalog.isOpen,
+        openCatalog: openCatalog,
+      }}
     />
   );
 };
 
-export default InstructorAction;
+export default observer(InstructorAction);
