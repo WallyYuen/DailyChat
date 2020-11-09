@@ -1,19 +1,13 @@
 import React from "react";
-import clsx from "clsx";
 
 // Component
 import CatalogList from "components/container/catalogList";
-
-// UI
-import Button from "components/ui/button";
-import TextField from "components/ui/textField";
-import TextArea from "components/ui/textArea";
+import CatalogForm from "components/container/catalogForm";
 
 // Styling
 import layout from "components/layout/catalogManagerLayout.module.scss";
-import button from "components/ui/button.module.scss";
 
-const CatalogManager = ({ onCancel }) => {
+const CatalogManager = ({ readError }) => {
   return (
     <div className={layout.dimmer}>
       <div className={layout.container}>
@@ -25,26 +19,10 @@ const CatalogManager = ({ onCancel }) => {
             </span>
           </div>
           <div className={layout.catalog}>
-            <CatalogList />
+            {readError ? readError : <CatalogList />}
           </div>
         </div>
-        <div className={layout.formContainer}>
-          <div className={layout.form}>
-            <div className={layout.projectField}>
-              <TextField label="Project" placeholder="New project" />
-              <TextField label="Page" placeholder="1" />
-            </div>
-            <TextField placeholder="New project name" className={layout.noTitleSpacing} />
-            <TextField label="Title" placeholder="Title for casus" className={layout.spacing} />
-            <TextArea label="Content" className={clsx(layout.textArea, layout.spacing)} />
-          </div>
-
-          <div className={layout.buttonContainer}>
-            <Button label="delete" className={clsx(button.alert, layout.button)} />
-            <Button label="cancel" className={clsx(button.neutral, layout.buttonMargin, layout.button)} onClick={onCancel} />
-            <Button label="save" className={clsx(button.primary, layout.button)} />
-          </div>
-        </div>
+        <CatalogForm />
       </div>
     </div>
   );

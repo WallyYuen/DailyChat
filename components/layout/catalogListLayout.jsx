@@ -1,24 +1,41 @@
 import React from "react";
+import clsx from "clsx";
+import { observer, enableStaticRendering } from "mobx-react-lite";
 
+// Icon
+import DustbinIcon from "components/icon/dustbinIcon";
+
+// Styling
 import layout from "components/layout/catalogListLayout.module.scss";
 
-const CatalogListLayout = () => {
+const CatalogListLayout = ({ handleDeleteVisibility, projects, selectedAssignmentId, handleSelectAssignment, handleRemoveAssignment }) => {
+  enableStaticRendering(typeof window === "undefined");
+
   return (
     <div className={layout.container}>
-      <div className={layout.header}>
-        Casus De Groot Pillen en Poeders
-      </div>
-      <div className={layout.casus}>
-        Deel 1: Basis Casus
-      </div>
-      <div className={layout.casus}>
-        Deel 2: Casus behorende bij opdracht 2 rol binnen bedrijf
-      </div>
-      <div className={layout.casus}>
-        Deel 3: Casus behorende bij opdracht 4: Er is iets mis!
-      </div>
+      {projects.map((project) => (
+        <div key={project.id}>
+          <div className={layout.project}>
+            {project.name}
+          </div>
+          <ul className={layout.list}>
+            {project.sortedAssignments.map((assignment, index) => {
+              const isSelected = assignment.id === selectedAssignmentId;
+              const assignmentClass = clsx(layout.assignment, { [layout.selected]: isSelected });
+
+              return (
+                <li key={assignment.id} className={assignmentClass} onClick={handleSelectAssignment(assignment)} onMouseEnter={handleDeleteVisibility(assignment)} onMouseLeave={handleDeleteVisibility(assignment)}>
+                  <span className={layout.bullet}>{`${index + 1}.`}</span>
+                  <span>{assignment.name}</span>
+                  <DustbinIcon className={clsx(layout.dustbin, { [layout.active]: assignment.isHovered || isSelected })} onClick={handleRemoveAssignment(assignment)}/>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 };
 
-export default CatalogListLayout;
+export default observer(CatalogListLayout);

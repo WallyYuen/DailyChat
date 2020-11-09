@@ -6,15 +6,17 @@ import { moods, getMoodKey } from "lib/mood";
 // Models
 import UserModel from "models/userModel";
 import MessageModel from "models/messageModel";
+import CatalogStore from "stores/catalogStore";
 
 export const ApplicationStore = types
   .model("ApplicationStore", {
     users: types.array(UserModel),
-    currentUser: types.maybe(types.reference(UserModel)),
-    userAsActor: types.maybe(types.reference(UserModel)),
+    currentUser: types.safeReference(UserModel),
+    userAsActor: types.safeReference(UserModel),
     isLoading: true,
     messages: types.array(MessageModel),
-    focusedUser: types.maybe(types.reference(UserModel)),
+    focusedUser: types.safeReference(UserModel),
+    catalog: types.optional(CatalogStore, {}),
   })
   .actions(self => ({
     setLoading: isLoading => self.isLoading = isLoading,

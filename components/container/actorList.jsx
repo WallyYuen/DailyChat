@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { observer, enableStaticRendering } from "mobx-react-lite";
-import { roles } from "lib/role";
 
 // Store
 import { ApplicationContext } from "stores/applicationStore";
@@ -31,6 +30,7 @@ const ActorList = () => {
   };
 
   return <ActorListLayout
+    isInstructor={isInstructor}
     actors={store.actors}
     resetUser={resetUser}
     onClick={handleSelectActor}

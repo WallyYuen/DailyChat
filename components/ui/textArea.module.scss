@@ -11,4 +11,5 @@
   composes: textField from "/components/ui/textField.module.scss";
   flex: 1 0 0;
   resize: none;
+  white-space: pre-line;
 }

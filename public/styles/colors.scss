@@ -1,3 +1,6 @@
+// Colors
+@value color-primary: rgb(69, 123, 157);
+
 // background-color
 @value background-default: rgb(255, 255, 255);
 @value background-grey-light: rgb(235, 235, 235);
@@ -20,9 +23,10 @@
 @value color-text-alert: rgb(250, 213, 213);
 @value color-text-disabled: rgb(128, 128, 128);
 @value color-text-faded: rgb(150, 150, 150);
+@value color-text-selected: color-primary;
 
 // button
 @value background-button-neutral: rgb(255, 255, 255);
-@value background-button-primary: rgb(69, 123, 157);
+@value background-button-primary: color-primary;
 @value background-button-disabled: rgb(230, 230, 230);
 @value background-button-alert: rgb(250, 115, 115);

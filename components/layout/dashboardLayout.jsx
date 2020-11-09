@@ -5,7 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 // Component
 import ActorList from "components/container/actorList";
 import ActorAction from "components/container/actorAction";
-import InstructorAction from "components/container/InstructorAction";
+import InstructorAction from "components/container/instructorAction";
 import Chat from "components/container/chat";
 import ContactList from "components/container/contactList";
 import LobbyList from "components/container/lobbyList";
@@ -13,7 +13,7 @@ import LobbyList from "components/container/lobbyList";
 // Styling
 import layout from "components/layout/dashboardLayout.module.scss";
 
-const DashboardLayout = ({ lobbyUserCount, onlineUserCount }) => {
+const DashboardLayout = ({ lobbyUserCount, onlineUserCount, hasInstructorRights }) => {
   const showCount = number => number > 0 ? layout.superscript : layout.hidden;
 
   return (
@@ -21,7 +21,7 @@ const DashboardLayout = ({ lobbyUserCount, onlineUserCount }) => {
       <div className={layout.leftColumn}>
         <ActorList />
         <ActorAction />
-        <InstructorAction />
+        {hasInstructorRights && <InstructorAction />}
       </div>
       <div className={layout.centerColumn}>
         <Chat />

@@ -11,7 +11,7 @@ import { ApplicationContext } from "stores/applicationStore";
 
 const Dashboard = () => {
   enableStaticRendering(typeof window === "undefined");
-  const { lobbyUsers, onlineUsers } = useContext(ApplicationContext);
+  const { currentUser, lobbyUsers, onlineUsers } = useContext(ApplicationContext);
 
   const waitingUserCount = lobbyUsers.length;
   const onlineUserCount = onlineUsers.length;
@@ -30,7 +30,11 @@ const Dashboard = () => {
 
   return (
     <PrivateRoute>
-      <DashboardLayout lobbyUserCount={waitingUserCount} onlineUserCount={onlineUserCount} />
+      <DashboardLayout
+        hasInstructorRights={currentUser?.hasInstructorRights}
+        lobbyUserCount={waitingUserCount}
+        onlineUserCount={onlineUserCount}
+      />
     </PrivateRoute>
   );
 };

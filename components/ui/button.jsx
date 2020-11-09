@@ -7,7 +7,7 @@ const Button = forwardRef(({ onClick, label, size = "medium", ...props }, ref) =
   const classes = [layout[size], props.className];
 
   return (
-    <button type="button" {...props} className={classes.join(" ")} onClick={onClick} ref={ref}>
+    <button {...props} className={classes.join(" ")} onClick={onClick} ref={ref}>
       {label}
     </button>
   );
