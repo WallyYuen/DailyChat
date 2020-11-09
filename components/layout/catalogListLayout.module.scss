@@ -1,17 +1,75 @@
+@value background-grey-light from "/public/styles/colors.scss";
+@value background-grey-focus from "/public/styles/colors.scss";
+@value background-button-alert from "/public/styles/colors.scss";
+@value color-text-primary from "/public/styles/colors.scss";
+@value color-text-selected from "/public/styles/colors.scss";
+@value border-radius-small from "/public/styles/borderRadius.module.scss";
+
 .container {
-  
+  overflow: auto;
+  height: 100%;
+
+  &::-webkit-scrollbar {
+		display: none;
+	}
 }
 
-.header {
+.project {
   composes: poppins from "/public/styles/types.module.scss";
   font-weight: 300;
-  font-size: 0.9;
+  font-size: 1rem;
   color: color-text-primary;
+  display: flex;
+  align-items: center;
 }
 
-.casus {
+.list {
+  padding-left: 0;
+}
+
+.assignment {
   composes: roboto from "/public/styles/types.module.scss";
   font-weight: 200;
-  font-size: 0.9;
+  font-size: 0.9rem;
   color: color-text-primary;
+  list-style: none;
+  padding: 10px 0 10px 20px;
+  cursor: pointer;
+  border-radius: border-radius-small;
+  display: flex;
+
+  &:hover {
+    background: background-grey-light;
+  }
+}
+
+.bullet {
+  padding-right: 12px;
+}
+
+.selected {
+  color: color-text-selected;
+  background: background-grey-light;
+}
+
+.dustbin {
+  fill: background-grey-focus;
+  cursor: pointer;
+  height: 17px;
+  margin-left: auto;
+  opacity: 0;
+
+  &:hover {
+    fill: background-button-alert;
+    transition: .1s ease-in-out;
+  }
+
+  &:active {
+    fill: background-grey-focus;
+    transition: .1s ease-in-out;
+  }
+}
+
+.active {
+  opacity: 1;
 }
