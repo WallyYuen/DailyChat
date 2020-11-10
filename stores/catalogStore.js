@@ -10,7 +10,10 @@ export const CatalogStore = types
     projects: types.array(ProjectModel),
     form: types.optional(CatalogFormModel, {}),
     editorIsOpen: false,
+    viewerIsOpen: false,
     selectedAssignment: types.safeReference(AssignmentModel),
+    activeProject: types.safeReference(ProjectModel),
+    maxPage: types.optional(types.number, 1),
   })
   .actions(self => ({
     setProjects(projects) {
@@ -20,7 +23,16 @@ export const CatalogStore = types
       self.selectedAssignment = id;
     },
     setEditorIsOpen(value) {
-      self.isOpen = value;
+      self.editorIsOpen = value;
+    },
+    setViewerIsOpen(value) {
+      self.viewerIsOpen = value;
+    },
+    setActiveProject(projectId) {
+      self.activeProject = projectId;
+    },
+    setMaxPage(value) {
+      self.maxPage = value;
     },
   }))
   .views(self => ({
