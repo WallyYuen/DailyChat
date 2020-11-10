@@ -12,13 +12,13 @@ const InstructorAction = () => {
   enableStaticRendering(typeof window === "undefined");
 
   const openCatalog = () => {
-    catalog.setIsOpen(true);
+    catalog.setEditorIsOpen(true);
   };
 
   return (
     <InstructorActionLayout
       catalogProps={{
-        catalogIsOpen: catalog.isOpen,
+        catalogIsOpen: catalog.editorIsOpen,
         openCatalog: openCatalog,
       }}
     />

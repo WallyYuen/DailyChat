@@ -9,7 +9,7 @@ export const CatalogStore = types
   .model("CatalogStore", {
     projects: types.array(ProjectModel),
     form: types.optional(CatalogFormModel, {}),
-    isOpen: false,
+    editorIsOpen: false,
     selectedAssignment: types.safeReference(AssignmentModel),
   })
   .actions(self => ({
@@ -19,7 +19,7 @@ export const CatalogStore = types
     setSelectedAssignment(id) {
       self.selectedAssignment = id;
     },
-    setIsOpen(value) {
+    setEditorIsOpen(value) {
       self.isOpen = value;
     },
   }))

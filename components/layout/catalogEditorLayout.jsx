@@ -5,9 +5,9 @@ import CatalogList from "components/container/catalogList";
 import CatalogForm from "components/container/catalogForm";
 
 // Styling
-import layout from "components/layout/catalogManagerLayout.module.scss";
+import layout from "components/layout/catalogEditorLayout.module.scss";
 
-const CatalogManager = ({ readError }) => {
+const CatalogEditor = ({ readError }) => {
   return (
     <div className={layout.dimmer}>
       <div className={layout.container}>
@@ -28,4 +28,4 @@ const CatalogManager = ({ readError }) => {
   );
 };
 
-export default CatalogManager;
+export default CatalogEditor;
