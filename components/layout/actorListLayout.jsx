@@ -1,5 +1,4 @@
 import React from "react";
-import clsx from "clsx";
 import { observer, enableStaticRendering } from "mobx-react-lite";
 
 // UI
@@ -17,7 +16,14 @@ const ActorListLayout = ({ actors, onClick, resetUser, isInstructor }) => {
     <div className={layout.container}>
       <div className={layout.header}>
         <span>Act as</span>
-        {isInstructor && <Button className={button.neutral} label="Reset" onClick={resetUser} />}
+        {isInstructor && (
+          <Button
+            className={button.neutral}
+            label="Reset"
+            size="small"
+            onClick={resetUser}
+          />
+        )}
       </div>
       <div>
         {actors.map((actor) => {

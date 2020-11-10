@@ -1,15 +1,27 @@
 import React from "react";
 
+// Component
+import CatalogViewer from "components/container/catalogViewer";
+
 // UI
 import Button from "components/ui/button";
 
 // Styling
 import layout from "components/layout/userActionLayout.module.scss";
+import button from "components/ui/button.module.scss";
 
-const UserActionLayout = () => {
+const UserActionLayout = ({ catalogProps }) => {
+  const { openCatalog, catalogIsOpen } = catalogProps;
+
   return (
     <div className={layout.container}>
-      <Button label="Catalogus" />
+      <div className={layout.header}>
+        <span>User actions</span>
+      </div>
+      <div className={layout.buttonContainer}>
+        <Button className={button.neutral} label="Catalog" onClick={openCatalog} />
+      </div>
+      {catalogIsOpen && <CatalogViewer />}
     </div>
   );
 };

@@ -1,0 +1,128 @@
+@value background-default from "/public/styles/colors.scss";
+@value background-blur from "/public/styles/colors.scss";
+@value border-color-default from "/public/styles/colors.scss";
+@value border-radius-medium from "/public/styles/borderRadius.module.scss";
+@value color-text-primary from "/public/styles/colors.scss";
+@value lg, xl from "/public/styles/breakpoints.scss";
+
+.dimmer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  overflow: auto;
+}
+
+.container {
+  background: rgba(240, 240, 240, 0.7);
+  flex: 1 1 0;
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.frame {
+  flex: 1 1 0;
+  position: relative;
+  overflow: auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  composes: h2 from "/public/styles/headers.scss";
+}
+
+.infoText {
+  composes: poppins from "/public/styles/types.module.scss";
+  font-weight: 200;
+  font-size: 0.9rem;
+  color: color-text-primary;
+  margin-top: 35px;
+  white-space: pre-line;
+  overflow: auto;
+}
+
+.noAssignment {
+  composes: poppins from "public/styles/types.module.scss";
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: color-text-primary;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.buttonContainer {
+  flex: 0 0 auto;
+  margin-top: auto;
+  padding-top: 30px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .button {
+    min-width: 125px;
+  }
+  
+  .buttonMargin {
+    margin-left: auto;
+    margin-right: 20px;
+  }
+}
+
+.pagination {
+  composes: roboto from "/public/styles/types.module.scss";
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-weight: 400;
+  font-size: 0.7rem;
+	color: color-text-primary;
+}
+
+@media screen and (min-width: lg) {
+  .dimmer {
+    background: background-blur;
+  }
+
+  .container {
+    background: rgb(244, 244, 244);
+    border-radius: border-radius-medium;
+    flex: 0 1 1400px;
+    height: 100%;
+    max-height: 750px;
+    align-self: center;
+    padding: 50px 50px;
+  }
+
+  .frame {
+    padding: 30px 30px 0 30px;
+  }
+}
+
+@media screen and (min-width: xl) {
+  .frame {
+    padding: 50px 50px 0 50px;
+  }
+
+  .buttonContainer {
+    padding: 30px 50px 0 50px;
+  }
+}

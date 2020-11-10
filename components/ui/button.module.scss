@@ -20,8 +20,12 @@ $transition-normal: all ease-out 0.2s;
 	text-transform: capitalize;
 	border-radius: border-radius-small;
 
-	&:not(.disabled) {
+	&:not(:disabled) {
 		cursor: pointer;
+	}
+
+	&:disabled {
+		color: color-text-disabled;
 	}
 }
 
@@ -50,6 +54,10 @@ $transition-normal: all ease-out 0.2s;
 	color: color-text-primary;
 	border: 1px solid border-color-light;
 
+	&:disabled {
+		background: background-button-disabled;
+	}
+
 	&:hover {
 		background: background-grey-light
 	}
@@ -59,28 +67,28 @@ $transition-normal: all ease-out 0.2s;
 	}
 }
 
-.disabled {
-	background: background-button-disabled;
-	color: color-text-disabled;
-}
-
 .transparent {
 	border: 1px solid border-color-default;
-	background-color: background-transparent;
+	background: background-transparent;
 
 	&:hover:not(.primary) {
-		background-color: background-grey-focus;
+		background: background-grey-focus;
 	}
 	
 	&:active:not(.primary) {
-		background-color: background-transparent;
+		background: background-transparent;
 	}
 }
 
 .primary {
 	color: white;
-	background-color: background-button-primary;
+	background: background-button-primary;
 	border: 1px solid background-button-primary;
+
+	&:disabled {
+		background: background-button-disabled;
+		border-color: background-button-disabled;
+	}
 
 	&:hover {
 		filter: brightness(1.1);
@@ -93,7 +101,7 @@ $transition-normal: all ease-out 0.2s;
 
 .secondary {
 	color: color-text-primary;
-	background-color: rgb(175, 175, 175);
+	background: rgb(175, 175, 175);
 	border: 1px solid border-color-default;
 
 	&:hover {
@@ -107,7 +115,7 @@ $transition-normal: all ease-out 0.2s;
 
 .alert {
 	color: white;
-	background-color: background-button-alert;
+	background: background-button-alert;
 	border: 1px solid background-button-alert;
 
 	&:hover {
@@ -117,4 +125,8 @@ $transition-normal: all ease-out 0.2s;
 	&:active {
 		filter: brightness(1.0);
 	}
+}
+
+.simple {
+	background: background-transparent;
 }

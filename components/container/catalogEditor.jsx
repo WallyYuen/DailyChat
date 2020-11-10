@@ -5,9 +5,9 @@ import { db } from "lib/firebase";
 import { ApplicationContext } from "stores/applicationStore";
 
 // Layout
-import CatalogManagerLayout from "components/layout/catalogManagerLayout";
+import CatalogEditorLayout from "components/layout/catalogEditorLayout";
 
-const CatalogManager = () => {
+const CatalogEditor = () => {
   const { catalog } = useContext(ApplicationContext);
   const [readError, setReadError] = useState();
   
@@ -21,7 +21,7 @@ const CatalogManager = () => {
     return () => unsubscribe();
   }, []);
 
-  return <CatalogManagerLayout readError={readError} />;
+  return <CatalogEditorLayout readError={readError} />;
 };
 
-export default CatalogManager;
+export default CatalogEditor;

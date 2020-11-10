@@ -25,7 +25,7 @@ const CatalogForm = () => {
   };
 
   const closeCatalog = () => {
-    catalog.setIsOpen(false);
+    catalog.setEditorIsOpen(false);
   };
 
   const setProject = (event) => {

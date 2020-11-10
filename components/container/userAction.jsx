@@ -5,24 +5,24 @@ import { observer, enableStaticRendering } from "mobx-react-lite";
 import { ApplicationContext } from "stores/applicationStore";
 
 // Layout
-import InstructorActionLayout from "components/layout/instructorActionLayout";
+import UserActionLayout from "components/layout/userActionLayout";
 
-const InstructorAction = () => {
+const UserAction = () => {
   const { catalog } = useContext(ApplicationContext);
   enableStaticRendering(typeof window === "undefined");
 
   const openCatalog = () => {
-    catalog.setEditorIsOpen(true);
+    catalog.setViewerIsOpen(true);
   };
 
   return (
-    <InstructorActionLayout
+    <UserActionLayout
       catalogProps={{
-        catalogIsOpen: catalog.editorIsOpen,
+        catalogIsOpen: catalog.viewerIsOpen,
         openCatalog: openCatalog,
       }}
     />
   );
 };
 
-export default observer(InstructorAction);
+export default observer(UserAction);
