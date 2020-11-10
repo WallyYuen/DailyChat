@@ -71,7 +71,11 @@ const CatalogFormLayout = ({
       <div className={layout.buttonContainer}>
         {writeError && writeError}
         {assignmentIsSelected && (
-          <Button label="new" className={clsx(button.neutral, layout.button)} onClick={resetSelection} />
+          <Button 
+            label="new"
+            className={clsx(button.neutral, layout.button)}
+            onClick={resetSelection}
+          />
         )}
         <Button
           label="cancel"
@@ -80,10 +84,7 @@ const CatalogFormLayout = ({
         />
         <Button
           label="save"
-          className={clsx(layout.button, {
-            [button.disabled]: !form.canBeSaved,
-            [button.primary]: form.canBeSaved,
-          })}
+          className={clsx(button.primary, layout.button)}
           disabled={!form.canBeSaved}
           onClick={onSave}
         />

@@ -34,10 +34,7 @@ const ChatInputLayout = ({
           type="submit"
           size="small"
           disabled={isEmpty}
-          className={clsx(layout.sendButton, {
-            [button.disabled]: isEmpty,
-            [button.primary]: !isEmpty,
-          })}
+          className={clsx(layout.sendButton, button.primary)}
         />
       </form>
     </div>
