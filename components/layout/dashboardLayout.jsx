@@ -6,6 +6,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import ActorList from "components/container/actorList";
 import ActorAction from "components/container/actorAction";
 import InstructorAction from "components/container/instructorAction";
+import UserAction from "components/container/userAction";
 import Chat from "components/container/chat";
 import ContactList from "components/container/contactList";
 import LobbyList from "components/container/lobbyList";
@@ -27,7 +28,7 @@ const DashboardLayout = ({ lobbyUserCount, onlineUserCount, hasInstructorRights 
         <Chat />
       </div>
       <div className={layout.rightColumn}>
-        <Tabs>
+        <Tabs className={layout.tabs}>
           <TabList>
             <Tab>
               <div className={layout.header}>
@@ -49,6 +50,7 @@ const DashboardLayout = ({ lobbyUserCount, onlineUserCount, hasInstructorRights 
             <LobbyList />
           </TabPanel>
         </Tabs>
+        <UserAction />
       </div>
     </div>
   );
