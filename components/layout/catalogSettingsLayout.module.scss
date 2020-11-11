@@ -1,0 +1,73 @@
+@value background-separator from "/public/styles/colors.scss";
+@value color-text-primary from "/public/styles/colors.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  overflow: auto;
+}
+
+.header {
+  font-weight: 200;
+  font-size: 1.25rem;
+  color: color-text-primary;
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  
+  flex: 0 0 60px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.6);
+
+  &:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background-color: background-separator;
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(228, 228, 228, 0.6);
+  
+  .content {
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: color-text-primary;
+
+    padding: 24px;
+    box-sizing: border-box;
+    
+    display: flex;
+    flex-direction: column;
+
+    > *:not(:first-child) {
+      margin-top: 24px;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  justify-content: center;
+  padding: 12px;
+
+  .button {
+    width: 105px;
+  }
+  
+  .button:not(:last-child) {
+    margin-right: 16px;
+  }
+}
