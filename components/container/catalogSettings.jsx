@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { observer, enableStaticRendering } from "mobx-react-lite";
 import { hideAll } from "tippy.js";
+import { db } from "lib/firebase";
 
 // Layout
 import CatalogSettingsLayout from "components/layout/catalogSettingsLayout";
@@ -8,11 +9,15 @@ import CatalogSettingsLayout from "components/layout/catalogSettingsLayout";
 // Store
 import { ApplicationContext } from "stores/applicationStore";
 
+const toNumber = (value) => {
+  return typeof value === "string" ? Number.parseInt(value, 10) : value;
+};
+
 const CatalogSettings = ({ modalCallback }) => {
   const { catalog, catalog: { projects } } = useContext(ApplicationContext);
   enableStaticRendering(typeof window === "undefined");
 
-  const [maxPage, setMaxPage] = useState(1);
+  const [maxPage, setMaxPage] = useState();
   const [projectId, setProjectId] = useState();
 
   const projectOptions = catalog.projects.map(project => ({
@@ -41,8 +46,14 @@ const CatalogSettings = ({ modalCallback }) => {
   }, [activeProject, catalog.maxPage]);
 
   const onAccept = () => {
-    catalog.setMaxPage(maxPage);
-    catalog.setActiveProject(projectId);
+    const settings = { projectId, maxPage: toNumber(maxPage) };
+
+    db.collection("settings")
+      .doc("projectSettings")
+      .update(settings)
+      .catch((error) => {
+        throw new Error(`Failed to save project settings, ${error}`);
+      });
 
     hideAll();
   };
@@ -64,12 +75,12 @@ const CatalogSettings = ({ modalCallback }) => {
 
   return (
     <CatalogSettingsLayout
-      projectValue={projectId}
-      maxPageValue={maxPage}
       setProject={handleSelectProject}
       setMaxPage={handleSelectMaxPage}
       onAccept={onAccept}
       onCancel={onCancel}
+      projectValue={selectedProject?.id}
+      maxPageValue={maxPage ?? catalog.maxPage}
       projectOptions={projectOptions}
       maxPageOptions={maxPageOptions}
     />
