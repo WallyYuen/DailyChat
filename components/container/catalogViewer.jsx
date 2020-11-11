@@ -29,7 +29,7 @@ const CatalogEditor = () => {
     setCurrentPage(Math.max(currentPage - 1, 0));
   };
 
-  useEffect(() => setCurrentPage(Math.min(maxPage, currentPage)), []);
+  useEffect(() => setCurrentPage(Math.min(maxPage, currentPage)), [maxPage]);
 
   return (
     <CatalogViewerLayout
