@@ -5,10 +5,10 @@ import clsx from "clsx";
 import Button from "components/ui/button";
 
 // Layout
-import layout from "components/layout/lobbyModal.module.scss";
+import layout from "components/layout/lobbyModalLayout.module.scss";
 import button from "components/ui/button.module.scss";
 
-const LobbyModal = ({ header, user, onClick, onCancel }) => {
+const LobbyModalLayout = ({ header, user, onClick, onCancel }) => {
   const { name, email, approved } = user;
 
   return (
@@ -25,12 +25,22 @@ const LobbyModal = ({ header, user, onClick, onCancel }) => {
           </div>
         </div>
         <div className={layout.actions}>
-          <Button className={clsx(layout.button, button.transparent)} label="cancel" size="small" onClick={onCancel} />
-          <Button className={clsx(layout.button, button.primary)} label={"confirm"} size="small" onClick={onClick} />
+          <Button
+            className={clsx(layout.button, button.transparent)}
+            label="cancel"
+            size="small"
+            onClick={onCancel}
+          />
+          <Button
+            className={clsx(layout.button, button.primary)}
+            label="confirm"
+            size="small"
+            onClick={onClick}
+          />
         </div>
       </div>
     </div>
   )
 };
 
-export default LobbyModal;
+export default LobbyModalLayout;

@@ -6,7 +6,13 @@ import { followCursor } from "tippy.js";
 import "tippy.js/dist/tippy.css";
 import layout from "components/ui/modal.module.scss";
 
-const Modal = ({ content, children, placement = "left-start", disabled = false, callback }) => {
+const Modal = ({
+  children,
+  content,
+  placement = "left-start",
+  disabled = false,
+  callback = () => {},
+}) => {
   tippy.setDefaultProps({ maxWidth: "" });
 
   return (
