@@ -7,6 +7,7 @@ import { moods, getMoodKey } from "lib/mood";
 import UserModel from "models/userModel";
 import MessageModel from "models/messageModel";
 import CatalogStore from "stores/catalogStore";
+import SettingStore from "stores/settingStore";
 
 export const ApplicationStore = types
   .model("ApplicationStore", {
@@ -17,6 +18,7 @@ export const ApplicationStore = types
     messages: types.array(MessageModel),
     focusedUser: types.safeReference(UserModel),
     catalog: types.optional(CatalogStore, {}),
+    setting: types.optional(SettingStore, {}),
   })
   .actions(self => ({
     setLoading: isLoading => self.isLoading = isLoading,
