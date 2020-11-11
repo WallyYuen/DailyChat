@@ -7,10 +7,9 @@ import { setApproval } from "lib/auth";
 import { ApplicationContext } from "stores/applicationStore";
 
 // Layout
+import LobbyModalLayout from "components/layout/lobbyModalLayout";
 import UserListLayout from "components/layout/userListLayout";
 
-// Component
-import LobbyModal from "components/layout/lobbyModal";
 
 const UserList = ({ users, modalHeader, approved }) => {
   enableStaticRendering(typeof window === "undefined");
@@ -23,7 +22,7 @@ const UserList = ({ users, modalHeader, approved }) => {
   };
 
   const Modal = useCallback(({ user, ...props }) => (
-    <LobbyModal
+    <LobbyModalLayout
       header={modalHeader}
       onClick={onClick(user)}
       user={{

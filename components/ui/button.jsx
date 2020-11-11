@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 // Styling
 import layout from "components/ui/button.module.scss";
 
-const Button = forwardRef(({ onClick, label, size = "medium", ...props }, ref) => {
+const Button = ({ onClick, label, size = "medium", ...props }, ref) => {
   const classes = [layout[size], props.className];
 
   return (
@@ -11,6 +11,6 @@ const Button = forwardRef(({ onClick, label, size = "medium", ...props }, ref) =
       {label}
     </button>
   );
-});
+};
 
-export default Button;
+export default forwardRef(Button);

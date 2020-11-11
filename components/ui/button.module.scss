@@ -67,8 +67,12 @@ $transition-normal: all ease-out 0.2s;
 	}
 }
 
+.simple {
+	background: background-transparent;
+}
+
 .transparent {
-	border: 1px solid border-color-default;
+	border: 1px solid background-grey-focus;
 	background: background-transparent;
 
 	&:hover:not(.primary) {
@@ -125,8 +129,4 @@ $transition-normal: all ease-out 0.2s;
 	&:active {
 		filter: brightness(1.0);
 	}
-}
-
-.simple {
-	background: background-transparent;
 }

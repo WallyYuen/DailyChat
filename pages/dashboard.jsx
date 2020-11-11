@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { hideAll } from "tippy.js";
 import { observer, enableStaticRendering } from "mobx-react-lite";
+import { db } from "lib/firebase";
 import { PrivateRoute } from "lib/routing";
 
 // Components
@@ -11,7 +12,7 @@ import { ApplicationContext } from "stores/applicationStore";
 
 const Dashboard = () => {
   enableStaticRendering(typeof window === "undefined");
-  const { currentUser, lobbyUsers, onlineUsers } = useContext(ApplicationContext);
+  const { currentUser, lobbyUsers, onlineUsers, catalog } = useContext(ApplicationContext);
 
   const waitingUserCount = lobbyUsers.length;
   const onlineUserCount = onlineUsers.length;
@@ -26,6 +27,16 @@ const Dashboard = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = db.collection("projects").onSnapshot((snapshot) => {
+      catalog.setProjects(snapshot.docs.map(doc => doc.data()));
+    }, (error) => {
+      catalog.setReadError(error);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   return (
