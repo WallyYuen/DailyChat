@@ -13,6 +13,7 @@ export const CatalogStore = types
     viewerIsOpen: false,
     selectedAssignment: types.safeReference(AssignmentModel),
     activeProject: types.safeReference(ProjectModel),
+    readError: types.maybe(types.string),
     maxPage: types.optional(types.number, 1),
   })
   .actions(self => ({
@@ -32,7 +33,14 @@ export const CatalogStore = types
       self.activeProject = projectId;
     },
     setMaxPage(value) {
-      self.maxPage = value;
+      const page = typeof value === "string" ? Number.parseInt(value, 10) : value;
+
+      if (typeof page !== "number") return;
+
+      self.maxPage = page;
+    },
+    setReadError(error) {
+      self.readError = error;
     },
   }))
   .views(self => ({
