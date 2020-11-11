@@ -9,25 +9,36 @@ import CatalogSettingsLayout from "components/layout/catalogSettingsLayout";
 import { ApplicationContext } from "stores/applicationStore";
 
 const CatalogSettings = ({ modalCallback }) => {
+  const { catalog, catalog: { projects } } = useContext(ApplicationContext);
   enableStaticRendering(typeof window === "undefined");
-  const { catalog } = useContext(ApplicationContext);
 
-  const [projectId, setProjectId] = useState();
   const [maxPage, setMaxPage] = useState(1);
+  const [projectId, setProjectId] = useState();
 
   const projectOptions = catalog.projects.map(project => ({
     value: project.id,
     label: project.name
   }));
 
-  const selectedProject = catalog.projects.find(project => project.id === projectId) ?? catalog.activeProject?.id ?? catalog.projects[0];
-  const assignments = selectedProject?.sortedAssignments ?? [];
-  const maxPageOptions = assignments.map((assignment, index) => ({ value: assignment.page, label: `${index + 1}. ${assignment.name}` }));
+  const defaultProject = projects.length > 0 ? projects[0] : undefined;
+  const activeProject = catalog.activeProject ?? defaultProject;
 
-  modalCallback(() => () => {
-    setProjectId(catalog.activeProject?.id ?? catalog.projects[0]);
-    setMaxPage(catalog.maxPage);
-  });
+  const selectedProject = projects.find(project => project.id === (projectId ?? activeProject?.id));
+  const assignments = selectedProject?.sortedAssignments ?? [];
+  
+  const maxPageOptions = assignments.map((assignment, index) => ({
+    value: assignment.page,
+    label: `${index + 1}. ${assignment.name}`,
+  }));
+
+  useEffect(() => {
+    const callback = () => {
+      setProjectId(activeProject?.id);
+      setMaxPage(catalog.maxPage);
+    };
+
+    modalCallback(() => callback);
+  }, [activeProject, catalog.maxPage]);
 
   const onAccept = () => {
     catalog.setMaxPage(maxPage);

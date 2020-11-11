@@ -40,8 +40,18 @@ const CatalogSettingsLayout = ({
           />
         </div>
         <div className={layout.actions}>
-          <Button className={clsx(layout.button, button.transparent)} label="cancel" size="small" onClick={onCancel} />
-          <Button className={clsx(layout.button, button.primary)} label="confirm" size="small" onClick={onAccept} />
+          <Button
+            className={clsx(layout.button, button.transparent)}
+            label="cancel"
+            size="small"
+            onClick={onCancel}
+          />
+          <Button
+            className={clsx(layout.button, button.primary)}
+            label="confirm"
+            size="small"
+            onClick={onAccept}
+          />
         </div>
       </div>
     </div>
