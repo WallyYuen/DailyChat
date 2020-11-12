@@ -5,11 +5,13 @@ import ProjectModel from "models/projectModel";
 
 const ProjectSettingsModel = types
   .model("ProjectSettingsModel", {
-    projectId: types.string,
+    projectId: types.maybe(types.string),
     maxPage: types.optional(types.number, 1),
   })
   .views(self => ({
     get project() {
+      if (!self.projectId) return undefined;
+      
       return resolveIdentifier(ProjectModel, self, self.projectId);
     },
   }));

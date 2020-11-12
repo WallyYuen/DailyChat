@@ -6,37 +6,31 @@ import { db } from "lib/firebase";
 import { ApplicationContext } from "stores/applicationStore";
 
 // Layout
-import InstructorActionLayout from "components/layout/instructorActionLayout";
+import CallActiveLayout from "components/layout/callActiveLayout";
 
-const InstructorAction = () => {
+const CallActive = () => {
   enableStaticRendering(typeof window === "undefined");
+  const { setting, currentUser } = useContext(ApplicationContext);
 
-  const { catalog, setting } = useContext(ApplicationContext);
   const { callIsActive } = setting.dashboardSettings;
+  const isInstructor = currentUser.hasInstructorRights;
 
-  const openCatalog = () => {
-    catalog.setEditorIsOpen(true);
-  };
-
-  const startCall = () => {
+  const closeCall = () => {
     db.collection("settings")
       .doc("dashboardSettings")
-      .set({ callIsActive: true })
+      .set({ callIsActive: false })
       .catch((error) => {
         throw new Error(`Failed to save call settings, ${error}`);
       });
   };
 
   return (
-    <InstructorActionLayout
-      catalogProps={{
-        catalogIsOpen: catalog.editorIsOpen,
-        openCatalog: openCatalog,
-      }}
-      callProps={{ startCall }}
+    <CallActiveLayout
       callIsActive={callIsActive}
+      isInstructor={isInstructor}
+      closeCall={closeCall}
     />
-  );
+  )
 };
 
-export default observer(InstructorAction);
+export default observer(CallActive);

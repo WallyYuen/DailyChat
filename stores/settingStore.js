@@ -2,10 +2,12 @@ import { types } from "mobx-state-tree";
 
 // Models
 import ProjectSettingsModel from "models/projectSettingsModel";
+import DashboardSettingsModel from "models/dashboardSettingsModel";
 
 export const SettingStore = types
   .model("SettingStore", {
-    projectSettings: types.maybe(ProjectSettingsModel),
+    dashboardSettings: types.optional(DashboardSettingsModel, {}),
+    projectSettings: types.optional(ProjectSettingsModel, {}),
     readError: types.maybe(types.string),
   })
   .actions(self => ({
