@@ -12,11 +12,13 @@ import Button from "components/ui/button";
 import layout from "components/layout/instructorActionLayout.module.scss";
 import button from "components/ui/button.module.scss";
 
-const InstructorActionLayout = ({ catalogProps }) => {
+const InstructorActionLayout = ({ catalogProps, callProps }) => {
+  const onCloseModal = () => callback();
   const [callback, setCallback] = useState(() => () => {});
+
+  const { startCall } = callProps;
   const { openCatalog, catalogIsOpen } = catalogProps;
 
-  const onCloseModal = () => callback();
 
   return (
     <div className={layout.container}>
@@ -31,6 +33,7 @@ const InstructorActionLayout = ({ catalogProps }) => {
         >
           <Button className={button.neutral} label="catalog settings" />
         </Modal>
+        <Button className={button.neutral} label="start call" onClick={startCall} />
       </div>
       {catalogIsOpen && <CatalogEditor />}
     </div>

@@ -10,6 +10,7 @@ import UserAction from "components/container/userAction";
 import Chat from "components/container/chat";
 import ContactList from "components/container/contactList";
 import LobbyList from "components/container/lobbyList";
+import CallActive from "components/container/callActive";
 
 // Styling
 import layout from "components/layout/dashboardLayout.module.scss";
@@ -52,6 +53,7 @@ const DashboardLayout = ({ lobbyUserCount, onlineUserCount, hasInstructorRights 
         </Tabs>
         <UserAction />
       </div>
+      <CallActive />
     </div>
   );
 };
