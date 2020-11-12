@@ -24,7 +24,7 @@ const CatalogList = () => {
 
     db.collection("projects")
       .doc(project.id)
-      .update({ assignments })
+      .set({ assignments })
       .catch((error) => {
         throw new Error(`Failed to remove assignment, ${error}`);
       });

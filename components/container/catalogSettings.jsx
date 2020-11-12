@@ -50,7 +50,7 @@ const CatalogSettings = ({ modalCallback }) => {
 
     db.collection("settings")
       .doc("projectSettings")
-      .update(settings)
+      .set(settings)
       .catch((error) => {
         throw new Error(`Failed to save project settings, ${error}`);
       });
