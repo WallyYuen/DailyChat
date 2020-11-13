@@ -19,9 +19,13 @@ const InstructorAction = () => {
   };
 
   const startCall = () => {
+    const dashboardSettings = {
+      ...settings.dashboardSettings, callIsActive: true,
+    };
+
     db.collection("settings")
       .doc("dashboardSettings")
-      .set({ callIsActive: true })
+      .set(dashboardSettings)
       .catch((error) => {
         throw new Error(`Failed to save call settings, ${error}`);
       });

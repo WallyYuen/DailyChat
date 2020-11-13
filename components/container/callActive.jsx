@@ -17,9 +17,13 @@ const CallActive = () => {
   const isInstructor = currentUser.hasInstructorRights;
 
   const closeCall = () => {
+    const dashboardSettings = {
+      ...settings.dashboardSettings, callIsActive: false,
+    };
+
     db.collection("settings")
       .doc("dashboardSettings")
-      .set({ callIsActive: false })
+      .set(dashboardSettings)
       .catch((error) => {
         throw new Error(`Failed to save call settings, ${error}`);
       });
