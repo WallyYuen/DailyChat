@@ -16,17 +16,17 @@ const CallActiveLayout = ({ callIsActive, isInstructor, closeCall }) => {
         <div className={layout.content}>
           <span>Call in progress</span>
         </div>
-        {isInstructor && (
-          <div className={layout.buttonContainer}>
-            <Button
-              label="close call"
-              size="small"
-              className={clsx(button.neutral, layout.button)}
-              onClick={closeCall}
-            />
-          </div>
-        )}
       </div>
+      {isInstructor && (
+        <div className={layout.buttonContainer}>
+          <Button
+            label="close call"
+            size="small"
+            className={clsx(button.primary, layout.button)}
+            onClick={closeCall}
+          />
+        </div>
+      )}
     </div>
   );
 };
