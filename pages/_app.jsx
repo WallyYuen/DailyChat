@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from "react";
+import { NotificationContainer } from "react-notifications";
 import { auth, userDb, db } from "lib/firebase";
 import { updateStatus, onDisconnect } from "lib/auth";
 import { getUserRole } from "lib/role";
@@ -11,7 +12,6 @@ import "public/styles/styles.scss";
 
 const MyApp = ({ Component, pageProps }) => {
   const store = useMemo(() => ApplicationStore.create(), []);
-  const { setting } = store;
 
   useEffect(() => {
     const unsubscribe = auth().onAuthStateChanged(user => {
@@ -46,20 +46,10 @@ const MyApp = ({ Component, pageProps }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store.isAuthenticated]);
 
-  useEffect(() => {
-    const unsubscribe = db.collection("settings").onSnapshot((snapshot) => {
-      snapshot.docs.forEach(doc => setting.setup(doc.id, doc.data()));
-    }, (error) => {
-      setting.setReadError(error);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
   return (
     <ApplicationContext.Provider value={store}>
-      {setting.readError && setting.readError}
       <Component {...pageProps} />
+      <NotificationContainer/>
     </ApplicationContext.Provider>
   );
 };
