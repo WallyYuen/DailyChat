@@ -41,3 +41,7 @@ $transition-normal: all ease-out 0.2s;
   border: 2px solid white;
   border-radius: 50%;
 }
+
+.isSelected {
+  background: background-grey-light;
+}

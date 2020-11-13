@@ -9,9 +9,14 @@ import Avatar from "components/ui/avatar";
 // Styling
 import layout from "components/layout/userLayout.module.scss";
 
-const UserLayout = ({ isAnonymous, name, mood, role, image, ...props }, ref) => {
+const UserLayout = ({ isAnonymous, name, mood, role, image, isSelected, ...props }, ref) => {
   const moodColor = getMoodColor(mood);
-  const container = clsx(layout.frame, layout.neutral);
+
+  const container = clsx(
+    layout.neutral,
+    layout.frame,
+    { [layout.isSelected]: isSelected },
+  );
 
   return (
     <div className={container} {...props} ref={ref}>
