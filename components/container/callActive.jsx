@@ -10,9 +10,9 @@ import CallActiveLayout from "components/layout/callActiveLayout";
 
 const CallActive = () => {
   enableStaticRendering(typeof window === "undefined");
-  const { setting, currentUser } = useContext(ApplicationContext);
+  const { settings, currentUser } = useContext(ApplicationContext);
 
-  const { callIsActive } = setting.dashboardSettings;
+  const { callIsActive } = settings.dashboardSettings;
   const isInstructor = currentUser.hasInstructorRights;
 
   const closeCall = () => {

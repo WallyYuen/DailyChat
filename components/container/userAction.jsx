@@ -8,7 +8,7 @@ import { ApplicationContext } from "stores/applicationStore";
 import UserActionLayout from "components/layout/userActionLayout";
 
 const UserAction = () => {
-  const { catalog } = useContext(ApplicationContext);
+  const { catalog, focusedUser, currentUser, settings } = useContext(ApplicationContext);
   enableStaticRendering(typeof window === "undefined");
 
   const openCatalog = () => {

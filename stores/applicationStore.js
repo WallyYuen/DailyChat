@@ -18,7 +18,7 @@ export const ApplicationStore = types
     messages: types.array(MessageModel),
     focusedUser: types.safeReference(UserModel),
     catalog: types.optional(CatalogStore, {}),
-    setting: types.optional(SettingStore, {}),
+    settings: types.optional(SettingStore, {}), // TODO: change property name
   })
   .actions(self => ({
     setLoading: isLoading => self.isLoading = isLoading,

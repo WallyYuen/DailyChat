@@ -12,11 +12,12 @@ import { ApplicationContext } from "stores/applicationStore";
 
 const Dashboard = () => {
   enableStaticRendering(typeof window === "undefined");
-  const { currentUser, lobbyUsers, onlineUsers, catalog } = useContext(ApplicationContext);
+  const { currentUser, lobbyUsers, onlineUsers, catalog, settings } = useContext(ApplicationContext);
 
   const waitingUserCount = lobbyUsers.length;
   const onlineUserCount = onlineUsers.length;
 
+  const { callSettings } = settings;
   const handleKeyDown = (event) => {
     if (event.key === "Escape") hideAll();
   };

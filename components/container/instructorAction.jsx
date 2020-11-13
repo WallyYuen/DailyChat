@@ -11,8 +11,8 @@ import InstructorActionLayout from "components/layout/instructorActionLayout";
 const InstructorAction = () => {
   enableStaticRendering(typeof window === "undefined");
 
-  const { catalog, setting } = useContext(ApplicationContext);
-  const { callIsActive } = setting.dashboardSettings;
+  const { catalog, settings } = useContext(ApplicationContext);
+  const { callIsActive } = settings.dashboardSettings;
 
   const openCatalog = () => {
     catalog.setEditorIsOpen(true);
