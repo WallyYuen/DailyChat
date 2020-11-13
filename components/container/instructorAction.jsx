@@ -11,17 +11,21 @@ import InstructorActionLayout from "components/layout/instructorActionLayout";
 const InstructorAction = () => {
   enableStaticRendering(typeof window === "undefined");
 
-  const { catalog, setting } = useContext(ApplicationContext);
-  const { callIsActive } = setting.dashboardSettings;
+  const { catalog, settings } = useContext(ApplicationContext);
+  const { callIsActive } = settings.dashboardSettings;
 
   const openCatalog = () => {
     catalog.setEditorIsOpen(true);
   };
 
   const startCall = () => {
+    const dashboardSettings = {
+      ...settings.dashboardSettings, callIsActive: true,
+    };
+
     db.collection("settings")
       .doc("dashboardSettings")
-      .set({ callIsActive: true })
+      .set(dashboardSettings)
       .catch((error) => {
         throw new Error(`Failed to save call settings, ${error}`);
       });

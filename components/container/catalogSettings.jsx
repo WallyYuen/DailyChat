@@ -13,6 +13,7 @@ const toNumber = (value) => {
   return typeof value === "string" ? Number.parseInt(value, 10) : value;
 };
 
+// TODO: create modal component
 const CatalogSettings = ({ modalCallback }) => {
   const { catalog, catalog: { projects } } = useContext(ApplicationContext);
   enableStaticRendering(typeof window === "undefined");
@@ -46,7 +47,14 @@ const CatalogSettings = ({ modalCallback }) => {
   }, [activeProject, catalog.maxPage]);
 
   const onAccept = () => {
-    const settings = { projectId, maxPage: toNumber(maxPage) };
+    hideAll();
+
+    if (!selectedProject) return;
+
+    const settings = {
+      projectId: selectedProject.id,
+      maxPage: toNumber(maxPage ?? catalog.maxPage)
+    };
 
     db.collection("settings")
       .doc("projectSettings")
@@ -54,8 +62,6 @@ const CatalogSettings = ({ modalCallback }) => {
       .catch((error) => {
         throw new Error(`Failed to save project settings, ${error}`);
       });
-
-    hideAll();
   };
 
   const onCancel = () => {

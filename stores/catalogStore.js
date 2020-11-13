@@ -33,7 +33,7 @@ export const CatalogStore = types
   }))
   .views(self => ({
     get projectSettings() {
-      return getRoot(self).setting.projectSettings;
+      return getRoot(self).settings.projectSettings;
     },
     get projectValues() {
       const values = self.projects?.map(project => ({ value: project.id, label: project.name }));

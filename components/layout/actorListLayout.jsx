@@ -9,7 +9,7 @@ import UserLayout from "components/layout/userLayout";
 import layout from "components/layout/actorListLayout.module.scss";
 import button from "components/ui/button.module.scss";
 
-const ActorListLayout = ({ actors, onClick, resetUser, isInstructor }) => {
+const ActorListLayout = ({ actors, selectedActorId, onClick, resetUser, isInstructor }) => {
   enableStaticRendering(typeof window === "undefined");
 
   return (
@@ -27,6 +27,7 @@ const ActorListLayout = ({ actors, onClick, resetUser, isInstructor }) => {
       </div>
       <div>
         {actors.map((actor) => {
+          const isSelected = actor.uid === selectedActorId;
           const isAnonymous = !actor.displayName;
 
           return (
@@ -34,6 +35,7 @@ const ActorListLayout = ({ actors, onClick, resetUser, isInstructor }) => {
               isAnonymous={isAnonymous}
               name={actor.name}
               key={actor.uid}
+              isSelected={isSelected}
               image={actor.photoURL}
               mood={actor.mood}
               role={actor.role}

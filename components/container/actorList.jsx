@@ -9,8 +9,9 @@ import ActorListLayout from "components/layout/actorListLayout";
 
 const ActorList = () => {
   enableStaticRendering(typeof window === "undefined");
-
   const store = useContext(ApplicationContext);
+
+  const selectedActor = store.userAsActor ?? store.focusedUser;
   const isInstructor = store.currentUser.hasInstructorRights;
 
   const resetUser = () => {
@@ -18,23 +19,26 @@ const ActorList = () => {
   };
 
   const handleSelectActor = user => () => {
+    const isSelected = selectedActor?.uid === user.uid;
+
     if (isInstructor) {
-      const isSelected = store.userAsActor?.uid === user.uid;
       store.setUserAsActor(isSelected ? undefined : user);
 
       return;
     }
 
-    const isSelected = store.focusedUser?.uid === user.uid;
     store.setFocusedUser(isSelected ? undefined : user);
   };
 
-  return <ActorListLayout
-    isInstructor={isInstructor}
-    actors={store.actors}
-    resetUser={resetUser}
-    onClick={handleSelectActor}
-  />;
+  return (
+    <ActorListLayout
+      isInstructor={isInstructor}
+      actors={store.actors}
+      resetUser={resetUser}
+      selectedActorId={selectedActor?.uid}
+      onClick={handleSelectActor}
+    />
+  );
 };
 
 export default observer(ActorList);

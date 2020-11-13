@@ -27,12 +27,14 @@ const InstructorActionLayout = ({ catalogProps, callProps }) => {
       </div>
       <div className={layout.buttonContainer}>
         <Button className={button.neutral} label="catalog editor" onClick={openCatalog} />
-        <Modal
-          content={<CatalogSettings modalCallback={setCallback} />}
-          callback={onCloseModal}
-        >
-          <Button className={button.neutral} label="catalog settings" />
-        </Modal>
+        <div>
+          <Modal
+            content={<CatalogSettings modalCallback={setCallback} />}
+            callback={onCloseModal}
+          >
+            <Button className={button.neutral} label="catalog settings" />
+          </Modal>
+        </div>
         <Button className={button.neutral} label="start call" onClick={startCall} />
       </div>
       {catalogIsOpen && <CatalogEditor />}

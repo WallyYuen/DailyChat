@@ -15,7 +15,7 @@ const CatalogList = () => {
   const { projects, setSelectedAssignment, selectedAssignment } = catalog;
 
   const handleRemoveAssignment = (assignment) => (event) => {
-    event.stopPropagation(); // FIXME: Bad practise to use stopPropagation
+    event.stopPropagation(); // TODO: Bad practise to use stopPropagation
 
     const { project } = assignment;
     const assignments = project.sortedAssignments.filter(a => a.id !== assignment.id);

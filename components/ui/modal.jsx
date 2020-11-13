@@ -6,6 +6,7 @@ import { followCursor } from "tippy.js";
 import "tippy.js/dist/tippy.css";
 import layout from "components/ui/modal.module.scss";
 
+// TODO: Change name to Popup or something
 const Modal = ({
   children,
   content,

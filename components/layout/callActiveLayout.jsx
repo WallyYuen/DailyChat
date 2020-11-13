@@ -8,6 +8,7 @@ import Button from "components/ui/button";
 import layout from "components/layout/callActiveLayout.module.scss";
 import button from "components/ui/button.module.scss";
 
+// TODO: create modal component
 const CallActiveLayout = ({ callIsActive, isInstructor, closeCall }) => {
   return (
     <div className={clsx(layout.dimmer, { [layout.callIsActive]: callIsActive })}>
@@ -15,17 +16,17 @@ const CallActiveLayout = ({ callIsActive, isInstructor, closeCall }) => {
         <div className={layout.content}>
           <span>Call in progress</span>
         </div>
-        {isInstructor && (
-          <div className={layout.buttonContainer}>
-            <Button
-              label="close call"
-              size="small"
-              className={clsx(button.neutral, layout.button)}
-              onClick={closeCall}
-            />
-          </div>
-        )}
       </div>
+      {isInstructor && (
+        <div className={layout.buttonContainer}>
+          <Button
+            label="close call"
+            size="small"
+            className={clsx(button.primary, layout.button)}
+            onClick={closeCall}
+          />
+        </div>
+      )}
     </div>
   );
 };

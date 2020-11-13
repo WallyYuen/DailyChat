@@ -13,7 +13,7 @@ const CatalogEditor = ({ readError }) => {
       <div className={layout.container}>
         <div className={layout.infoContainer}>
           <div className={layout.info}>
-            <span className={layout.header}>Catalogus management</span>
+            <span className={layout.header}>Catalog management</span>
             <span className={layout.infoText}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et cursus enim. Nam faucibus varius eros vitae rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
             </span>

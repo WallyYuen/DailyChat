@@ -34,20 +34,24 @@ const LoginLayout = ({
         </div>
         <div>
           <TextField
-            placeholder="Email"
-            name="email"
-            type="email"
-            onChange={handleChange}
-            value={email}
+            inputProps={{
+              placeholder: "Email",
+              name: "email",
+              type: "email",
+              onChange: handleChange,
+              value: email,
+            }}
           />
         </div>
         <div>
           <TextField
-            placeholder="Password"
-            name="password"
-            type="password"
-            onChange={handleChange}
-            value={password}
+            inputProps={{
+              name: "password",
+              placeholder: "Password",
+              type: "password",
+              onChange: handleChange,
+              value: password,
+            }}
           />
         </div>
         <div>
