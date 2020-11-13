@@ -5,7 +5,7 @@ import clsx from "clsx";
 import Dropdown from "components/ui/dropdown";
 import Button from "components/ui/button";
 
-// Layout
+// Styling
 import layout from "components/layout/catalogSettingsLayout.module.scss";
 import button from "components/ui/button.module.scss";
 
