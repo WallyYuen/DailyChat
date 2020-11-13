@@ -13,6 +13,7 @@ const toNumber = (value) => {
   return typeof value === "string" ? Number.parseInt(value, 10) : value;
 };
 
+// TODO: create modal component
 const CatalogSettings = ({ modalCallback }) => {
   const { catalog, catalog: { projects } } = useContext(ApplicationContext);
   enableStaticRendering(typeof window === "undefined");

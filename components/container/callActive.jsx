@@ -8,6 +8,7 @@ import { ApplicationContext } from "stores/applicationStore";
 // Layout
 import CallActiveLayout from "components/layout/callActiveLayout";
 
+// TODO: Change name
 const CallActive = () => {
   enableStaticRendering(typeof window === "undefined");
   const { settings, currentUser } = useContext(ApplicationContext);

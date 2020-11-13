@@ -8,6 +8,7 @@ import Button from "components/ui/button";
 import layout from "components/layout/lobbyModalLayout.module.scss";
 import button from "components/ui/button.module.scss";
 
+// TODO: create modal component
 const LobbyModalLayout = ({ header, user, onClick, onCancel }) => {
   const { name, email, approved } = user;
 
