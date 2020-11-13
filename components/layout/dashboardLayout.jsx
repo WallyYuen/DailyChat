@@ -11,11 +11,12 @@ import Chat from "components/container/chat";
 import ContactList from "components/container/contactList";
 import LobbyList from "components/container/lobbyList";
 import CallActive from "components/container/callActive";
+import Call from "components/container/call";
 
 // Styling
 import layout from "components/layout/dashboardLayout.module.scss";
 
-const DashboardLayout = ({ lobbyUserCount, onlineUserCount, hasInstructorRights }) => {
+const DashboardLayout = ({ lobbyUserCount, onlineUserCount, hasInstructorRights, isCalledByUser }) => {
   const showCount = number => number > 0 ? layout.superscript : layout.hidden;
 
   return (
@@ -54,6 +55,7 @@ const DashboardLayout = ({ lobbyUserCount, onlineUserCount, hasInstructorRights 
         <UserAction />
       </div>
       <CallActive />
+      {isCalledByUser && hasInstructorRights && <Call />}
     </div>
   );
 };
