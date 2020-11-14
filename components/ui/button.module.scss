@@ -33,6 +33,7 @@ $transition-normal: all ease-out 0.2s;
 	composes: poppins from "/public/styles/types.module.scss";
 	font-weight: 400;
 	color: color-text-primary;
+	line-height: 1rem;
 }
 
 .small {
@@ -94,7 +95,7 @@ $transition-normal: all ease-out 0.2s;
 		border-color: background-button-disabled;
 	}
 
-	&:hover {
+	&:hover:not(:disabled) {
 		filter: brightness(1.1);
 	}
 
