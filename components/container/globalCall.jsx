@@ -6,10 +6,9 @@ import { db } from "lib/firebase";
 import { ApplicationContext } from "stores/applicationStore";
 
 // Layout
-import CallActiveLayout from "components/layout/callActiveLayout";
+import GlobalCallLayout from "components/layout/globalCallLayout";
 
-// TODO: Change name
-const CallActive = () => {
+const GlobalCall = () => {
   enableStaticRendering(typeof window === "undefined");
   const { notifications, currentUser } = useContext(ApplicationContext);
 
@@ -26,7 +25,7 @@ const CallActive = () => {
   };
 
   return (
-    <CallActiveLayout
+    <GlobalCallLayout
       isInstructor={isInstructor}
       closeCall={closeCall}
       callIsActive={instructorCall}
@@ -34,4 +33,4 @@ const CallActive = () => {
   )
 };
 
-export default observer(CallActive);
+export default observer(GlobalCall);
