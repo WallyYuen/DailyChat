@@ -11,6 +11,7 @@ import AssignmentModel from "models/assignmentModel";
 // Styling
 import CatalogFormLayout from "components/layout/catalogFormLayout";
 
+// TODO: Add form validation
 const CatalogForm = () => {
   enableStaticRendering(typeof window === "undefined");
   const [writeError, setWriteError] = useState();

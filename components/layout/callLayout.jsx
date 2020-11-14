@@ -8,7 +8,7 @@ import Button from "components/ui/button";
 import layout from "components/layout/callLayout.module.scss";
 import button from "components/ui/button.module.scss";
 
-// TODO: create modal component
+// TODO: Create modal component
 const CallLayout = ({ onClose, caller, receiver }) => {
   return (
     <div className={layout.container}>
