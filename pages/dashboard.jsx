@@ -12,31 +12,26 @@ import { ApplicationContext } from "stores/applicationStore";
 
 const Dashboard = () => {
   enableStaticRendering(typeof window === "undefined");
-  const { currentUser, lobbyUsers, onlineUsers, catalog, settings } = useContext(ApplicationContext);
+
+  const {
+    currentUser,
+    lobbyUsers,
+    onlineUsers,
+    catalog,
+    notifications,
+    setNotifications,
+  } = useContext(ApplicationContext);
 
   const waitingUserCount = lobbyUsers.length;
   const onlineUserCount = onlineUsers.length;
 
-  const { callSettings } = settings;
+  const userCall = notifications.find(notification => notification.type === "userCall");
 
   const handleKeyDown = (event) => {
     if (event.key === "Escape") hideAll();
   };
 
-  useEffect(() => {
-    const unsubscribe = db.collection("settings").onSnapshot((snapshot) => {
-      snapshot.docChanges().forEach(change => settings.setup({
-        type: change.type,
-        key: change.doc.id,
-        data: change.doc.data(),
-      }));
-    }, (error) => {
-      settings.setReadError(error.message);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
+  // TODO: move listener to modal component
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
 
@@ -46,10 +41,33 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
+    const unsubscribe = db.collection("settings").doc("catalog").onSnapshot((snapshot) => {
+      catalog.setMaxPage(snapshot.data().maxPage);
+      catalog.setActiveProjectId(snapshot.data().projectId);
+    }, (error) => {
+      catalog.setReadError(error.message);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  console.log(catalog.activeProject?.id);
+
+  useEffect(() => {
     const unsubscribe = db.collection("projects").onSnapshot((snapshot) => {
       catalog.setProjects(snapshot.docs.map(doc => doc.data()));
     }, (error) => {
-      catalog.setReadError(error);
+      catalog.setReadError(error.message);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = db.collection("notifications").onSnapshot((snapshot) => {
+      setNotifications(snapshot.docs.map(doc => doc.data()));
+    }, (error) => {
+      throw new Error(`Failed to fetch notifications: ${error.message}`);
     });
 
     return () => unsubscribe();
@@ -57,10 +75,10 @@ const Dashboard = () => {
 
   return (
     <PrivateRoute>
-      {settings.readError && settings.readError}
+      {catalog.readError && catalog.readError}
       <DashboardLayout
         hasInstructorRights={currentUser?.hasInstructorRights}
-        isCalledByUser={!!callSettings}
+        isCalledByUser={!!userCall}
         lobbyUserCount={waitingUserCount}
         onlineUserCount={onlineUserCount}
       />

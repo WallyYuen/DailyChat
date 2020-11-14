@@ -1,4 +1,4 @@
-import { types, getRoot } from "mobx-state-tree";
+import { types, resolveIdentifier } from "mobx-state-tree";
 
 // Models
 import ProjectModel from "models/projectModel";
@@ -13,6 +13,8 @@ export const CatalogStore = types
     viewerIsOpen: false,
     selectedAssignment: types.safeReference(AssignmentModel),
     readError: types.maybe(types.string),
+    activeProjectId: types.maybe(types.string),
+    maxPage: types.optional(types.number, 1),
   })
   .actions(self => ({
     setProjects(projects) {
@@ -27,24 +29,26 @@ export const CatalogStore = types
     setViewerIsOpen(value) {
       self.viewerIsOpen = value;
     },
+    setActiveProjectId(projectId) {
+      self.activeProjectId = projectId;
+    },
+    setMaxPage(value) {
+      self.maxPage = value;
+    },
     setReadError(error) {
       self.readError = error;
     },
   }))
   .views(self => ({
-    get projectSettings() {
-      return getRoot(self).settings.projectSettings;
-    },
     get projectValues() {
       const values = self.projects?.map(project => ({ value: project.id, label: project.name }));
 
       return [{ value: 0, label: "New project" }, ...values];
     },
     get activeProject() {
-      return self.projectSettings.project;
-    },
-    get maxPage() {
-      return self.projectSettings.maxPage;
+      if (!self.activeProjectId) return undefined;
+      
+      return resolveIdentifier(ProjectModel, self, self.activeProjectId);
     },
   }));
 

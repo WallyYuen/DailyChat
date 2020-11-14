@@ -10,13 +10,16 @@ import CallLayout from "components/layout/callLayout";
 
 const Call = () => {
   enableStaticRendering(typeof window === "undefined");
+  const { notifications } = useContext(ApplicationContext);
 
-  const { settings } = useContext(ApplicationContext);
-  const { caller, receiver } = settings.callSettings;
+  const userCall = notifications.find(notification => notification.type === "userCall");
+  
+  const studentName = userCall?.sender?.name;
+  const actorName = userCall?.receiver?.name;
 
   const endCall = () => {
-    db.collection("settings")
-      .doc("callSettings")
+    db.collection("notifications")
+      .doc("userCall")
       .delete()
       .catch((error) => {
         throw new Error(`Failed to remove call settings, ${error}`);
@@ -25,8 +28,8 @@ const Call = () => {
 
   return (
     <CallLayout
-      caller={caller?.name}
-      receiver={receiver?.name}
+      caller={studentName}
+      receiver={actorName}
       onClose={endCall}
     />
   );

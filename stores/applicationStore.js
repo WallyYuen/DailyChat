@@ -3,22 +3,24 @@ import { types } from "mobx-state-tree";
 import { roles } from "lib/role";
 import { moods, getMoodKey } from "lib/mood";
 
-// Models
+// Model
 import UserModel from "models/userModel";
 import MessageModel from "models/messageModel";
+import NotificationModel from "models/notificationModel";
+
+// Store
 import CatalogStore from "stores/catalogStore";
-import SettingStore from "stores/settingStore";
 
 export const ApplicationStore = types
   .model("ApplicationStore", {
     users: types.array(UserModel),
     currentUser: types.safeReference(UserModel),
     userAsActor: types.safeReference(UserModel),
-    isLoading: true,
-    messages: types.array(MessageModel),
     focusedUser: types.safeReference(UserModel),
+    messages: types.array(MessageModel),
+    notifications: types.array(NotificationModel),
+    isLoading: true,
     catalog: types.optional(CatalogStore, {}),
-    settings: types.optional(SettingStore, {}), // TODO: Change property name
   })
   .actions(self => ({
     setLoading: isLoading => self.isLoading = isLoading,
@@ -58,6 +60,9 @@ export const ApplicationStore = types
     },
     setMessages(messages) {
       self.messages = messages.map((message) => ({ userId: message.uid, ...message }));
+    },
+    setNotifications(notifications) {
+      self.notifications = notifications;
     },
   }))
   .views(self => ({
