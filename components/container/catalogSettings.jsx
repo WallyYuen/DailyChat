@@ -37,6 +37,18 @@ const CatalogSettings = ({ modalCallback }) => {
     label: `${index + 1}. ${assignment.name}`,
   }));
 
+  if (!selectedProject) {
+    projectOptions.push({
+      value: -1,
+      label: "No projects available"
+    });
+    
+    maxPageOptions.push({
+      value: -1,
+      label: "No project has been selected"
+    });
+  }
+
   useEffect(() => {
     const callback = () => {
       setProjectId(activeProject?.id);
