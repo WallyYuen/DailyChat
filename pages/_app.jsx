@@ -30,7 +30,6 @@ const MyApp = ({ Component, pageProps }) => {
     });
 
     return () => unsubscribe();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -44,7 +43,6 @@ const MyApp = ({ Component, pageProps }) => {
       });
 
     return () => unsubscribe();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store.isAuthenticated]);
 
   return (
