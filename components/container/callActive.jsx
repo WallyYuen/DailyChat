@@ -11,29 +11,25 @@ import CallActiveLayout from "components/layout/callActiveLayout";
 // TODO: Change name
 const CallActive = () => {
   enableStaticRendering(typeof window === "undefined");
-  const { settings, currentUser } = useContext(ApplicationContext);
+  const { notifications, currentUser } = useContext(ApplicationContext);
 
-  const { callIsActive } = settings.dashboardSettings;
   const isInstructor = currentUser.hasInstructorRights;
+  const instructorCall = notifications.find(notification => notification.type === "instructorCall");
 
   const closeCall = () => {
-    const dashboardSettings = {
-      ...settings.dashboardSettings, callIsActive: false,
-    };
-
-    db.collection("settings")
-      .doc("dashboardSettings")
-      .set(dashboardSettings)
+    db.collection("notifications")
+      .doc("instructorCall")
+      .delete()
       .catch((error) => {
-        throw new Error(`Failed to save call settings, ${error}`);
+        throw new Error(`Failed to remove call request, ${error}`);
       });
   };
 
   return (
     <CallActiveLayout
-      callIsActive={callIsActive}
       isInstructor={isInstructor}
       closeCall={closeCall}
+      callIsActive={instructorCall}
     />
   )
 };
