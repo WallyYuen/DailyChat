@@ -51,8 +51,6 @@ const Dashboard = () => {
     return () => unsubscribe();
   }, []);
 
-  console.log(catalog.activeProject?.id);
-
   useEffect(() => {
     const unsubscribe = db.collection("projects").onSnapshot((snapshot) => {
       catalog.setProjects(snapshot.docs.map(doc => doc.data()));
