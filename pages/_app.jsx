@@ -13,6 +13,7 @@ import "public/styles/styles.scss";
 const MyApp = ({ Component, pageProps }) => {
   const store = useMemo(() => ApplicationStore.create(), []);
 
+  // TODO: Set admin based on email
   useEffect(() => {
     const unsubscribe = auth().onAuthStateChanged(user => {
       getUserRole(user).then((role) => {
@@ -29,7 +30,6 @@ const MyApp = ({ Component, pageProps }) => {
     });
 
     return () => unsubscribe();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -43,7 +43,6 @@ const MyApp = ({ Component, pageProps }) => {
       });
 
     return () => unsubscribe();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store.isAuthenticated]);
 
   return (

@@ -9,7 +9,7 @@ export const SettingStore = types
   .model("SettingStore", {
     callSettings: types.maybe(CallModel),
     dashboardSettings: types.optional(DashboardSettingsModel, {}),
-    projectSettings: types.optional(ProjectSettingsModel, {}), // TODO: change this to types.maybe
+    projectSettings: types.optional(ProjectSettingsModel, {}), // TODO: Change this to types.maybe
     readError: types.maybe(types.string),
   })
   .actions(self => ({

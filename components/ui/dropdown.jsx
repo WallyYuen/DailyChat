@@ -11,13 +11,15 @@ const Dropdown = ({ options = [], onSelect, labelProps, inputProps, ...props }) 
   const label = labelProps?.label;
   const value = inputProps?.value;
 
+  const isDisabled = options.every(option => option.value < 0);
+
   return (
     <div className={clsx(layout.container, props?.className)}>
       {label && (
         <span {...labelProps} className={clsx(layout.label, labelProps?.className)}>{label}</span>
       )}
       <div className={layout.frame}>
-        <select className={clsx(layout.dropdown, inputProps?.className)} value={value} onChange={onSelect}>
+        <select className={clsx(layout.dropdown, inputProps?.className)} disabled={isDisabled} value={value} onChange={onSelect}>
           {options.map(({ value, label }) => (
             <option
               key={value}

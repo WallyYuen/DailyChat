@@ -7,6 +7,7 @@ import { ApplicationContext } from "stores/applicationStore";
 
 import CatalogListLayout from "components/layout/catalogListLayout";
 
+// TODO: Projects should be able to be deleted
 const CatalogList = () => {
   enableStaticRendering(typeof window === "undefined");
   const setPage = (assignment, index) => assignment.setPage(index + 1);

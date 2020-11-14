@@ -13,7 +13,7 @@ const toNumber = (value) => {
   return typeof value === "string" ? Number.parseInt(value, 10) : value;
 };
 
-// TODO: create modal component
+// TODO: Create modal component
 const CatalogSettings = ({ modalCallback }) => {
   const { catalog, catalog: { projects } } = useContext(ApplicationContext);
   enableStaticRendering(typeof window === "undefined");
@@ -36,6 +36,18 @@ const CatalogSettings = ({ modalCallback }) => {
     value: assignment.page,
     label: `${index + 1}. ${assignment.name}`,
   }));
+
+  if (!selectedProject) {
+    projectOptions.push({
+      value: -1,
+      label: "No projects available"
+    });
+    
+    maxPageOptions.push({
+      value: -1,
+      label: "No project has been selected"
+    });
+  }
 
   useEffect(() => {
     const callback = () => {
