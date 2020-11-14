@@ -10,7 +10,7 @@ import UserAction from "components/container/userAction";
 import Chat from "components/container/chat";
 import ContactList from "components/container/contactList";
 import LobbyList from "components/container/lobbyList";
-import CallActive from "components/container/callActive";
+import GlobalCall from "components/container/globalCall";
 import Call from "components/container/call";
 
 // Styling
@@ -54,7 +54,7 @@ const DashboardLayout = ({ lobbyUserCount, onlineUserCount, hasInstructorRights,
         </Tabs>
         <UserAction />
       </div>
-      <CallActive />
+      <GlobalCall />
       {isCalledByUser && hasInstructorRights && <Call />}
     </div>
   );
