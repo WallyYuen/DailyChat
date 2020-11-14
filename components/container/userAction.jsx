@@ -13,25 +13,28 @@ import UserActionLayout from "components/layout/userActionLayout";
 import "react-notifications/lib/notifications.css";
 
 const UserAction = () => {
-  const { catalog, focusedUser, currentUser, settings } = useContext(ApplicationContext);
+  const { catalog, focusedUser, currentUser, notifications } = useContext(ApplicationContext);
   enableStaticRendering(typeof window === "undefined");
+
+  const userCall = notifications.find(notification => notification.type === "userCall");
 
   const openCatalog = () => {
     catalog.setViewerIsOpen(true);
   };
 
   const startCall = () => {
-    if (settings.callSettings) {
-      NotificationManager.warning("This person is already in a call");
+    if (userCall) {
+      NotificationManager.warning(`${focusedUser?.name} is already in a call`);
 
       return;
     }
 
-    db.collection("settings")
-      .doc("callSettings")
+    db.collection("notifications")
+      .doc("userCall")
       .set({
+        type: "userCall",
         receiverId: focusedUser.uid,
-        callerId: currentUser.uid,
+        senderId: currentUser.uid,
       })
       .catch((error) => {
         throw new Error(`Failed to save call request, ${error}`);
