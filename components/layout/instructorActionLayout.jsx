@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // Component
 import CatalogEditor from "components/container/catalogEditor";
-import CatalogSettings from "components/container/catalogSettings";
+import CatalogSettingsModal from "components/container/catalogSettingsModal";
 
 // UI
 import Modal from "components/ui/modal";
@@ -29,7 +29,7 @@ const InstructorActionLayout = ({ catalogProps, callProps }) => {
         <Button className={button.neutral} label="catalog editor" onClick={openCatalog} />
         <div>
           <Modal
-            content={<CatalogSettings modalCallback={setCallback} />}
+            content={<CatalogSettingsModal modalCallback={setCallback} />}
             callback={onCloseModal}
           >
             <Button className={button.neutral} label="catalog settings" />
