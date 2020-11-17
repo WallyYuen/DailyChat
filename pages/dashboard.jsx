@@ -42,8 +42,8 @@ const Dashboard = () => {
 
   useEffect(() => {
     const unsubscribe = db.collection("settings").doc("catalog").onSnapshot((snapshot) => {
-      catalog.setMaxPage(snapshot.data().maxPage);
-      catalog.setActiveProjectId(snapshot.data().projectId);
+      catalog.setMaxPage(snapshot.data()?.maxPage);
+      catalog.setActiveProjectId(snapshot.data()?.projectId);
     }, (error) => {
       catalog.setReadError(error.message);
     });
