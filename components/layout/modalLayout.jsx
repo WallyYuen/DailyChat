@@ -1,24 +1,36 @@
 import React from "react";
-import clsx from "clsx";
+import Tippy, { tippy } from "@tippyjs/react";
+import { followCursor } from "tippy.js";
 
 // Styling
+import "tippy.js/dist/tippy.css";
 import layout from "components/layout/modalLayout.module.scss";
 
-const ModalLayout = ({ header, content, actions, classes = {} }) => {
+const ModalLayout = ({
+  children,
+  content,
+  placement = "left-start",
+  disabled = false,
+  callback = () => {},
+}) => {
+  tippy.setDefaultProps({ maxWidth: "" });
+
   return (
-    <div className={clsx(layout.container, classes.container)}>
-      <div className={clsx(layout.header, classes.header)}>
-        <span>{header}</span>
-      </div>
-      <div className={layout.body}>
-        <div className={clsx(layout.content, classes.content)}>
-          {content}
-        </div>
-        <div className={clsx(layout.actions, classes.actions)}>
-          {actions}
-        </div>
-      </div>
-    </div>
+    <Tippy
+      content={content}
+      className={layout.tippy}
+      trigger="click"
+      touch
+      interactive
+      arrow={false}
+      placement={placement}
+      disabled={disabled}
+      plugins={[followCursor]}
+      followCursor="initial"
+      onHidden={callback}
+    >
+      {children}
+    </Tippy>
   );
 };
 
