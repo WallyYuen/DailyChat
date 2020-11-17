@@ -8,7 +8,6 @@ import Button from "components/ui/button";
 import layout from "components/layout/globalCallLayout.module.scss";
 import button from "components/ui/button.module.scss";
 
-// TODO: Create modal component
 const GlobalCallLayout = ({ callIsActive, isInstructor, closeCall }) => {
   return (
     <div className={clsx(layout.dimmer, { [layout.callIsActive]: callIsActive })}>
