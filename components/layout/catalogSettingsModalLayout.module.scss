@@ -1,0 +1,15 @@
+.container {
+  width: 400px;
+}
+
+.content {
+  padding: 24px !important;
+
+  > *:not(:first-child) {
+    margin-top: 24px;
+  }
+}
+
+.button {
+  width: 105px;
+}
