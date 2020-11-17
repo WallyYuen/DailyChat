@@ -4,7 +4,7 @@ import { hideAll } from "tippy.js";
 import { db } from "lib/firebase";
 
 // Layout
-import CatalogSettingsLayout from "components/layout/catalogSettingsLayout";
+import CatalogSettingsModalLayout from "components/layout/catalogSettingsModalLayout";
 
 // Store
 import { ApplicationContext } from "stores/applicationStore";
@@ -13,8 +13,7 @@ const toNumber = (value) => {
   return typeof value === "string" ? Number.parseInt(value, 10) : value;
 };
 
-// TODO: Create modal component
-const CatalogSettings = ({ modalCallback }) => {
+const CatalogSettingsModal = ({ modalCallback }) => {
   const { catalog, catalog: { projects } } = useContext(ApplicationContext);
   enableStaticRendering(typeof window === "undefined");
 
@@ -92,7 +91,7 @@ const CatalogSettings = ({ modalCallback }) => {
   };
 
   return (
-    <CatalogSettingsLayout
+    <CatalogSettingsModalLayout
       setProject={handleSelectProject}
       setMaxPage={handleSelectMaxPage}
       onAccept={onAccept}
@@ -105,4 +104,4 @@ const CatalogSettings = ({ modalCallback }) => {
   );
 };
 
-export default observer(CatalogSettings);
+export default observer(CatalogSettingsModal);

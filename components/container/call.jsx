@@ -6,7 +6,7 @@ import { db } from "lib/firebase";
 import { ApplicationContext } from "stores/applicationStore";
 
 // Layout
-import CallLayout from "components/layout/callLayout";
+import CallModalLayout from "components/layout/callModalLayout";
 
 const Call = () => {
   enableStaticRendering(typeof window === "undefined");
@@ -27,7 +27,7 @@ const Call = () => {
   };
 
   return (
-    <CallLayout
+    <CallModalLayout
       caller={studentName}
       receiver={actorName}
       onClose={endCall}
