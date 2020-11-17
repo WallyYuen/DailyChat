@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from "react";
-import { hideAll } from "tippy.js";
 import { observer, enableStaticRendering } from "mobx-react-lite";
 import { db } from "lib/firebase";
 import { PrivateRoute } from "lib/routing";
@@ -26,19 +25,6 @@ const Dashboard = () => {
   const onlineUserCount = onlineUsers.length;
 
   const userCall = notifications.find(notification => notification.type === "userCall");
-
-  const handleKeyDown = (event) => {
-    if (event.key === "Escape") hideAll();
-  };
-
-  // TODO: move listener to modal component
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
 
   useEffect(() => {
     const unsubscribe = db.collection("settings").doc("catalog").onSnapshot((snapshot) => {
