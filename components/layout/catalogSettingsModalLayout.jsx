@@ -23,10 +23,10 @@ const CatalogSettingsModalLayout = ({
   maxPageOptions,
 }) => {
   const header = "Catalog settings";
-  const classes = { container: layout.container, content: layout.content };
+  const classes = { container: layout.container };
 
   const content = useMemo(() => (
-    <React.Fragment>
+    <div className={layout.content}>
       <Dropdown
         labelProps={{ label: "Project" }}
         inputProps={{ value: projectValue}}
@@ -39,7 +39,7 @@ const CatalogSettingsModalLayout = ({
         options={maxPageOptions}
         onSelect={setMaxPage}
       />
-    </React.Fragment>
+    </div>
   ), [projectValue, projectOptions, setProject, maxPageValue, maxPageOptions, setMaxPage])
 
   const actions = useMemo(() => (

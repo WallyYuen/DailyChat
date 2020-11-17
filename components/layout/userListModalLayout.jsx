@@ -15,13 +15,13 @@ const UserListModalLayout = ({ header, user, onClick, onCancel }) => {
   const { name, email, approved } = user;
 
   const content = useMemo(() => (
-    <React.Fragment>
+    <div className={layout.content}>
       {name}
       <div className={layout.details}>
         <span>approved: {approved ? "yes" : "no"}</span>
         <span>email: {email}</span>
       </div>
-    </React.Fragment>
+    </div>
   ), [name, email, approved ]);
 
   const actions = useMemo(() => (
