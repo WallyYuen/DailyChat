@@ -1,9 +1,11 @@
 import React from "react";
 import { observer, enableStaticRendering } from "mobx-react-lite";
 
+// Component
+import Modal from "components/container/modal";
+
 // UI
 import UserRowLayout from "components/layout/userRowLayout";
-import Modal from "components/ui/modal";
 
 const UserListLayout = ({ users, modal: ModalContent, isInstructor }) => {
   enableStaticRendering(typeof window === "undefined");
