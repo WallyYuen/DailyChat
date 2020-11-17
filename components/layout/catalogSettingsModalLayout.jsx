@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import clsx from "clsx";
 
 // Layout
-import ModalLayout from "components/layout/modalLayout";
+import ModalContentLayout from "components/layout/modalContentLayout";
 
 // UI
 import Dropdown from "components/ui/dropdown";
@@ -59,7 +59,7 @@ const CatalogSettingsModalLayout = ({
     </React.Fragment>
   ), [onCancel, onAccept])
   
-  return <ModalLayout header={header} content={content} actions={actions} classes={classes} />;
+  return <ModalContentLayout header={header} content={content} actions={actions} classes={classes} />;
 };
 
 export default CatalogSettingsModalLayout;
