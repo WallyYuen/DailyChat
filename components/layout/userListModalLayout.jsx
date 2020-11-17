@@ -5,11 +5,11 @@ import clsx from "clsx";
 import Button from "components/ui/button";
 
 // Layout
-import layout from "components/layout/lobbyModalLayout.module.scss";
+import layout from "components/layout/userListModalLayout.module.scss";
 import button from "components/ui/button.module.scss";
 
 // TODO: Create modal component
-const LobbyModalLayout = ({ header, user, onClick, onCancel }) => {
+const UserListModalLayout = ({ header, user, onClick, onCancel }) => {
   const { name, email, approved } = user;
 
   return (
@@ -44,4 +44,4 @@ const LobbyModalLayout = ({ header, user, onClick, onCancel }) => {
   )
 };
 
-export default LobbyModalLayout;
+export default UserListModalLayout;

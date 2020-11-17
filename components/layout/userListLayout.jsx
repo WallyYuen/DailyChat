@@ -2,7 +2,7 @@ import React from "react";
 import { observer, enableStaticRendering } from "mobx-react-lite";
 
 // UI
-import UserLayout from "components/layout/userLayout";
+import UserRowLayout from "components/layout/userRowLayout";
 import Modal from "components/ui/modal";
 
 const UserListLayout = ({ users, modal: ModalContent, isInstructor }) => {
@@ -14,7 +14,7 @@ const UserListLayout = ({ users, modal: ModalContent, isInstructor }) => {
     return (
       <div key={user.uid}>
         <Modal content={content} disabled={!isInstructor}>
-          <UserLayout
+          <UserRowLayout
             isAnonymous={!user.displayName}
             name={user.name}
             image={user.photoURL}
