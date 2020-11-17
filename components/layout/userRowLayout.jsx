@@ -7,9 +7,9 @@ import { roles } from "lib/role";
 import Avatar from "components/ui/avatar";
 
 // Styling
-import layout from "components/layout/userLayout.module.scss";
+import layout from "components/layout/userRowLayout.module.scss";
 
-const UserLayout = ({ isAnonymous, name, mood, role, image, isSelected, ...props }, ref) => {
+const UserRowLayout = ({ isAnonymous, name, mood, role, image, isSelected, ...props }, ref) => {
   const moodColor = getMoodColor(mood);
 
   const container = clsx(
@@ -35,4 +35,4 @@ const UserLayout = ({ isAnonymous, name, mood, role, image, isSelected, ...props
   );
 };
 
-export default forwardRef(UserLayout);
+export default forwardRef(UserRowLayout);

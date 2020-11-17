@@ -3,7 +3,7 @@ import { observer, enableStaticRendering } from "mobx-react-lite";
 
 // UI
 import Button from "components/ui/button";
-import UserLayout from "components/layout/userLayout";
+import UserRowLayout from "components/layout/userRowLayout";
 
 // Styles
 import layout from "components/layout/actorListLayout.module.scss";
@@ -31,7 +31,7 @@ const ActorListLayout = ({ actors, selectedActorId, onClick, resetUser, isInstru
           const isAnonymous = !actor.displayName;
 
           return (
-            <UserLayout
+            <UserRowLayout
               isAnonymous={isAnonymous}
               name={actor.name}
               key={actor.uid}
