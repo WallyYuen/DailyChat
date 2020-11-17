@@ -1,20 +1,23 @@
-@value background-separator from "/public/styles/colors.scss";
 @value color-text-primary from "/public/styles/colors.scss";
 
-.details {
-  color: color-text-primary;
-  font-size: 0.7rem;
-  font-weight: 200;
-  
-  margin-left: 12px;
-  margin-top: 4px;
-  display: flex;
-  flex-direction: column;
+.content {
+  padding: 0 16px;
 
-  > * {
-    display: list-item;
-    list-style-type: circle;
-    list-style-position: inside;
+  .details {
+    color: color-text-primary;
+    font-size: 0.7rem;
+    font-weight: 200;
+    
+    margin-left: 12px;
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+  
+    > * {
+      display: list-item;
+      list-style-type: circle;
+      list-style-position: inside;
+    }
   }
 }
 

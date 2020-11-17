@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import clsx from "clsx";
 
 // Layout
-import ModalLayout from "components/layout/modalLayout";
+import ModalContentLayout from "components/layout/modalContentLayout";
 
 // UI
 import Button from "components/ui/button";
@@ -31,7 +31,7 @@ const CallModalLayout = ({ onClose, caller, receiver }) => {
     />
   ), [onClose]);
 
-  return <ModalLayout header={header} content={content} actions={actions} classes={classes} />;
+  return <ModalContentLayout header={header} content={content} actions={actions} classes={classes} />;
 };
 
 export default CallModalLayout;

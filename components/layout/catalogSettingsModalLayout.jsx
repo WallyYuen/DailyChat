@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import clsx from "clsx";
 
 // Layout
-import ModalLayout from "components/layout/modalLayout";
+import ModalContentLayout from "components/layout/modalContentLayout";
 
 // UI
 import Dropdown from "components/ui/dropdown";
@@ -23,10 +23,10 @@ const CatalogSettingsModalLayout = ({
   maxPageOptions,
 }) => {
   const header = "Catalog settings";
-  const classes = { container: layout.container, content: layout.content };
+  const classes = { container: layout.container };
 
   const content = useMemo(() => (
-    <React.Fragment>
+    <div className={layout.content}>
       <Dropdown
         labelProps={{ label: "Project" }}
         inputProps={{ value: projectValue}}
@@ -39,7 +39,7 @@ const CatalogSettingsModalLayout = ({
         options={maxPageOptions}
         onSelect={setMaxPage}
       />
-    </React.Fragment>
+    </div>
   ), [projectValue, projectOptions, setProject, maxPageValue, maxPageOptions, setMaxPage])
 
   const actions = useMemo(() => (
@@ -59,7 +59,7 @@ const CatalogSettingsModalLayout = ({
     </React.Fragment>
   ), [onCancel, onAccept])
   
-  return <ModalLayout header={header} content={content} actions={actions} classes={classes} />;
+  return <ModalContentLayout header={header} content={content} actions={actions} classes={classes} />;
 };
 
 export default CatalogSettingsModalLayout;

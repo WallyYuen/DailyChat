@@ -1,0 +1,68 @@
+@value background-separator from "/public/styles/colors.scss";
+@value color-text-primary from "/public/styles/colors.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  overflow: auto;
+}
+
+.header {
+  font-weight: 200;
+  font-size: 1.25rem;
+  color: color-text-primary;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  flex: 0 0 60px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.6);
+
+  &:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background-color: background-separator;
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(228, 228, 228, 0.6);
+  
+  .content {
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: color-text-primary;
+
+    padding: 24px;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+    
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+  }
+}
+
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  justify-content: center;
+  padding: 12px;
+
+  > *:not(:last-child) {
+    margin-right: 16px;
+  }
+}

@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import clsx from "clsx";
 
 // Layout
-import ModalLayout from "components/layout/modalLayout";
+import ModalContentLayout from "components/layout/modalContentLayout";
 
 // UI
 import Button from "components/ui/button";
@@ -15,13 +15,13 @@ const UserListModalLayout = ({ header, user, onClick, onCancel }) => {
   const { name, email, approved } = user;
 
   const content = useMemo(() => (
-    <React.Fragment>
+    <div className={layout.content}>
       {name}
       <div className={layout.details}>
         <span>approved: {approved ? "yes" : "no"}</span>
         <span>email: {email}</span>
       </div>
-    </React.Fragment>
+    </div>
   ), [name, email, approved ]);
 
   const actions = useMemo(() => (
@@ -41,7 +41,7 @@ const UserListModalLayout = ({ header, user, onClick, onCancel }) => {
     </React.Fragment>
   ), [onCancel, onClick]);
 
-  return <ModalLayout header={header} content={content} actions={actions} />;
+  return <ModalContentLayout header={header} content={content} actions={actions} />;
 };
 
 export default UserListModalLayout;

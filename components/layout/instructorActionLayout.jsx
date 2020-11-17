@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 // Component
 import CatalogEditor from "components/container/catalogEditor";
+import Modal from "components/container/modal";
 import CatalogSettingsModal from "components/container/catalogSettingsModal";
 
 // UI
-import Modal from "components/ui/modal";
 import Button from "components/ui/button";
 
 // Styling
