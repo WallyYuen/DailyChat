@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { observer, enableStaticRendering } from "mobx-react-lite";
-import { roles } from "lib/role";
+import { roles, addRoleAndOptions, addActors } from "lib/role";
 import { PublicRoute } from "lib/routing";
 
 // Components
@@ -15,6 +15,14 @@ const Home = () => {
 
   const { currentUser, isAuthenticated } = useApplicationStore();
   const isStudent = currentUser?.role === roles.student;
+
+  const addAdmin = () => {
+    addRoleAndOptions(roles.admin, process.env.NEXT_PUBLIC_ADMIN_ACCOUNT);
+  };
+
+  const addInstructors = () => {
+    addRoleAndOptions(roles.instructor, process.env.NEXT_PUBLIC_INSTRUCTORS_ACCOUNT);
+  };
 
   return (
     <PublicRoute>
@@ -43,6 +51,9 @@ const Home = () => {
             </div>
           </div>
         </section>
+        <Button label="Add admin" onClick={addAdmin} />
+        <Button label="Add instructors" onClick={addInstructors} />
+        <Button label="Add actors" onClick={addActors} />
       </div>
     </PublicRoute>
   );
