@@ -37,9 +37,16 @@ const MyApp = ({ Component, pageProps }) => {
 
     const unsubscribe = userDb.ref("users")
       .on("value", (snapshots) => {
-        const users = snapshots?.exportVal();
+        const dbUsers = snapshots?.exportVal();
 
-        if (users) store.setUsers(Object.values(users));
+        if (!dbUsers) return;
+
+        const users = Object.keys(dbUsers).map((key) => ({
+          uid: key,
+          ...dbUsers[key],
+        }));
+
+        store.setUsers(users);
       });
 
     return () => unsubscribe();
