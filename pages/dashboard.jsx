@@ -27,6 +27,8 @@ const Dashboard = () => {
   const userCall = notifications.find(notification => notification.type === "userCall");
 
   useEffect(() => {
+    if (!currentUser) return;
+
     const unsubscribe = db.collection("settings").doc("catalog").onSnapshot((snapshot) => {
       catalog.setMaxPage(snapshot.data()?.maxPage);
       catalog.setActiveProjectId(snapshot.data()?.projectId);
@@ -38,6 +40,8 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
+    if (!currentUser) return;
+    
     const unsubscribe = db.collection("projects").onSnapshot((snapshot) => {
       catalog.setProjects(snapshot.docs.map(doc => doc.data()));
     }, (error) => {
@@ -48,6 +52,8 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
+    if (!currentUser) return;
+
     const unsubscribe = db.collection("notifications").onSnapshot((snapshot) => {
       setNotifications(snapshot.docs.map(doc => doc.data()));
     }, (error) => {
