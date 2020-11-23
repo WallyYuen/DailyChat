@@ -29,7 +29,7 @@ const Home = () => {
   const isAdmin = adminMail
     .split(",")
     .map(mail => mail.trim())
-    .includes(currentUser.email);
+    .includes(currentUser?.email);
 
   return (
     <PublicRoute>
