@@ -1,33 +1,33 @@
 @value background-default from "/public/styles/colors.scss";
 @value background-grey-light from "/public/styles/colors.scss";
 @value color-text-primary from "/public/styles/colors.scss";
-@value xs, md, xl, xxl from "/public/styles/breakpoints.scss";
+@value xs from "/public/styles/breakpoints.scss";
 @value border-radius-medium from "/public/styles/borderRadius.module.scss";
 
 .frame {
-  display: flex;
-  flex-direction: row;
   height: 100vh;
   width: 100%;
+
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  
   overflow: hidden;
   background-color: background-grey-light;
-  padding: 8px 0;
   box-sizing: border-box;
 }
 
 .container {
-  height: 100%;
   padding: 0px 8px;
-  max-width: 100%;
   flex: 1 0 auto;
+  height: 100%;
+  background-color: background-default;
+  box-sizing: border-box;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: border-radius-medium;
-  height: 100%;
-  background-color: background-default;
 }
 
 .headerContainer {
@@ -86,40 +86,28 @@
 }
 
 .bottom {
+  flex: 0 0 15%;
+  padding-top: 10px;
+  box-sizing: border-box;
+  min-width: calc(105px + 15%);
+  
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
-  flex: 0 0 15%;
-  padding-top: 10px;
-  box-sizing: border-box;
-  min-width: 50%;
 }
 
 .button {
-  width: 50%;
+  width: 100%;
 }
 
 @media screen and (min-width: xs) {
-  .container {
-    max-width: 70%;
+  .frame {
+    padding: 8px 0;
   }
-}
 
-@media screen and (min-width: md) {
   .container {
-    max-width: 50%;
-  }
-}
-
-@media screen and (min-width: xl) {
-  .container {
-    max-width: 30%;
-  }
-}
-
-@media screen and (min-width: xxl) {
-  .container {
-    max-width: 25%;
+    border-radius: border-radius-medium;
+    max-width: calc(480px + 15%);
   }
 }
