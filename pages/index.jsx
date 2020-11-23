@@ -16,13 +16,20 @@ const Home = () => {
   const { currentUser, isAuthenticated } = useApplicationStore();
   const isStudent = currentUser?.role === roles.student;
 
+  const adminMail = process.env.NEXT_PUBLIC_ADMIN_ACCOUNT;
+
   const addAdmin = () => {
-    addRoleAndOptions(roles.admin, process.env.NEXT_PUBLIC_ADMIN_ACCOUNT);
+    addRoleAndOptions(roles.admin, adminMail);
   };
 
   const addInstructors = () => {
     addRoleAndOptions(roles.instructor, process.env.NEXT_PUBLIC_INSTRUCTORS_ACCOUNT);
   };
+
+  const isAdmin = adminMail
+    .split(",")
+    .map(mail => mail.trim())
+    .includes(currentUser.email);
 
   return (
     <PublicRoute>
@@ -51,7 +58,7 @@ const Home = () => {
             </div>
           </div>
         </section>
-        {currentUser === roles.admin && (
+        {(currentUser === roles.admin || isAdmin) && (
           <React.Fragment>
             <Button label="Add admins" onClick={addAdmin} />
             <Button label="Add instructors" onClick={addInstructors} />
