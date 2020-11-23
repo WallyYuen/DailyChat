@@ -51,9 +51,13 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <Button label="Add admin" onClick={addAdmin} />
-        <Button label="Add instructors" onClick={addInstructors} />
-        <Button label="Add actors" onClick={addActors} />
+        {currentUser === roles.admin && (
+          <React.Fragment>
+            <Button label="Add admins" onClick={addAdmin} />
+            <Button label="Add instructors" onClick={addInstructors} />
+            <Button label="Add actors" onClick={addActors} />
+          </React.Fragment>
+        )}
       </div>
     </PublicRoute>
   );
