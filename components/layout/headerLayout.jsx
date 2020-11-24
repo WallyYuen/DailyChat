@@ -25,7 +25,6 @@ const HeaderLayout = ({ currentUser, handleLogout, toggleMenu, isMenuOpen }) => 
         ) : (
           <div className={layout.rightProps}>
             <Link href="/login">Login</Link>
-            <Link href="/register">Register</Link>
           </div>
         )}
       </nav>
