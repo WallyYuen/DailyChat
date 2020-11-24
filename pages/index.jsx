@@ -58,9 +58,6 @@ const Home = () => {
               <div className="">
                 {!isAuthenticated ? (
                   <React.Fragment>
-                    <Link href="/register">
-                      <Button label="Create New Account" classes={["btn-primary"]} />
-                    </Link>
                     <Link href="/login">
                       <Button label="Login to Your Account" />
                     </Link>

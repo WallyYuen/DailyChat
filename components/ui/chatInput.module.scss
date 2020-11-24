@@ -51,7 +51,7 @@
 }
 
 .mentions__suggestions__list {
-  background-color: background-default;
+  background: background-default;
   border: 1px solid border-color-light;
 	font-weight: 200;
 	color: color-text-primary;
@@ -74,7 +74,7 @@
 }
 
 .mentions__suggestions__item--focused {
-  background-color: background-blue-light;
+  background: background-blue-light;
 }
 
 .mentions__mention {
