@@ -1,65 +1,30 @@
 import React from "react";
-import Link from "next/link";
-
-// Components
-import ExternalLogin from "components/container/externalLogin";
+import clsx from "clsx";
 
 // UI
 import Button from "components/ui/button"
-import TextField from "components/ui/textField"
 
 // Styling
+import layout from "components/layout/loginLayout.module.scss";
 import button from "components/ui/button.module.scss";
 
-const LoginLayout = ({
-  email,
-  handleError,
-  password,
-  error,
-  handleSubmit,
-  handleChange,
-}) => {
-
+const LoginLayout = ({ login, error }) => {
   return (
-    <div>
-      <form
-        autoComplete="off"
-        onSubmit={handleSubmit}
-      >
-        <div>
-          <h1>Login</h1>
-          <p>
-            Login using your OGD account.
-          </p>
+    <div className={layout.container}>
+      <div className={layout.frame}>
+        <div className={layout.content}>
+          <span>Login</span>
         </div>
-        <div>
-          <TextField
-            inputProps={{
-              placeholder: "Email",
-              name: "email",
-              type: "email",
-              onChange: handleChange,
-              value: email,
-            }}
-          />
-        </div>
-        <div>
-          <TextField
-            inputProps={{
-              name: "password",
-              placeholder: "Password",
-              type: "password",
-              onChange: handleChange,
-              value: password,
-            }}
-          />
-        </div>
-        <div>
+        <div className={layout.actions}>
           {error && <p>{error}</p>}
-          <Button label="Login" className={button.neutral} type="submit" />
+          <Button
+            label="Sign in with Microsoft"
+            size="small"
+            className={clsx(layout.button, button.neutral)}
+            onClick={login}
+          />
         </div>
-        <ExternalLogin handleError={handleError} />
-      </form>
+      </div>
     </div>
   );
 };
