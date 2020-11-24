@@ -18,7 +18,9 @@ export const CatalogStore = types
   })
   .actions(self => ({
     setProjects(projects) {
-      self.projects = projects;
+      const projectsWithAssignments = projects.filter(project => project.assignments.length > 0);
+
+      self.projects = projectsWithAssignments;
     },
     setSelectedAssignment(id) {
       self.selectedAssignment = id;
