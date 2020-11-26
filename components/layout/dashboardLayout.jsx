@@ -12,6 +12,7 @@ import ContactList from "components/container/contactList";
 import LobbyList from "components/container/lobbyList";
 import GlobalCall from "components/container/globalCall";
 import Call from "components/container/call";
+import LegendLayout from "components/layout/legendLayout";
 
 // Styling
 import layout from "components/layout/dashboardLayout.module.scss";
@@ -25,6 +26,7 @@ const DashboardLayout = ({ lobbyUserCount, onlineUserCount, hasInstructorRights,
         <ActorList />
         <ActorAction />
         {hasInstructorRights && <InstructorAction />}
+        {!hasInstructorRights && <LegendLayout />}
       </div>
       <div className={layout.centerColumn}>
         <Chat />

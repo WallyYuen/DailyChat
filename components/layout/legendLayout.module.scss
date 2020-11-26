@@ -1,0 +1,35 @@
+@value color-text-primary from "/public/styles/colors.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.header {
+	composes: h3 from "/public/styles/headers.scss";
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+
+  font-weight: 300;
+  font-size: 0.9rem;
+  composes: roboto from "/public/styles/types.module.scss";
+}
+
+.dot {
+  border-radius: 10px;
+  width: 12px;
+  height: 12px;
+}
+
+.mood {
+  padding: 0 16px;
+}
