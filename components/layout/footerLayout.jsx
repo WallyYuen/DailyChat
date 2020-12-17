@@ -8,6 +8,7 @@ const Footer = ({ footer }) => {
     <footer className={layout.container}>
       <div>
         <span>{footer}</span>
+        <span className={layout.beta}>beta v0.7</span>
       </div>
     </footer>
   )

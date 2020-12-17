@@ -13,7 +13,7 @@ const HeaderLayout = ({ currentUser, handleLogout, toggleMenu, isMenuOpen }) => 
   return (
     <header className={layout.container}>
       <nav className={layout.nav}>
-        <Link href="/">Daily Chat</Link>
+        <Link href="/">Home</Link>
         <div className={layout.menu}>
           <Hamburger isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
         </div>
