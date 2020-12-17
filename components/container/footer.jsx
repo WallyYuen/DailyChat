@@ -7,7 +7,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
   const copyright = "\u00A9";
 
-  const footer = `${copyright} Daily Chat ${year}.`;
+  const footer = `${copyright} Sub Chat ${year}`;
   
   return <FooterLayout footer={footer} />;
 };

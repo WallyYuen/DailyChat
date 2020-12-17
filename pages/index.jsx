@@ -53,7 +53,7 @@ const Home = () => {
         <section>
           <div className="">
             <div className="">
-              <h1 className="">Welcome to Daily Chat</h1>
+              <h1 className="">Welcome to Sub Chat</h1>
               <p className="">A great place to share your thoughts with friends</p>
               <div className="">
                 {!isAuthenticated ? (
