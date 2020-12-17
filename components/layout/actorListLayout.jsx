@@ -14,17 +14,17 @@ const ActorListLayout = ({ actors, selectedActorId, onClick, resetUser, isInstru
 
   return (
     <div className={layout.container}>
-      <div className={layout.header}>
-        <span>Act as</span>
-        {isInstructor && (
+      {isInstructor && (
+        <div className={layout.header}>
+          <span>Act as</span>
           <Button
             className={button.neutral}
             label="Reset"
             size="small"
             onClick={resetUser}
           />
-        )}
-      </div>
+        </div>
+      )}
       <div>
         {actors.map((actor) => {
           const isSelected = actor.uid === selectedActorId;
